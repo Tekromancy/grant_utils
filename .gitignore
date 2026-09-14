@@ -7,3 +7,5 @@ dist-electron
 .env.local
 .cache
 coverage
+.next
+out

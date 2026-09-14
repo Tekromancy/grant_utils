@@ -3,15 +3,31 @@
 > The open-source infrastructure and toolkit for Git-powered grantwriting, pipeline tracking, cost-share accounting, RFC 5545 iCalendar synchronization, and collaborative PR review.
 
 [![CI](https://github.com/Tekromancy/grant_utils/actions/workflows/ci.yml/badge.svg)](https://github.com/Tekromancy/grant_utils/actions/workflows/ci.yml)
+[![Pages Deployment](https://github.com/Tekromancy/grant_utils/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/Tekromancy/grant_utils/actions/workflows/deploy-pages.yml)
+[![Live Demo Hub](https://img.shields.io/badge/Demo_Hub-tekromancy.github.io%2Fgrant__utils-emerald.svg)](https://tekromancy.github.io/grant_utils/)
 [![npm version](https://img.shields.io/npm/v/@tekromancy/grant_utils.svg)](https://www.npmjs.com/package/@tekromancy/grant_utils)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![pnpm workspace](https://img.shields.io/badge/pnpm-workspace-orange.svg)](https://pnpm.io/)
 
 ---
 
+## 🌐 Live Interactive Demonstration & Documentation
+
+Explore the live web application and interactive developer documentation hosted on GitHub Pages:
+👉 **[tekromancy.github.io/grant_utils](https://tekromancy.github.io/grant_utils/)**
+
+- **Executive KPI Dashboard:** Real-time metrics, pipeline summaries, match funding calculation, and countdown clocks.
+- **Grants Explorer:** Filter and search active opportunities, view compliance checklists and requirements.
+- **Interactive Calendar:** Month matrix view and instant `.ics` feed downloads.
+- **Proposal Editor & Visual Diff:** WYSIWYG & Markdown editing with real-time Git red/green diff calculation.
+- **Interactive Documentation:** Setup guides, RFC 5545 specifications, and a live YAML frontmatter validator playground.
+- **Multi-Tenant Organization Switcher:** Switch between Austin Cooperative Business Foundation, Go Austin / Vamos Austin, or Starter presets.
+
+---
+
 ## 🏛️ Monorepo Architecture
 
-This monorepo houses the core `@tekromancy/grant_utils` TypeScript engine, end-to-end documentation, and a fully functional reference application demonstrating how any organization, cooperative, or non-profit can structure their own grantwriting repository.
+This monorepo houses the core `@tekromancy/grant_utils` TypeScript engine, end-to-end documentation, and reference applications demonstrating how any organization, cooperative, or non-profit can structure their own grantwriting repository.
 
 ```
 grant_utils/
@@ -22,18 +38,19 @@ grant_utils/
 │       ├── tests/              # Vitest test suite
 │       └── package.json
 ├── examples/
-│   └── sample-grant-hub/       # Complete reference grantwriting repository
+│   ├── grant-hub-site/         # Next.js interactive web showcase & documentation site (GitHub Pages)
+│   └── sample-grant-hub/       # Complete reference grantwriting repository (CLI demo)
 │       ├── data/               # Markdown proposals with YAML frontmatter
 │       ├── calendar.ics        # Master RFC 5545 calendar feed
 │       ├── strategic_plan.md   # Organizational targets & priorities
 │       ├── src/index.ts        # Interactive demo CLI
 │       └── tests/              # Integration tests
-├── docs/                       # Complete guide & specifications
+├── docs/                       # Complete guides & technical specifications
 │   ├── setup-guide.md          # 15-minute guide to setting up your own repo
 │   ├── frontmatter-spec.md     # Proposal metadata standard
 │   ├── calendar-spec.md        # RFC 5545 calendar integration standard
 │   └── npm-publishing.md       # Release and publishing workflow
-└── .github/workflows/          # CI/CD and automated npm publishing
+└── .github/workflows/          # CI/CD, GitHub Pages deployment, and automated npm publishing
 ```
 
 ---
@@ -60,6 +77,9 @@ pnpm run test
 
 # 5. Execute the sample grant hub demo CLI
 pnpm run example
+
+# 6. Launch the interactive Grant Hub web showcase locally
+pnpm run site
 ```
 
 ---
@@ -69,7 +89,8 @@ pnpm run example
 | Package | Directory | Description | Status |
 | :--- | :--- | :--- | :--- |
 | **`@tekromancy/grant_utils`** | [`packages/grant_utils`](./packages/grant_utils) | Core computational engine, YAML parser, RFC 5545 calendar generator, KPI aggregator, unified diff, and Git PR tooling. | [![npm](https://img.shields.io/npm/v/@tekromancy/grant_utils.svg)](https://www.npmjs.com/package/@tekromancy/grant_utils) |
-| **`sample-grant-hub`** | [`examples/sample-grant-hub`](./examples/sample-grant-hub) | Full reference implementation showcasing how to consume the library, manage a \$750k pipeline, and validate grants. | Reference |
+| **`@tekromancy/grant-hub-site`** | [`examples/grant-hub-site`](./examples/grant-hub-site) | Next.js interactive web demonstration and documentation portal hosted on GitHub Pages. | [![Pages](https://img.shields.io/badge/Live-Demo_Hub-emerald.svg)](https://tekromancy.github.io/grant_utils/) |
+| **`sample-grant-hub`** | [`examples/sample-grant-hub`](./examples/sample-grant-hub) | Full reference implementation showcasing how to consume the library, manage a \$750k pipeline, and validate grants via CLI. | Reference |
 
 ---
 

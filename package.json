@@ -5,9 +5,11 @@
   "description": "Monorepo for @tekromancy/grant_utils library and example grantwriting hubs",
   "type": "module",
   "scripts": {
-    "build": "pnpm --filter @tekromancy/grant_utils run build && pnpm --filter sample-grant-hub run build",
+    "build": "pnpm --filter @tekromancy/grant_utils run build && pnpm --filter sample-grant-hub run build && pnpm --filter @tekromancy/grant-hub-site run build",
     "test": "pnpm --filter @tekromancy/grant_utils run test && pnpm --filter sample-grant-hub run test",
     "example": "pnpm --filter sample-grant-hub run start",
+    "site": "pnpm --filter @tekromancy/grant-hub-site dev",
+    "site:build": "pnpm --filter @tekromancy/grant-hub-site build",
     "prepare": "pnpm --filter @tekromancy/grant_utils run build"
   },
   "keywords": [

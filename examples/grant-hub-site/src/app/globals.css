@@ -1,0 +1,821 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card-bg: #1e293b;
+  --border-color: #334155;
+  --accent-color: #10b981;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ==========================================================================
+   THEME 1: OBSIDIAN OLED (Pure #000000 Black & Super White #FFFFFF)
+   Engineered for OLED panels to showcase infinite screen depth and contrast.
+   ========================================================================== */
+[data-theme="obsidian-oled"],
+[data-theme="obsidian-oled"] body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="obsidian-oled"] ::-webkit-scrollbar-track {
+  background: #000000 !important;
+}
+[data-theme="obsidian-oled"] ::-webkit-scrollbar-thumb {
+  background: #262626 !important;
+}
+[data-theme="obsidian-oled"] ::-webkit-scrollbar-thumb:hover {
+  background: #404040 !important;
+}
+
+/* Surfaces & Containers */
+[data-theme="obsidian-oled"] .bg-slate-950,
+[data-theme="obsidian-oled"] .bg-slate-900,
+[data-theme="obsidian-oled"] .bg-slate-900\/90,
+[data-theme="obsidian-oled"] .bg-slate-900\/80,
+[data-theme="obsidian-oled"] .bg-slate-900\/60,
+[data-theme="obsidian-oled"] .bg-slate-900\/40,
+[data-theme="obsidian-oled"] .bg-slate-800,
+[data-theme="obsidian-oled"] .bg-slate-800\/50,
+[data-theme="obsidian-oled"] .bg-slate-800\/60,
+[data-theme="obsidian-oled"] .bg-slate-800\/80,
+[data-theme="obsidian-oled"] header,
+[data-theme="obsidian-oled"] footer {
+  background-color: #000000 !important;
+}
+
+/* Borders */
+[data-theme="obsidian-oled"] .border-slate-800,
+[data-theme="obsidian-oled"] .border-slate-700,
+[data-theme="obsidian-oled"] .border-slate-600,
+[data-theme="obsidian-oled"] .divide-slate-800,
+[data-theme="obsidian-oled"] .divide-slate-700 {
+  border-color: #262626 !important;
+}
+
+/* Text Hierarchy */
+[data-theme="obsidian-oled"] h1,
+[data-theme="obsidian-oled"] h2,
+[data-theme="obsidian-oled"] h3,
+[data-theme="obsidian-oled"] h4,
+[data-theme="obsidian-oled"] .text-white,
+[data-theme="obsidian-oled"] .font-bold,
+[data-theme="obsidian-oled"] .font-semibold {
+  color: #ffffff !important;
+}
+
+[data-theme="obsidian-oled"] .text-slate-100,
+[data-theme="obsidian-oled"] .text-slate-200,
+[data-theme="obsidian-oled"] .text-slate-300 {
+  color: #e5e5e5 !important;
+}
+
+[data-theme="obsidian-oled"] .text-slate-400,
+[data-theme="obsidian-oled"] .text-slate-500 {
+  color: #a3a3a3 !important;
+}
+
+/* Inverted High-Contrast Buttons & Accents */
+[data-theme="obsidian-oled"] .bg-emerald-600,
+[data-theme="obsidian-oled"] .bg-emerald-500 {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="obsidian-oled"] .bg-emerald-600:hover,
+[data-theme="obsidian-oled"] .bg-emerald-500:hover,
+[data-theme="obsidian-oled"] .hover\:bg-emerald-700:hover,
+[data-theme="obsidian-oled"] .hover\:bg-emerald-600:hover {
+  background-color: #e5e5e5 !important;
+  color: #000000 !important;
+}
+
+[data-theme="obsidian-oled"] .text-emerald-400,
+[data-theme="obsidian-oled"] .text-emerald-300,
+[data-theme="obsidian-oled"] .text-emerald-500,
+[data-theme="obsidian-oled"] .text-teal-400,
+[data-theme="obsidian-oled"] .text-cyan-400 {
+  color: #ffffff !important;
+}
+
+[data-theme="obsidian-oled"] .bg-emerald-950\/60,
+[data-theme="obsidian-oled"] .bg-emerald-900\/60,
+[data-theme="obsidian-oled"] .bg-emerald-950,
+[data-theme="obsidian-oled"] .bg-amber-950\/40,
+[data-theme="obsidian-oled"] .bg-amber-950 {
+  background-color: #000000 !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Inputs & Form Controls */
+[data-theme="obsidian-oled"] input,
+[data-theme="obsidian-oled"] textarea,
+[data-theme="obsidian-oled"] select {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #404040 !important;
+}
+
+[data-theme="obsidian-oled"] input:focus,
+[data-theme="obsidian-oled"] textarea:focus,
+[data-theme="obsidian-oled"] select:focus {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 1px #ffffff !important;
+}
+
+
+/* ==========================================================================
+   THEME 2: OBSIDIAN VAMPIRE (#882233 Foreground & #000000 Background)
+   Pure OLED pitch black with deep blood-crimson vampire glow and elegance.
+   ========================================================================== */
+[data-theme="obsidian-vampire"],
+[data-theme="obsidian-vampire"] body {
+  background-color: #000000 !important;
+  color: #882233 !important;
+}
+
+[data-theme="obsidian-vampire"] ::-webkit-scrollbar-track {
+  background: #000000 !important;
+}
+[data-theme="obsidian-vampire"] ::-webkit-scrollbar-thumb {
+  background: #551122 !important;
+}
+[data-theme="obsidian-vampire"] ::-webkit-scrollbar-thumb:hover {
+  background: #882233 !important;
+}
+
+/* Surfaces & Containers */
+[data-theme="obsidian-vampire"] .bg-slate-950,
+[data-theme="obsidian-vampire"] .bg-slate-900,
+[data-theme="obsidian-vampire"] .bg-slate-900\/90,
+[data-theme="obsidian-vampire"] .bg-slate-900\/80,
+[data-theme="obsidian-vampire"] .bg-slate-900\/60,
+[data-theme="obsidian-vampire"] .bg-slate-900\/40,
+[data-theme="obsidian-vampire"] .bg-slate-800,
+[data-theme="obsidian-vampire"] .bg-slate-800\/50,
+[data-theme="obsidian-vampire"] .bg-slate-800\/60,
+[data-theme="obsidian-vampire"] .bg-slate-800\/80,
+[data-theme="obsidian-vampire"] header,
+[data-theme="obsidian-vampire"] footer {
+  background-color: #000000 !important;
+}
+
+/* Borders in Deep Crimson */
+[data-theme="obsidian-vampire"] .border-slate-800,
+[data-theme="obsidian-vampire"] .border-slate-700,
+[data-theme="obsidian-vampire"] .border-slate-600,
+[data-theme="obsidian-vampire"] .divide-slate-800,
+[data-theme="obsidian-vampire"] .divide-slate-700 {
+  border-color: #551122 !important;
+}
+
+/* Text Hierarchy: Blood Red to Vivid Wine */
+[data-theme="obsidian-vampire"] h1,
+[data-theme="obsidian-vampire"] h2,
+[data-theme="obsidian-vampire"] h3,
+[data-theme="obsidian-vampire"] h4,
+[data-theme="obsidian-vampire"] .font-bold,
+[data-theme="obsidian-vampire"] .font-semibold {
+  color: #cc2944 !important;
+}
+
+[data-theme="obsidian-vampire"] .text-white {
+  color: #cc2944 !important;
+}
+
+[data-theme="obsidian-vampire"] .text-slate-100,
+[data-theme="obsidian-vampire"] .text-slate-200,
+[data-theme="obsidian-vampire"] .text-slate-300 {
+  color: #882233 !important;
+}
+
+[data-theme="obsidian-vampire"] .text-slate-400,
+[data-theme="obsidian-vampire"] .text-slate-500 {
+  color: #aa4455 !important;
+}
+
+/* Buttons & Accents: Crimson Vampire Glow */
+[data-theme="obsidian-vampire"] .bg-emerald-600,
+[data-theme="obsidian-vampire"] .bg-emerald-500 {
+  background-color: #882233 !important;
+  color: #ffffff !important;
+  border: 1px solid #aa2944 !important;
+}
+
+[data-theme="obsidian-vampire"] .bg-emerald-600:hover,
+[data-theme="obsidian-vampire"] .bg-emerald-500:hover,
+[data-theme="obsidian-vampire"] .hover\:bg-emerald-700:hover,
+[data-theme="obsidian-vampire"] .hover\:bg-emerald-600:hover {
+  background-color: #aa2944 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(204, 41, 68, 0.4) !important;
+}
+
+[data-theme="obsidian-vampire"] .text-emerald-400,
+[data-theme="obsidian-vampire"] .text-emerald-300,
+[data-theme="obsidian-vampire"] .text-emerald-500,
+[data-theme="obsidian-vampire"] .text-teal-400,
+[data-theme="obsidian-vampire"] .text-cyan-400 {
+  color: #ee3355 !important;
+}
+
+[data-theme="obsidian-vampire"] .bg-emerald-950\/60,
+[data-theme="obsidian-vampire"] .bg-emerald-900\/60,
+[data-theme="obsidian-vampire"] .bg-emerald-950,
+[data-theme="obsidian-vampire"] .bg-amber-950\/40,
+[data-theme="obsidian-vampire"] .bg-amber-950 {
+  background-color: #1a0408 !important;
+  border-color: #882233 !important;
+  color: #ff5577 !important;
+}
+
+/* Inputs & Form Controls */
+[data-theme="obsidian-vampire"] input,
+[data-theme="obsidian-vampire"] textarea,
+[data-theme="obsidian-vampire"] select {
+  background-color: #080102 !important;
+  color: #cc2944 !important;
+  border-color: #661122 !important;
+}
+
+[data-theme="obsidian-vampire"] input:focus,
+[data-theme="obsidian-vampire"] textarea:focus,
+[data-theme="obsidian-vampire"] select:focus {
+  border-color: #aa2944 !important;
+  box-shadow: 0 0 8px rgba(170, 41, 68, 0.5) !important;
+}
+
+
+/* ==========================================================================
+   THEME 3: COOPERATIVE FOREST (#052E16 Deep Green)
+   ========================================================================== */
+[data-theme="coop-forest"],
+[data-theme="coop-forest"] body {
+  background-color: #052e16 !important;
+  color: #ecfdf5 !important;
+}
+[data-theme="coop-forest"] .bg-slate-900,
+[data-theme="coop-forest"] .bg-slate-950,
+[data-theme="coop-forest"] header {
+  background-color: #064e3b !important;
+  border-color: #047857 !important;
+}
+[data-theme="coop-forest"] .bg-slate-800 {
+  background-color: #065f46 !important;
+}
+[data-theme="coop-forest"] .border-slate-800,
+[data-theme="coop-forest"] .border-slate-700 {
+  border-color: #047857 !important;
+}
+
+
+/* ==========================================================================
+   THEME 4: CLEAN PAPER LIGHT (#F8FAFC)
+   ========================================================================== */
+[data-theme="light"],
+[data-theme="light"] body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+[data-theme="light"] .bg-slate-900,
+[data-theme="light"] .bg-slate-950,
+[data-theme="light"] header {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+[data-theme="light"] .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+}
+[data-theme="light"] .border-slate-800,
+[data-theme="light"] .border-slate-700 {
+  border-color: #e2e8f0 !important;
+}
+[data-theme="light"] .text-white,
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3 {
+  color: #0f172a !important;
+}
+[data-theme="light"] .text-slate-300,
+[data-theme="light"] .text-slate-400 {
+  color: #475569 !important;
+}
+[data-theme="light"] input,
+[data-theme="light"] textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* ==========================================================================
+   PRINT & PDF EXPORT STYLESHEET
+   Clean black-on-white formatting for grant submission packages & attachments
+   ========================================================================== */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  header, footer, nav, button, .no-print, .command-palette-backdrop {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .prose, .modal-content, pre, code {
+    color: #111827 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-color: #e5e7eb !important;
+  }
+
+  h1, h2, h3, h4 {
+    color: #000000 !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  th, td {
+    border: 1px solid #d1d5db !important;
+    padding: 6px 10px !important;
+    color: #111827 !important;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+}
+
+/* ==========================================================================
+   WYSIWYG & MARKDOWN PROSE TYPOGRAPHY
+   Rich text styling for interactive contentEditable canvas and preview mode
+   ========================================================================== */
+.wysiwyg-content,
+.markdown-preview {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  outline: none;
+}
+
+.wysiwyg-content:empty:before {
+  content: attr(data-placeholder);
+  color: #64748b;
+  font-style: italic;
+  pointer-events: none;
+}
+
+.wysiwyg-content h1,
+.markdown-preview h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 1.75rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+}
+
+.wysiwyg-content h2,
+.markdown-preview h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  color: #f1f5f9;
+}
+
+.wysiwyg-content h3,
+.markdown-preview h3 {
+  font-size: 1.18rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #e2e8f0;
+}
+
+.wysiwyg-content h4,
+.markdown-preview h4 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  color: #cbd5e1;
+}
+
+.wysiwyg-content p,
+.markdown-preview p {
+  margin-top: 0;
+  margin-bottom: 0.9rem;
+  color: #cbd5e1;
+}
+
+.wysiwyg-content strong,
+.wysiwyg-content b,
+.markdown-preview strong,
+.markdown-preview b {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.wysiwyg-content em,
+.wysiwyg-content i,
+.markdown-preview em,
+.markdown-preview i {
+  font-style: italic;
+}
+
+.wysiwyg-content del,
+.wysiwyg-content s,
+.markdown-preview del,
+.markdown-preview s {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+.wysiwyg-content ul,
+.markdown-preview ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.wysiwyg-content ol,
+.markdown-preview ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.wysiwyg-content li,
+.markdown-preview li {
+  margin-bottom: 0.35rem;
+  color: #cbd5e1;
+}
+
+.wysiwyg-content blockquote,
+.markdown-preview blockquote {
+  border-left: 4px solid #10b981;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background-color: rgba(16, 185, 129, 0.06);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.wysiwyg-content table,
+.markdown-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.875rem;
+}
+
+.wysiwyg-content th,
+.markdown-preview th {
+  border: 1px solid #334155;
+  background-color: #1e293b;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: left;
+}
+
+.wysiwyg-content td,
+.markdown-preview td {
+  border: 1px solid #334155;
+  padding: 0.5rem 0.75rem;
+  color: #cbd5e1;
+}
+
+.wysiwyg-content tr:nth-child(even),
+.markdown-preview tr:nth-child(even) {
+  background-color: rgba(30, 41, 59, 0.4);
+}
+
+.wysiwyg-content code,
+.markdown-preview code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85em;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  background-color: #1e293b;
+  color: #34d399;
+}
+
+.wysiwyg-content pre,
+.markdown-preview pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #090d16;
+  border: 1px solid #1e293b;
+  overflow-x: auto;
+  margin: 1rem 0;
+  color: #e2e8f0;
+}
+
+.wysiwyg-content pre code,
+.markdown-preview pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.wysiwyg-content hr,
+.markdown-preview hr {
+  border: 0;
+  border-top: 1px solid #334155;
+  margin: 2rem 0;
+}
+
+.wysiwyg-content a,
+.markdown-preview a {
+  color: #34d399;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* --- Theme 1: Obsidian OLED (Pure #000000 & Super White #FFFFFF) --- */
+[data-theme="obsidian-oled"] .wysiwyg-content,
+[data-theme="obsidian-oled"] .markdown-preview {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content h1,
+[data-theme="obsidian-oled"] .wysiwyg-content h2,
+[data-theme="obsidian-oled"] .wysiwyg-content h3,
+[data-theme="obsidian-oled"] .wysiwyg-content h4,
+[data-theme="obsidian-oled"] .markdown-preview h1,
+[data-theme="obsidian-oled"] .markdown-preview h2,
+[data-theme="obsidian-oled"] .markdown-preview h3,
+[data-theme="obsidian-oled"] .markdown-preview h4 {
+  color: #ffffff !important;
+  border-bottom-color: #262626 !important;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content p,
+[data-theme="obsidian-oled"] .wysiwyg-content li,
+[data-theme="obsidian-oled"] .markdown-preview p,
+[data-theme="obsidian-oled"] .markdown-preview li {
+  color: #e5e5e5 !important;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content strong,
+[data-theme="obsidian-oled"] .wysiwyg-content b,
+[data-theme="obsidian-oled"] .markdown-preview strong,
+[data-theme="obsidian-oled"] .markdown-preview b {
+  color: #ffffff !important;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content blockquote,
+[data-theme="obsidian-oled"] .markdown-preview blockquote {
+  border-left-color: #ffffff !important;
+  background-color: #0f0f0f !important;
+  color: #ffffff !important;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content table,
+[data-theme="obsidian-oled"] .wysiwyg-content th,
+[data-theme="obsidian-oled"] .wysiwyg-content td,
+[data-theme="obsidian-oled"] .markdown-preview table,
+[data-theme="obsidian-oled"] .markdown-preview th,
+[data-theme="obsidian-oled"] .markdown-preview td {
+  border-color: #333333 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content th,
+[data-theme="obsidian-oled"] .markdown-preview th {
+  background-color: #1a1a1a !important;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content tr:nth-child(even),
+[data-theme="obsidian-oled"] .markdown-preview tr:nth-child(even) {
+  background-color: #0d0d0d !important;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content code,
+[data-theme="obsidian-oled"] .markdown-preview code {
+  background-color: #171717 !important;
+  color: #ffffff !important;
+  border: 1px solid #333333;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content pre,
+[data-theme="obsidian-oled"] .markdown-preview pre {
+  background-color: #0a0a0a !important;
+  border-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="obsidian-oled"] .wysiwyg-content a,
+[data-theme="obsidian-oled"] .markdown-preview a {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+/* --- Theme 2: Obsidian Vampire (#000000 & Crimson #882233 / Rose #FF6B81) --- */
+[data-theme="obsidian-vampire"] .wysiwyg-content,
+[data-theme="obsidian-vampire"] .markdown-preview {
+  background-color: #000000 !important;
+  color: #e5b4b4 !important;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content h1,
+[data-theme="obsidian-vampire"] .wysiwyg-content h2,
+[data-theme="obsidian-vampire"] .wysiwyg-content h3,
+[data-theme="obsidian-vampire"] .wysiwyg-content h4,
+[data-theme="obsidian-vampire"] .markdown-preview h1,
+[data-theme="obsidian-vampire"] .markdown-preview h2,
+[data-theme="obsidian-vampire"] .markdown-preview h3,
+[data-theme="obsidian-vampire"] .markdown-preview h4 {
+  color: #ff6b81 !important;
+  border-bottom-color: #4a0e17 !important;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content p,
+[data-theme="obsidian-vampire"] .wysiwyg-content li,
+[data-theme="obsidian-vampire"] .markdown-preview p,
+[data-theme="obsidian-vampire"] .markdown-preview li {
+  color: #e5b4b4 !important;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content strong,
+[data-theme="obsidian-vampire"] .wysiwyg-content b,
+[data-theme="obsidian-vampire"] .markdown-preview strong,
+[data-theme="obsidian-vampire"] .markdown-preview b {
+  color: #ffffff !important;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content blockquote,
+[data-theme="obsidian-vampire"] .markdown-preview blockquote {
+  border-left-color: #882233 !important;
+  background-color: #1a0508 !important;
+  color: #ff99aa !important;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content table,
+[data-theme="obsidian-vampire"] .wysiwyg-content th,
+[data-theme="obsidian-vampire"] .wysiwyg-content td,
+[data-theme="obsidian-vampire"] .markdown-preview table,
+[data-theme="obsidian-vampire"] .markdown-preview th,
+[data-theme="obsidian-vampire"] .markdown-preview td {
+  border-color: #4a0e17 !important;
+  color: #e5b4b4 !important;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content th,
+[data-theme="obsidian-vampire"] .markdown-preview th {
+  background-color: #2b0007 !important;
+  color: #ff6b81 !important;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content tr:nth-child(even),
+[data-theme="obsidian-vampire"] .markdown-preview tr:nth-child(even) {
+  background-color: #130205 !important;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content code,
+[data-theme="obsidian-vampire"] .markdown-preview code {
+  background-color: #220307 !important;
+  color: #ff8599 !important;
+  border: 1px solid #661122;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content pre,
+[data-theme="obsidian-vampire"] .markdown-preview pre {
+  background-color: #0d0103 !important;
+  border-color: #4a0e17 !important;
+  color: #ffccd5 !important;
+}
+
+[data-theme="obsidian-vampire"] .wysiwyg-content a,
+[data-theme="obsidian-vampire"] .markdown-preview a {
+  color: #ff6b81 !important;
+  text-decoration-color: #ff6b81 !important;
+}
+
+/* --- Theme 4: Clean Light Paper --- */
+[data-theme="light"] .wysiwyg-content,
+[data-theme="light"] .markdown-preview {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .wysiwyg-content h1,
+[data-theme="light"] .wysiwyg-content h2,
+[data-theme="light"] .wysiwyg-content h3,
+[data-theme="light"] .wysiwyg-content h4,
+[data-theme="light"] .markdown-preview h1,
+[data-theme="light"] .markdown-preview h2,
+[data-theme="light"] .markdown-preview h3,
+[data-theme="light"] .markdown-preview h4 {
+  color: #0f172a !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .wysiwyg-content p,
+[data-theme="light"] .wysiwyg-content li,
+[data-theme="light"] .markdown-preview p,
+[data-theme="light"] .markdown-preview li {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .wysiwyg-content strong,
+[data-theme="light"] .wysiwyg-content b,
+[data-theme="light"] .markdown-preview strong,
+[data-theme="light"] .markdown-preview b {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .wysiwyg-content blockquote,
+[data-theme="light"] .markdown-preview blockquote {
+  border-left-color: #10b981 !important;
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .wysiwyg-content table,
+[data-theme="light"] .wysiwyg-content th,
+[data-theme="light"] .wysiwyg-content td,
+[data-theme="light"] .markdown-preview table,
+[data-theme="light"] .markdown-preview th,
+[data-theme="light"] .markdown-preview td {
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+[data-theme="light"] .wysiwyg-content th,
+[data-theme="light"] .markdown-preview th {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .wysiwyg-content tr:nth-child(even),
+[data-theme="light"] .markdown-preview tr:nth-child(even) {
+  background-color: #f8fafc !important;
+}
+
+[data-theme="light"] .wysiwyg-content code,
+[data-theme="light"] .markdown-preview code {
+  background-color: #f1f5f9 !important;
+  color: #047857 !important;
+}
+
+[data-theme="light"] .wysiwyg-content pre,
+[data-theme="light"] .markdown-preview pre {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
