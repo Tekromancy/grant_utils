@@ -1,6 +1,6 @@
 {
   "name": "@tekromancy/grant_utils",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Enterprise-grade utilities, models, parsers, and Git/PR collaboration workflows for institutional grantwriting, non-profits, and cooperatives",
   "type": "module",
   "main": "./dist/index.js",
