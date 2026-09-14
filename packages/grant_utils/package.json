@@ -1,0 +1,67 @@
+{
+  "name": "@grantwriting/grant_utils",
+  "version": "0.1.0",
+  "description": "Enterprise-grade utilities, models, parsers, and Git/PR collaboration workflows for institutional grantwriting, non-profits, and cooperatives",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./node": {
+      "types": "./dist/nodeFs.d.ts",
+      "import": "./dist/nodeFs.js",
+      "default": "./dist/nodeFs.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tekromancy/grant_utils.git",
+    "directory": "packages/grant_utils"
+  },
+  "bugs": {
+    "url": "https://github.com/Tekromancy/grant_utils/issues"
+  },
+  "homepage": "https://github.com/Tekromancy/grant_utils#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepublishOnly": "pnpm run build && pnpm run test",
+    "generate": "node scripts/generateData.js",
+    "build": "node scripts/generateData.js && tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "grantwriting",
+    "grant-management",
+    "nonprofit",
+    "cooperatives",
+    "icalendar",
+    "rfc5545",
+    "yaml-frontmatter",
+    "git-pull-request",
+    "kpi-calculator"
+  ],
+  "author": "Tekromancy & Austin Cooperative Business Foundation",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.20.2",
+    "typescript": "^5.8.2",
+    "vitest": "^5.0.0"
+  },
+  "dependencies": {
+    "js-yaml": "^5.4.1"
+  }
+}

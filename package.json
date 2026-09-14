@@ -1,0 +1,30 @@
+{
+  "name": "grant_utils-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo for @grantwriting/grant_utils library and example grantwriting hubs",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm --filter @grantwriting/grant_utils run build && pnpm --filter sample-grant-hub run build",
+    "test": "pnpm --filter @grantwriting/grant_utils run test && pnpm --filter sample-grant-hub run test",
+    "example": "pnpm --filter sample-grant-hub run start",
+    "prepare": "pnpm --filter @grantwriting/grant_utils run build"
+  },
+  "keywords": [
+    "grantwriting",
+    "grant-utils",
+    "nonprofit",
+    "cooperative",
+    "icalendar",
+    "markdown-frontmatter"
+  ],
+  "author": "Tekromancy & Austin Cooperative Business Foundation",
+  "license": "MIT",
+  "packageManager": "pnpm@12.4.1",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.20.2",
+    "typescript": "^5.8.2",
+    "vitest": "^5.0.0"
+  }
+}

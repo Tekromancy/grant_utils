@@ -1,0 +1,56 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sample Grant Hub//Grantwriting Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Sample Grants & Deadlines
+X-WR-TIMEZONE:America/Chicago
+BEGIN:VEVENT
+UID:sample-grant-01@samplegranthub.org
+DTSTAMP:20260914T120000Z
+DTSTART;VALUE=DATE:20270415
+DTEND;VALUE=DATE:20270415
+SUMMARY:DEADLINE: EDA Build to Scale ($300,000)
+DESCRIPTION:Cooperative Capitalization & Revolving Debt Pool\nFunder: U.S. Economic Development Administration\nAmount: $300,000\nPackage: data/grants/01_coop_revolving_loan_fund.md
+LOCATION:https://grants.gov
+CATEGORIES:Federal,Major Spring Federal
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-P14D
+ACTION:DISPLAY
+DESCRIPTION:REMINDER: 14 Days until EDA Build to Scale deadline
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:sample-grant-02@samplegranthub.org
+DTSTAMP:20260914T120000Z
+DTSTART;VALUE=DATE:20261130
+DTEND;VALUE=DATE:20261130
+SUMMARY:DEADLINE: EPA Solar for All ($250,000)
+DESCRIPTION:Community Solar & Resilient Microgrid Infrastructure\nFunder: U.S. Environmental Protection Agency\nAmount: $250,000\nPackage: data/grants/02_community_solar_infrastructure.md
+LOCATION:https://grants.gov
+CATEGORIES:Federal,Immediate Fall Federal
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-P14D
+ACTION:DISPLAY
+DESCRIPTION:REMINDER: 14 Days until EPA Solar for All deadline
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:sample-grant-03@samplegranthub.org
+DTSTAMP:20260914T120000Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270115
+SUMMARY:DEADLINE: Regional Foundation Leadership Academy ($200,000)
+DESCRIPTION:Bilingual Worker-Owner Leadership Academy\nFunder: Regional Community Foundation\nAmount: $200,000\nPackage: data/grants/03_workforce_leadership_academy.md
+LOCATION:https://example-foundation.org
+CATEGORIES:Regional Foundation,Core Winter Regional
+STATUS:CONFIRMED
+BEGIN:VALARM
+TRIGGER:-P14D
+ACTION:DISPLAY
+DESCRIPTION:REMINDER: 14 Days until Foundation Leadership Academy deadline
+END:VALARM
+END:VEVENT
+END:VCALENDAR
