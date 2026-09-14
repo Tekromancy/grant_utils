@@ -72,7 +72,7 @@ ${changeList}
 
 ${author ? `**Submitted By:** ${author}\n` : ''}
 ---
-*Automated review submission generated via \`@grantwriting/grant_utils\`*`;
+*Automated review submission generated via \`@tekromancy/grant_utils\`*`;
 
   return {
     title,

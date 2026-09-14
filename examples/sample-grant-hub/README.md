@@ -1,6 +1,6 @@
 # Sample Grantwriting Hub Example
 
-This reference application demonstrates how any organization, cooperative, or non-profit can set up their own grantwriting repository using the [`@grantwriting/grant_utils`](https://github.com/Tekromancy/grant_utils) package.
+This reference application demonstrates how any organization, cooperative, or non-profit can set up their own grantwriting repository using the [`@tekromancy/grant_utils`](https://github.com/Tekromancy/grant_utils) package.
 
 ---
 
@@ -42,6 +42,6 @@ my-grant-hub/
 │   │   └── 02_city_grant.md
 │   └── strategic_plan.md       # Organizational strategies & bylaws
 ├── calendar.ics                # RFC 5545 calendar feed with submission alarms
-├── package.json                # Dependencies including @grantwriting/grant_utils
+├── package.json                # Dependencies including @tekromancy/grant_utils
 └── tsconfig.json
 ```

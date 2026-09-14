@@ -2,7 +2,7 @@
   "name": "sample-grant-hub",
   "version": "0.1.0",
   "private": true,
-  "description": "Example reference application demonstrating how to build a grantwriting repository using @grantwriting/grant_utils",
+  "description": "Example reference application demonstrating how to build a grantwriting repository using @tekromancy/grant_utils",
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@grantwriting/grant_utils": "workspace:*"
+    "@tekromancy/grant_utils": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.20.2",

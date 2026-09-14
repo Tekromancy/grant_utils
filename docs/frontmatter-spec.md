@@ -1,6 +1,6 @@
 # Grant YAML Frontmatter Specification
 
-Every grant proposal document in your repository must begin with a YAML frontmatter header demarcated by triple dashes (`---`). This document defines the schema, field types, and validation rules enforced by `@grantwriting/grant_utils`.
+Every grant proposal document in your repository must begin with a YAML frontmatter header demarcated by triple dashes (`---`). This document defines the schema, field types, and validation rules enforced by `@tekromancy/grant_utils`.
 
 ---
 
@@ -28,10 +28,10 @@ Every grant proposal document in your repository must begin with a YAML frontmat
 
 ## 💡 Frontmatter Parsing & Safe Editing
 
-`@grantwriting/grant_utils` exports the `splitFrontmatter` helper:
+`@tekromancy/grant_utils` exports the `splitFrontmatter` helper:
 
 ```typescript
-import { splitFrontmatter } from '@grantwriting/grant_utils';
+import { splitFrontmatter } from '@tekromancy/grant_utils';
 
 const fileContent = fs.readFileSync('data/grants/01_usda.md', 'utf8');
 const { frontmatter, body } = splitFrontmatter(fileContent);

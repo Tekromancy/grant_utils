@@ -181,7 +181,7 @@ importers:
 
   examples/sample-grant-hub:
     dependencies:
-      '@grantwriting/grant_utils':
+      '@tekromancy/grant_utils':
         specifier: workspace:*
         version: link:../../packages/grant_utils
     devDependencies:

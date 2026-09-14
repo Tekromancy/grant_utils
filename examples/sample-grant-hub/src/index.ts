@@ -16,14 +16,14 @@ import {
   getProjectConfig,
   type ProjectConfig,
   type GrantRecord
-} from '@grantwriting/grant_utils';
+} from '@tekromancy/grant_utils';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const hubRoot = path.resolve(__dirname, '..');
 
 console.log('===============================================================');
-console.log('  🌟 Sample Grant Hub: Powered by @grantwriting/grant_utils');
+console.log('  🌟 Sample Grant Hub: Powered by @tekromancy/grant_utils');
 console.log('===============================================================\n');
 
 // 1. Organization & Project Registration
@@ -193,5 +193,5 @@ console.log(`    • Target Repository: ${activeProject?.gitConfig?.owner}/${act
 console.log(`    • Generated PR Title: ${prTemplate.title}\n`);
 
 console.log('===============================================================');
-console.log('✅ Demonstration completed successfully with @grantwriting/grant_utils!');
+console.log('✅ Demonstration completed successfully with @tekromancy/grant_utils!');
 console.log('===============================================================');

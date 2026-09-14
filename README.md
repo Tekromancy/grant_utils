@@ -3,7 +3,7 @@
 > The open-source infrastructure and toolkit for Git-powered grantwriting, pipeline tracking, cost-share accounting, RFC 5545 iCalendar synchronization, and collaborative PR review.
 
 [![CI](https://github.com/Tekromancy/grant_utils/actions/workflows/ci.yml/badge.svg)](https://github.com/Tekromancy/grant_utils/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@grantwriting/grant_utils.svg)](https://www.npmjs.com/package/@grantwriting/grant_utils)
+[![npm version](https://img.shields.io/npm/v/@tekromancy/grant_utils.svg)](https://www.npmjs.com/package/@tekromancy/grant_utils)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![pnpm workspace](https://img.shields.io/badge/pnpm-workspace-orange.svg)](https://pnpm.io/)
 
@@ -11,12 +11,12 @@
 
 ## 🏛️ Monorepo Architecture
 
-This monorepo houses the core `@grantwriting/grant_utils` TypeScript engine, end-to-end documentation, and a fully functional reference application demonstrating how any organization, cooperative, or non-profit can structure their own grantwriting repository.
+This monorepo houses the core `@tekromancy/grant_utils` TypeScript engine, end-to-end documentation, and a fully functional reference application demonstrating how any organization, cooperative, or non-profit can structure their own grantwriting repository.
 
 ```
 grant_utils/
 ├── packages/
-│   └── grant_utils/            # Core library (@grantwriting/grant_utils)
+│   └── grant_utils/            # Core library (@tekromancy/grant_utils)
 │       ├── src/                # Models, parsers, KPI engines, diff calculators
 │       ├── scripts/            # Code-generation scripts (grants, calendar, docs)
 │       ├── tests/              # Vitest test suite
@@ -68,7 +68,7 @@ pnpm run example
 
 | Package | Directory | Description | Status |
 | :--- | :--- | :--- | :--- |
-| **`@grantwriting/grant_utils`** | [`packages/grant_utils`](./packages/grant_utils) | Core computational engine, YAML parser, RFC 5545 calendar generator, KPI aggregator, unified diff, and Git PR tooling. | [![npm](https://img.shields.io/npm/v/@grantwriting/grant_utils.svg)](https://www.npmjs.com/package/@grantwriting/grant_utils) |
+| **`@tekromancy/grant_utils`** | [`packages/grant_utils`](./packages/grant_utils) | Core computational engine, YAML parser, RFC 5545 calendar generator, KPI aggregator, unified diff, and Git PR tooling. | [![npm](https://img.shields.io/npm/v/@tekromancy/grant_utils.svg)](https://www.npmjs.com/package/@tekromancy/grant_utils) |
 | **`sample-grant-hub`** | [`examples/sample-grant-hub`](./examples/sample-grant-hub) | Full reference implementation showcasing how to consume the library, manage a \$750k pipeline, and validate grants. | Reference |
 
 ---
@@ -84,7 +84,7 @@ Traditional grantwriting workflows suffer from:
 ### The Git-First Grantwriting Solution:
 ```mermaid
 flowchart LR
-    A["Markdown Proposals\n(+ YAML Frontmatter)"] --> B["@grantwriting/grant_utils\nParser & KPI Engine"]
+    A["Markdown Proposals\n(+ YAML Frontmatter)"] --> B["@tekromancy/grant_utils\nParser & KPI Engine"]
     C["RFC 5545 calendar.ics"] --> B
     B --> D["Automated Calendar Feeds\n(Google/Apple/Outlook)"]
     B --> E["Real-Time Financial Dashboard\n(Pacing, Match, Pipeline)"]
@@ -102,7 +102,7 @@ Setting up a repository for your organization takes less than 15 minutes:
 mkdir my-org-grantwriting && cd my-org-grantwriting
 git init -b main
 pnpm init
-pnpm add @grantwriting/grant_utils
+pnpm add @tekromancy/grant_utils
 ```
 
 ### 2. Create your folder structure
@@ -130,8 +130,8 @@ status: "Drafting"
 
 ### 4. Consume in your code
 ```typescript
-import { parseGrantMarkdown, calculateTotalPipeline } from '@grantwriting/grant_utils';
-import { readLocalMarkdownFile } from '@grantwriting/grant_utils/node';
+import { parseGrantMarkdown, calculateTotalPipeline } from '@tekromancy/grant_utils';
+import { readLocalMarkdownFile } from '@tekromancy/grant_utils/node';
 
 const raw = readLocalMarkdownFile(process.cwd(), 'data/grants/01_example_grant.md');
 const { metadata } = parseGrantMarkdown(raw);
@@ -160,7 +160,7 @@ The monorepo contains comprehensive unit and integration test coverage:
 pnpm run test
 
 # Run tests in watch mode during development
-pnpm --filter @grantwriting/grant_utils test:watch
+pnpm --filter @tekromancy/grant_utils test:watch
 ```
 
 Tests cover:

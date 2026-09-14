@@ -1,6 +1,6 @@
 # Setting Up Your Own Grantwriting Repository: A Complete Guide
 
-This comprehensive guide walks you through setting up a modern, Git-powered grantwriting, pipeline tracking, and compliance repository for your non-profit, cooperative, foundation, or enterprise using [`@grantwriting/grant_utils`](https://github.com/Tekromancy/grant_utils).
+This comprehensive guide walks you through setting up a modern, Git-powered grantwriting, pipeline tracking, and compliance repository for your non-profit, cooperative, foundation, or enterprise using [`@tekromancy/grant_utils`](https://github.com/Tekromancy/grant_utils).
 
 ---
 
@@ -26,11 +26,11 @@ git init -b main
 ```
 
 ### Step 2: Initialize `package.json`
-Install `@grantwriting/grant_utils`:
+Install `@tekromancy/grant_utils`:
 
 ```bash
 pnpm init
-pnpm add @grantwriting/grant_utils
+pnpm add @tekromancy/grant_utils
 pnpm add -D typescript @types/node
 ```
 
@@ -142,7 +142,7 @@ END:VCALENDAR
 
 ---
 
-## 💻 Step 6: Using `@grantwriting/grant_utils` in Your Scripts
+## 💻 Step 6: Using `@tekromancy/grant_utils` in Your Scripts
 
 Create a simple script `check-pipeline.js` to inspect your portfolio:
 
@@ -153,7 +153,7 @@ import {
   calculateDaysRemaining, 
   calculateMatchFunding, 
   getKPISummary 
-} from '@grantwriting/grant_utils';
+} from '@tekromancy/grant_utils';
 
 // Read and parse your calendar feed
 const rawIcs = fs.readFileSync('calendar.ics', 'utf8');

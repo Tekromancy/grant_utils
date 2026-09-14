@@ -5,7 +5,7 @@ import {
   calculateMatchFunding, 
   calculateDaysRemaining,
   splitFrontmatter
-} from '@grantwriting/grant_utils';
+} from '@tekromancy/grant_utils';
 
 describe('sample-grant-hub verification', () => {
   it('correctly calculates match funding for a 50% match grant', () => {

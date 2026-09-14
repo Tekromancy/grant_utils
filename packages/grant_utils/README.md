@@ -1,8 +1,8 @@
-# @grantwriting/grant_utils
+# @tekromancy/grant_utils
 
 > Enterprise-grade TypeScript models, parsers, KPI calculators, RFC 5545 iCalendar generators, and Git/PR collaboration workflows for institutional grantwriting, non-profits, and cooperatives.
 
-[![npm version](https://img.shields.io/npm/v/@grantwriting/grant_utils.svg)](https://www.npmjs.com/package/@grantwriting/grant_utils)
+[![npm version](https://img.shields.io/npm/v/@tekromancy/grant_utils.svg)](https://www.npmjs.com/package/@tekromancy/grant_utils)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8+-blue)](https://www.typescriptlang.org/)
 
@@ -10,7 +10,7 @@
 
 ## 🌟 Overview
 
-`@grantwriting/grant_utils` provides the computational and schema foundation for building Git-first grantwriting hubs, applications, and dashboards.
+`@tekromancy/grant_utils` provides the computational and schema foundation for building Git-first grantwriting hubs, applications, and dashboards.
 
 By treating funding opportunities as structured code (Markdown with YAML frontmatter + RFC 5545 iCalendar), organizations can version control their applications, compute pipeline KPIs in real time, audit match-funding requirements, and submit proposed edits via unified Git pull requests.
 
@@ -20,13 +20,13 @@ By treating funding opportunities as structured code (Markdown with YAML frontma
 
 ```bash
 # Using pnpm (recommended)
-pnpm add @grantwriting/grant_utils
+pnpm add @tekromancy/grant_utils
 
 # Using npm
-npm install @grantwriting/grant_utils
+npm install @tekromancy/grant_utils
 
 # Using yarn
-yarn add @grantwriting/grant_utils
+yarn add @tekromancy/grant_utils
 ```
 
 ---
@@ -36,7 +36,7 @@ yarn add @grantwriting/grant_utils
 ### 1. Markdown Frontmatter Parsing & Verification
 Parse and serialize grant opportunities with strict typing:
 ```typescript
-import { parseGrantMarkdown, serializeGrantMarkdown } from '@grantwriting/grant_utils';
+import { parseGrantMarkdown, serializeGrantMarkdown } from '@tekromancy/grant_utils';
 
 const fileContent = `---
 id: usda_rbdg_2027
@@ -61,7 +61,7 @@ console.log(metadata.amount); // 150000
 ### 2. RFC 5545 iCalendar Parsing & Generation
 Generate standards-compliant calendar files compatible with Google Calendar, Apple Calendar, and Outlook:
 ```typescript
-import { generateIcsString, parseIcsEvents, GrantCalendarEvent } from '@grantwriting/grant_utils';
+import { generateIcsString, parseIcsEvents, GrantCalendarEvent } from '@tekromancy/grant_utils';
 
 const events: GrantCalendarEvent[] = [
   {
@@ -88,7 +88,7 @@ import {
   calculateMatchRequirements,
   calculatePipelinePacing,
   getDeadlineStatus
-} from '@grantwriting/grant_utils';
+} from '@tekromancy/grant_utils';
 
 const grants = [ /* Array of GrantOpportunity objects */ ];
 
@@ -103,7 +103,7 @@ console.log(`Total match funding required: $${matchSummary.totalMatchRequired.to
 ### 4. Unified Red/Green Diff Engine
 Compute precise line diffs for grant applications and markdown documentation:
 ```typescript
-import { computeLineDiff } from '@grantwriting/grant_utils';
+import { computeLineDiff } from '@tekromancy/grant_utils';
 
 const originalText = "Requesting $100,000 for equipment purchase.";
 const modifiedText = "Requesting $120,000 for equipment purchase and contractor fees.";
@@ -120,7 +120,7 @@ import {
   generatePrTitle,
   generatePrBody,
   createGitHubPullRequest
-} from '@grantwriting/grant_utils';
+} from '@tekromancy/grant_utils';
 
 const branch = generateBranchName('USDA RBDG 2027', 'budget-update');
 // "grants/usda-rbdg-2027-budget-update"
@@ -136,7 +136,7 @@ const prBody = generatePrBody({
 ### 6. Node.js Local File System Helpers
 For CLI utilities, build scripts, and local desktop runners:
 ```typescript
-import { readLocalMarkdownFile, saveLocalMarkdownFile, getLocalAuthToken } from '@grantwriting/grant_utils/node';
+import { readLocalMarkdownFile, saveLocalMarkdownFile, getLocalAuthToken } from '@tekromancy/grant_utils/node';
 
 const rawContent = readLocalMarkdownFile(process.cwd(), 'data/grants/01_grant.md');
 ```
