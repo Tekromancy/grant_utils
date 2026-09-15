@@ -232,3 +232,182 @@ export const AVAILABLE_THEMES: ThemeConfig[] = [
     cardBg: '#FFFFFF',
   },
 ];
+
+// ============================================================================
+// GRANT RESEARCH & DISCOVERY TYPES
+// ============================================================================
+
+export type FunderType = 
+  | 'Federal'
+  | 'State'
+  | 'Municipal'
+  | 'Private Foundation'
+  | 'Corporate'
+  | 'Community Foundation'
+  | 'Family Foundation'
+  | 'International'
+  | 'Movement/CDF'
+  | (string & {});
+
+export type GrantOpportunityStatus = 
+  | 'Forecasted'
+  | 'Open'
+  | 'Under Review'
+  | 'Closed'
+  | 'Rolling';
+
+export interface GrantOpportunity {
+  id: string;
+  title: string;
+  funder: string;
+  funderType: FunderType;
+  opportunityNumber?: string;
+  cfdaNumber?: string;
+  programUrl?: string;
+  portalUrl?: string;
+  description: string;
+  fundingAmountMin?: number;
+  fundingAmountMax?: number;
+  estimatedTotalFunding?: number;
+  expectedAwardsCount?: number;
+  costSharePercentage?: number;
+  deadline?: string; // YYYY-MM-DD or ISO or 'Rolling'
+  closeDate?: string;
+  postDate?: string;
+  isForecast?: boolean;
+  eligibleApplicantTypes: string[];
+  geographicRestrictions?: string[];
+  focusAreas: string[];
+  status: GrantOpportunityStatus;
+  submissionMethod?: 'Grants.gov' | 'ProposalCentral' | 'Fluxx' | 'Submittable' | 'Email' | 'Online Portal' | 'Mail' | (string & {});
+  source?: 'grants.gov' | 'propublica' | 'sam.gov' | 'manual' | 'web-research' | (string & {});
+  rawSourceData?: any;
+}
+
+export interface ApplicantProfile {
+  name: string;
+  taxStatus: 
+    | '501(c)(3)' 
+    | '501(c)(4)' 
+    | '501(c)(6)' 
+    | 'Cooperative' 
+    | 'Small Business / For-Profit' 
+    | 'Higher Education' 
+    | 'Municipality' 
+    | 'Tribal Nation' 
+    | 'Individual' 
+    | (string & {});
+  ein?: string;
+  uei?: string;
+  mission: string;
+  focusAreas: string[];
+  annualOperatingBudget?: number;
+  targetFundingMin?: number;
+  targetFundingMax?: number;
+  primaryLocation?: {
+    city?: string;
+    state?: string;
+    country?: string;
+    isRural?: boolean;
+    opportunityZone?: boolean;
+  };
+  canProvideMatch: boolean;
+  maxMatchPercentage?: number;
+  yearsActive?: number;
+  pastGrantExperience?: boolean;
+}
+
+export interface GrantFitDimensionScores {
+  missionAlignment: number; // 0-100
+  eligibility: number;      // 0-100
+  fundingFit: number;       // 0-100
+  matchFeasibility: number; // 0-100
+  competitiveness: number;  // 0-100
+}
+
+export interface GrantFitAssessment {
+  overallScore: number;     // 0-100
+  fitGrade: 'A+' | 'A' | 'B' | 'C' | 'D' | 'F';
+  recommendation: 'Strong Pursue' | 'Moderate Match' | 'Conditional Match' | 'High Risk / Long Shot' | 'Ineligible';
+  eligibilityCheck: {
+    isEligible: boolean;
+    passCriteria: string[];
+    failCriteria: string[];
+  };
+  dimensionScores: GrantFitDimensionScores;
+  strengths: string[];
+  redFlags: string[];
+  suggestedActionItems: string[];
+}
+
+export interface FunderProfile {
+  name: string;
+  ein?: string;
+  type?: 'Private Foundation' | 'Public Charity' | 'Corporate Foundation' | 'Community Foundation' | 'Federal Agency' | (string & {});
+  city?: string;
+  state?: string;
+  totalAssets?: number;
+  annualGiving?: number;
+  grantRange?: { min: number; max: number; median: number };
+  topFocusAreas?: string[];
+  topRecipients?: Array<{ name: string; amount: number; purpose?: string }>;
+  officersAndTrustees?: string[];
+  sourceUrl?: string;
+  filingYearsAvailable?: number[];
+}
+
+export interface RfpAnalysis {
+  title: string;
+  agencyOrFunder: string;
+  keyObjectives: string[];
+  eligibilitySummary: string;
+  fundingOverview: {
+    totalProgramFunding?: number;
+    awardFloor?: number;
+    awardCeiling?: number;
+    matchRequiredPercent?: number;
+    expectedAwards?: number;
+  };
+  criticalDeadlines: Array<{
+    milestone: string;
+    date: string;
+    time?: string;
+    timezone?: string;
+  }>;
+  requiredAttachments: Array<{
+    name: string;
+    description: string;
+    mandatory: boolean;
+  }>;
+  scoringRubric: Array<{
+    section: string;
+    maxPoints: number;
+    criteria: string;
+  }>;
+  submissionRequirements: {
+    portal: string;
+    formatInstructions: string;
+    pageLimits?: string;
+  };
+  strategicAdvice: string[];
+}
+
+export interface ResearchQuery {
+  keywords: string[];
+  applicantType?: string;
+  funderType?: string;
+  state?: string;
+  minAmount?: number;
+  maxAmount?: number;
+  requiresMatch?: boolean;
+  status?: 'Open' | 'Forecasted' | 'Closed' | 'All';
+  limit?: number;
+}
+
+export interface GrantResearchDossierOptions {
+  targetTier?: GrantTier;
+  assignedLead?: string;
+  applicantName?: string;
+  notes?: string;
+}
+

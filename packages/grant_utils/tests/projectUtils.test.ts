@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { 
   getProjectConfig, 
   getAllProjects, 
@@ -7,12 +7,90 @@ import {
   filterGrantsByProject,
   filterDocsByProject,
   getKPISummary,
-  getAllGrants,
-  getAllMarkdownDocs,
-  type ProjectConfig
+  registerGrants,
+  clearGrants,
+  type ProjectConfig,
+  type GrantRecord,
+  type MarkdownDoc
 } from '../src/index.js';
 
+const MOCK_GRANTS: GrantRecord[] = [
+  {
+    id: 'grant_example_1',
+    title: 'Example Project Grant',
+    funder: 'Example Funder',
+    program: 'Community Innovation',
+    amount: 300000,
+    amountFormatted: '$300,000',
+    deadline: '2027-04-15',
+    deadlineFormatted: 'April 15, 2027',
+    tier: 'Tier 3 (Spring Major)',
+    category: 'Regional Foundation',
+    matchPercentage: 0,
+    grantType: 'Project Grant',
+    portalUrl: 'https://example.org',
+    strategicPriority: 'Innovation',
+    status: 'Drafting',
+    fileName: 'grant_example_1.md',
+    filePath: 'data/example/grants/grant_example_1.md',
+    summary: 'Innovation summary.',
+    content: '# Content',
+    wordCount: 100
+  },
+  {
+    id: 'grant_vamos_1',
+    title: 'Community Grocery Expansion',
+    funder: 'USDA CFP',
+    program: 'Community Food Projects',
+    amount: 250000,
+    amountFormatted: '$250,000',
+    deadline: '2026-11-30',
+    deadlineFormatted: 'Nov 30, 2026',
+    tier: 'Priority 1 (USDA Food Access)',
+    category: 'Federal/USDA',
+    matchPercentage: 0,
+    grantType: 'Competitive Federal',
+    portalUrl: 'https://grants.gov',
+    strategicPriority: 'High',
+    status: 'Planned',
+    fileName: '01_usda_cfp.md',
+    filePath: 'data/vamos/grants/01_usda_cfp.md',
+    summary: 'Community food retail grant.',
+    content: '# Narrative',
+    wordCount: 500
+  }
+];
+
+const MOCK_DOCS: MarkdownDoc[] = [
+  {
+    id: 'doc_example_1',
+    fileName: 'doc_example_1.md',
+    relativePath: 'data/example/doc_example_1.md',
+    title: 'Example Strategy',
+    category: 'strategy',
+    excerpt: 'Example excerpt',
+    content: '# Example Strategy',
+    lineCount: 10,
+    wordCount: 50
+  },
+  {
+    id: 'doc_vamos_1',
+    fileName: 'doc_vamos_1.md',
+    relativePath: 'data/vamos/doc_vamos_1.md',
+    title: 'Vamos Plan',
+    category: 'strategy',
+    excerpt: 'Vamos excerpt',
+    content: '# Vamos Plan',
+    lineCount: 12,
+    wordCount: 60
+  }
+];
+
 describe('projectUtils & multi-project architecture', () => {
+  beforeEach(() => {
+    clearGrants();
+  });
+
   it('retrieves default Example project configuration', () => {
     const defaultProject = getDefaultProject();
     expect(defaultProject.id).toBe('example');
@@ -63,42 +141,19 @@ describe('projectUtils & multi-project architecture', () => {
     expect(getAllProjects().some(p => p.id === 'worker-tech-coop')).toBe(true);
   });
 
-  it('calculates KPIs dynamically for Example default', () => {
+  it('calculates KPIs dynamically with registered project grants', () => {
+    registerGrants(MOCK_GRANTS);
     const kpis = getKPISummary('example');
-    expect(kpis.totalGrantsCount).toBe(27);
-    expect(kpis.totalPipelineAmount).toBe(3990000);
+    expect(kpis.totalGrantsCount).toBe(1);
+    expect(kpis.totalPipelineAmount).toBe(300000);
     expect(kpis.targetYear).toBe(2027);
     expect(kpis.bareMinimumTarget).toBe(300000);
     expect(kpis.steadyStateTarget).toBe(500000);
     expect(kpis.stretchTarget).toBe(700000);
   });
 
-  it('calculates dynamic KPIs for custom project configuration', () => {
-    const mockGrants = [
-      {
-        id: 'grant_1',
-        title: 'Community Grocery Expansion',
-        funder: 'USDA CFP',
-        program: 'Community Food Projects',
-        amount: 250000,
-        amountFormatted: '$250,000',
-        deadline: '2026-11-30',
-        deadlineFormatted: 'Nov 30, 2026',
-        tier: 'Priority 1 (USDA Food Access)',
-        category: 'Federal/USDA',
-        matchPercentage: 0,
-        grantType: 'Competitive Federal',
-        portalUrl: 'https://grants.gov',
-        strategicPriority: 'High',
-        status: 'Planned',
-        fileName: '01_usda_cfp.md',
-        filePath: 'data/vamos/grants/01_usda_cfp.md',
-        summary: 'Community food retail grant.',
-        content: '# Narrative',
-        wordCount: 500
-      }
-    ];
-
+  it('calculates dynamic KPIs for custom project configuration passed directly', () => {
+    const mockGrants = [MOCK_GRANTS[1]];
     const vamosKpi = getKPISummary('vamos', mockGrants);
     expect(vamosKpi.totalGrantsCount).toBe(1);
     expect(vamosKpi.totalPipelineAmount).toBe(250000);
@@ -108,24 +163,22 @@ describe('projectUtils & multi-project architecture', () => {
   });
 
   it('filters markdown documents by project id', () => {
-    const allDocs = getAllMarkdownDocs();
-    const exampleDocs = filterDocsByProject(allDocs, 'example');
-    const acbfDocs = filterDocsByProject(allDocs, 'acbf');
-    const vamosDocs = filterDocsByProject(allDocs, 'vamos');
+    const exampleDocs = filterDocsByProject(MOCK_DOCS, 'example');
+    const vamosDocs = filterDocsByProject(MOCK_DOCS, 'vamos');
 
-    expect(allDocs.length).toBe(60);
-    expect(exampleDocs.length).toBe(37);
-    expect(acbfDocs.length).toBe(37);
-    expect(vamosDocs.length).toBe(23);
+    expect(exampleDocs.length).toBe(1);
+    expect(exampleDocs[0].id).toBe('doc_example_1');
+    expect(vamosDocs.length).toBe(1);
+    expect(vamosDocs[0].id).toBe('doc_vamos_1');
   });
 
-  it('calculates full Vamos pipeline KPIs with 13 grants', () => {
-    const vamosKpis = getKPISummary('vamos');
-    expect(vamosKpis.totalGrantsCount).toBe(13);
-    expect(vamosKpis.totalPipelineAmount).toBe(3000000);
-    expect(vamosKpis.targetYear).toBe(2026);
-    expect(vamosKpis.bareMinimumTarget).toBe(250000);
-    expect(vamosKpis.steadyStateTarget).toBe(600000);
-    expect(vamosKpis.stretchTarget).toBe(1200000);
+  it('filters grants by project id', () => {
+    const exampleGrants = filterGrantsByProject(MOCK_GRANTS, 'example');
+    const vamosGrants = filterGrantsByProject(MOCK_GRANTS, 'vamos');
+
+    expect(exampleGrants.length).toBe(1);
+    expect(exampleGrants[0].id).toBe('grant_example_1');
+    expect(vamosGrants.length).toBe(1);
+    expect(vamosGrants[0].id).toBe('grant_vamos_1');
   });
 });

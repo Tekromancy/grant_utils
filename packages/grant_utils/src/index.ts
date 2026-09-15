@@ -2,6 +2,7 @@ export * from './types.js';
 export * from './grantsUtils.js';
 export * from './calendarUtils.js';
 export * from './markdownUtils.js';
+export * from './grantResearchUtils.js';
 export * from './authUtils.js';
 export * from './gitPrUtils.js';
 export * from './themeUtils.js';

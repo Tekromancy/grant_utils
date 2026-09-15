@@ -2,29 +2,50 @@ import type { GrantRecord, GrantCategory, KPISummary, ProjectConfig } from './ty
 import { GRANTS_DATA, TOTAL_PIPELINE_AMOUNT, TOTAL_GRANTS_COUNT } from './data/generatedGrants.js';
 import { getProjectConfig, getDefaultProject, filterGrantsByProject } from './projectUtils.js';
 
-export function getAllGrants(projectId?: string): GrantRecord[] {
+let customGrantsData: GrantRecord[] | null = null;
+
+/**
+ * Registers or sets a custom in-memory grant dataset.
+ */
+export function registerGrants(grants: GrantRecord[]): void {
+  customGrantsData = [...grants];
+}
+
+/**
+ * Clears custom registered grants, reverting to base dataset.
+ */
+export function clearGrants(): void {
+  customGrantsData = null;
+}
+
+export function getAllGrants(projectId?: string, dataset?: GrantRecord[]): GrantRecord[] {
+  const source = dataset || customGrantsData || GRANTS_DATA;
   if (projectId) {
-    return filterGrantsByProject(GRANTS_DATA, projectId);
+    return filterGrantsByProject(source, projectId);
   }
-  return [...GRANTS_DATA];
+  return [...source];
 }
 
-export function getGrantById(id: string): GrantRecord | undefined {
-  return GRANTS_DATA.find(g => g.id === id || g.fileName === id || g.fileName === `${id}.md`);
+export function getGrantById(id: string, dataset?: GrantRecord[]): GrantRecord | undefined {
+  const source = dataset || customGrantsData || GRANTS_DATA;
+  return source.find(g => g.id === id || g.fileName === id || g.fileName === `${id}.md`);
 }
 
-export function getGrantsByCategory(category: GrantCategory): GrantRecord[] {
-  return GRANTS_DATA.filter(g => g.category === category);
+export function getGrantsByCategory(category: GrantCategory, dataset?: GrantRecord[]): GrantRecord[] {
+  const source = dataset || customGrantsData || GRANTS_DATA;
+  return source.filter(g => g.category === category);
 }
 
-export function getGrantsByTier(tier: string): GrantRecord[] {
-  return GRANTS_DATA.filter(g => g.tier.toLowerCase().includes(tier.toLowerCase()));
+export function getGrantsByTier(tier: string, dataset?: GrantRecord[]): GrantRecord[] {
+  const source = dataset || customGrantsData || GRANTS_DATA;
+  return source.filter(g => g.tier.toLowerCase().includes(tier.toLowerCase()));
 }
 
-export function searchGrants(query: string): GrantRecord[] {
-  if (!query || !query.trim()) return getAllGrants();
+export function searchGrants(query: string, dataset?: GrantRecord[]): GrantRecord[] {
+  const source = dataset || customGrantsData || GRANTS_DATA;
+  if (!query || !query.trim()) return [...source];
   const q = query.toLowerCase();
-  return GRANTS_DATA.filter(g => 
+  return source.filter(g => 
     g.title.toLowerCase().includes(q) ||
     g.funder.toLowerCase().includes(q) ||
     g.program.toLowerCase().includes(q) ||
@@ -46,8 +67,9 @@ export function getKPISummary(project?: string | ProjectConfig, customGrants?: G
     config = getDefaultProject();
   }
 
-  const grants = customGrants || (config.id ? filterGrantsByProject(GRANTS_DATA, config.id) : GRANTS_DATA);
-  const effectiveGrants = grants.length > 0 ? grants : GRANTS_DATA;
+  const baseGrants = customGrants || customGrantsData || GRANTS_DATA;
+  const grants = (project && config.id && !customGrants) ? filterGrantsByProject(baseGrants, config.id) : baseGrants;
+  const effectiveGrants = grants;
 
   const categoryTotals: Record<string, number> = {};
   const tierTotals: Record<string, number> = {};
@@ -68,7 +90,7 @@ export function getKPISummary(project?: string | ProjectConfig, customGrants?: G
   };
 
   return {
-    totalPipelineAmount: totalPipeline > 0 ? totalPipeline : TOTAL_PIPELINE_AMOUNT,
+    totalPipelineAmount: totalPipeline,
     totalGrantsCount: effectiveGrants.length,
     targetYear: targets.targetYear,
     confirmedRevenue: targets.confirmedRevenue,
@@ -193,32 +215,36 @@ export interface ComplianceChecklistItem {
   description: string;
 }
 
-export function calculateMatchFunding(requestAmount: number, matchPercentage: number): MatchCalculation {
+export function calculateMatchFunding(
+  requestAmount: number, 
+  matchPercentage: number,
+  customSources?: Array<{ name: string; amount: number; description: string }>
+): MatchCalculation {
   const matchRequired = Math.round((requestAmount * matchPercentage) / 100);
   const totalProjectBudget = requestAmount + matchRequired;
   const funderSharePercentage = totalProjectBudget > 0 ? Math.round((requestAmount / totalProjectBudget) * 100) : 100;
   const applicantSharePercentage = totalProjectBudget > 0 ? Math.round((matchRequired / totalProjectBudget) * 100) : 0;
 
-  const recommendedSources = [
+  const defaultSources = [
     {
-      name: 'City of Austin EDD ACCT Fee-for-Service Contract',
-      amount: 85000,
-      description: 'Municipal non-federal cash contract dedicated to co-op technical assistance'
+      name: 'Municipal or Local Government Fee-for-Service Contract',
+      amount: Math.round(matchRequired * 0.45),
+      description: 'Municipal non-federal cash contract dedicated to technical assistance or program delivery'
     },
     {
-      name: 'Love, Tito’s Community Giving Grant',
-      amount: 25000,
+      name: 'Philanthropic Foundation or Corporate Giving Grant',
+      amount: Math.round(matchRequired * 0.25),
       description: 'Unrestricted private corporate foundation donation (valid non-federal cash match)'
     },
     {
-      name: 'Commercial Bank CRA Operating Grants (Frost / Texas Capital)',
-      amount: 35000,
+      name: 'Commercial Bank CRA / Institutional Support',
+      amount: Math.round(matchRequired * 0.20),
       description: 'Private financial institution Community Reinvestment Act cash support'
     },
     {
-      name: 'Pro Bono Legal & Developer Technical Assistance (In-Kind)',
-      amount: 20000,
-      description: 'Documented pro bono legal clinics (Texas Bar Foundation partner network)'
+      name: 'Documented In-Kind Technical Assistance / Professional Services',
+      amount: Math.round(matchRequired * 0.10),
+      description: 'Documented pro bono legal, accounting, engineering, or developer assistance clinics'
     }
   ];
 
@@ -229,39 +255,39 @@ export function calculateMatchFunding(requestAmount: number, matchPercentage: nu
     totalProjectBudget,
     funderSharePercentage,
     applicantSharePercentage,
-    recommendedSources
+    recommendedSources: customSources || defaultSources
   };
 }
 
 export function getGrantComplianceChecklist(grant: GrantRecord): ComplianceChecklistItem[] {
   const checklist: ComplianceChecklistItem[] = [
     {
-      id: 'irs_501c3',
-      label: 'IRS 501(c)(3) Tax-Exempt Determination Letter',
+      id: 'tax_exempt_status',
+      label: 'IRS 501(c)(3) Tax-Exempt Determination Letter or Legal Charter',
       required: true,
       category: 'Mandatory Legal',
-      description: 'Austin Member-Owned Business Foundation (EIN: 81-2782668) public charity ruling letter.'
+      description: 'Official IRS determination letter confirming tax-exempt public charity status or state corporate charter.'
     },
     {
       id: 'fy_budget',
       label: 'Current Fiscal Year Operating Budget (Approved)',
       required: true,
       category: 'Financial',
-      description: 'Official Board-approved organizational budget detailing projected revenues and expenses.'
+      description: 'Official Board-approved organizational budget detailing projected revenues and expenditures.'
     },
     {
       id: 'form_990',
-      label: 'Most Recent IRS Form 990 / 990-EZ Filing',
+      label: 'Most Recent IRS Form 990 / 990-EZ Filing or Financial Review',
       required: true,
       category: 'Financial',
       description: 'Certified federal tax return demonstrating charitable status compliance and public transparency.'
     },
     {
       id: 'board_roster',
-      label: 'Board of Directors Roster & Governance Roster',
+      label: 'Board of Directors Roster & Governance Information',
       required: true,
       category: 'Mandatory Legal',
-      description: 'Active list of 7 board members with professional affiliations and demographic parity representation.'
+      description: 'Active list of board members with professional affiliations, terms, and governance roles.'
     }
   ];
 
@@ -286,7 +312,7 @@ export function getGrantComplianceChecklist(grant: GrantRecord): ComplianceCheck
         label: 'Key Personnel Resumes & Job Descriptions',
         required: true,
         category: 'Federal Compliance',
-        description: 'Detailed CVs for Executive Director, Bilingual Co-op Developer, and sub-tier mentors.'
+        description: 'Detailed CVs and resumes for Project Director, Key Personnel, and external consultants.'
       }
     );
   }
@@ -301,24 +327,13 @@ export function getGrantComplianceChecklist(grant: GrantRecord): ComplianceCheck
     });
   }
 
-  if (grant.id === 'cchd_economic_development') {
-    checklist.push({
-      id: 'cchd_low_income',
-      label: 'Low-Income Governance Verification (>33% Democratic Control)',
-      required: true,
-      category: 'Community Evidence',
-      description: 'Mandatory CCHD proof that >33% of worker-owners/board members meet federal low-income guidelines.'
-    });
-  }
-
   checklist.push({
     id: 'support_letters',
-    label: 'Community Support & Partner Letters (GAVA, Seed Commons)',
+    label: 'Community Support & Partner Letters of Commitment',
     required: false,
     category: 'Community Evidence',
-    description: 'Signed testimonials from grassroots partners and incubated cooperative worker-owners.'
+    description: 'Signed testimonials and commitment letters from grassroots partners and community stakeholders.'
   });
 
   return checklist;
 }
-

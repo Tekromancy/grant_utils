@@ -1,8 +1,27 @@
 import type { CalendarEvent, CalendarAlarm } from './types.js';
 import { CALENDAR_EVENTS } from './data/generatedCalendar.js';
 
-export function getCalendarEvents(): CalendarEvent[] {
-  return [...CALENDAR_EVENTS];
+let customCalendarEvents: CalendarEvent[] | null = null;
+
+export function setCalendarEvents(events: CalendarEvent[]): void {
+  customCalendarEvents = [...events];
+}
+
+export function addCalendarEvents(events: CalendarEvent[]): void {
+  if (!customCalendarEvents) {
+    customCalendarEvents = [...CALENDAR_EVENTS, ...events];
+  } else {
+    customCalendarEvents.push(...events);
+  }
+}
+
+export function clearCalendarEvents(): void {
+  customCalendarEvents = null;
+}
+
+export function getCalendarEvents(dataset?: CalendarEvent[]): CalendarEvent[] {
+  const source = dataset || customCalendarEvents || CALENDAR_EVENTS;
+  return [...source];
 }
 
 export function parseRawIcs(icsContent: string): CalendarEvent[] {
@@ -98,18 +117,18 @@ export function parseRawIcs(icsContent: string): CalendarEvent[] {
 
 export const parseIcsContent = parseRawIcs;
 
-export function getUpcomingEvents(referenceDateStr: string = '2026-09-10', limit?: number): CalendarEvent[] {
-  const events = getCalendarEvents();
+export function getUpcomingEvents(referenceDateStr: string = '2026-09-10', limit?: number, dataset?: CalendarEvent[]): CalendarEvent[] {
+  const events = getCalendarEvents(dataset);
   const sorted = events
     .filter(evt => evt.startDate >= referenceDateStr)
     .sort((a, b) => a.startDate.localeCompare(b.startDate));
   return limit ? sorted.slice(0, limit) : sorted;
 }
 
-export function getEventsForMonth(year: number, month: number): CalendarEvent[] {
+export function getEventsForMonth(year: number, month: number, dataset?: CalendarEvent[]): CalendarEvent[] {
   const monthStr = month < 10 ? `0${month}` : `${month}`;
   const prefix = `${year}-${monthStr}`;
-  return getCalendarEvents().filter(evt => evt.startDate.startsWith(prefix));
+  return getCalendarEvents(dataset).filter(evt => evt.startDate.startsWith(prefix));
 }
 
 export interface DayCell {
@@ -121,14 +140,14 @@ export interface DayCell {
   events: CalendarEvent[];
 }
 
-export function getMonthMatrix(year: number, month: number, todayStr: string = '2026-09-10'): DayCell[][] {
+export function getMonthMatrix(year: number, month: number, todayStr: string = '2026-09-10', dataset?: CalendarEvent[]): DayCell[][] {
   const firstDay = new Date(year, month - 1, 1);
   const lastDay = new Date(year, month, 0);
   const numDays = lastDay.getDate();
   const startDayOfWeek = firstDay.getDay(); // 0 = Sunday
 
   const prevMonthLastDay = new Date(year, month - 1, 0).getDate();
-  const events = getCalendarEvents();
+  const events = getCalendarEvents(dataset);
 
   const weeks: DayCell[][] = [];
   let currentWeek: DayCell[] = [];
@@ -214,7 +233,7 @@ export function generateIcsString(
   let ics = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    options?.prodId ? `PRODID:${options.prodId}` : 'PRODID:-//Grantwriting Calendar//EN',
+    options?.prodId ? `PRODID:${options.prodId}` : 'PRODID:-//Grantwriting Calendar Engine//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     options?.calName ? `X-WR-CALNAME:${options.calName}` : 'X-WR-CALNAME:Grant Deadlines & Funding Calendar',
@@ -225,7 +244,7 @@ export function generateIcsString(
     const sDate = evt.startDate.replace(/-/g, '');
     const eDate = evt.endDate ? evt.endDate.replace(/-/g, '') : sDate;
     ics.push('BEGIN:VEVENT');
-    ics.push(`UID:${evt.uid || `${Math.random().toString(36).slice(2)}@acba.coop`}`);
+    ics.push(`UID:${evt.uid || `${Math.random().toString(36).slice(2)}@grant-utils`}`);
     ics.push(`DTSTART;VALUE=DATE:${sDate}`);
     ics.push(`DTEND;VALUE=DATE:${eDate}`);
     ics.push(`SUMMARY:${(evt.title || '').replace(/\n/g, '\\n').replace(/,/g, '\\,')}`);

@@ -21,11 +21,19 @@ import {
   clearBrowserAuthToken,
   getAllMarkdownDocs,
   getAllGrants,
+  registerGrants,
+  setCalendarEvents,
+  setMarkdownDocs,
   type AuthTokenConfig,
   type GrantRecord,
   type MarkdownDoc,
   type ProjectConfig
 } from '@tekromancy/grant_utils';
+import { 
+  SAMPLE_FICTITIOUS_GRANTS, 
+  SAMPLE_FICTITIOUS_EVENTS, 
+  SAMPLE_FICTITIOUS_DOCS 
+} from '../data/fictitiousData';
 import { Terminal, ExternalLink, Github } from 'lucide-react';
 
 const EDITED_FILES_KEY = 'tekromancy_grant_hub_demo_edits_v1';
@@ -40,6 +48,13 @@ export default function Home() {
   const [prPreselectedDoc, setPrPreselectedDoc] = useState<MarkdownDoc | undefined>(undefined);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState<ProjectConfig>(EXAMPLE_PROJECT_CONFIG);
+
+  // Initialize sample fictitious datasets
+  useEffect(() => {
+    registerGrants(SAMPLE_FICTITIOUS_GRANTS);
+    setCalendarEvents(SAMPLE_FICTITIOUS_EVENTS);
+    setMarkdownDocs(SAMPLE_FICTITIOUS_DOCS);
+  }, []);
 
   // Load auth, preset & edited files from browser localStorage
   useEffect(() => {

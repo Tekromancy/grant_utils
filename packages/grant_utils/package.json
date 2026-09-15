@@ -34,13 +34,17 @@
   "publishConfig": {
     "access": "public"
   },
+  "bin": {
+    "grant-research": "./dist/cli.js"
+  },
   "scripts": {
     "prepublishOnly": "pnpm run build && pnpm run test",
     "generate": "node scripts/generateData.js",
     "build": "node scripts/generateData.js && tsc",
     "test": "vitest run",
     "test:watch": "vitest",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "research": "node dist/cli.js"
   },
   "keywords": [
     "grantwriting",

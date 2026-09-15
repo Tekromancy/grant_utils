@@ -43,19 +43,11 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
   const [selectedQuarter, setSelectedQuarter] = useState<'all' | 'Q1' | 'Q2' | 'Q3' | 'Q4'>('all');
   const [winRateSlider, setWinRateSlider] = useState<number>(14);
 
-  // Group grants by execution quarter
-  const q1Grants = allGrants.filter(g => 
-    ['dell_foundation_economic_stability.md', 'kellogg_foundation_loi.md', 'austin_edd_coop_coaching.md', 'cdf_cooperative_development.md', 'rgk_foundation.md', 'cchd_economic_development.md', 'eox_state_center_capacity.md', 'bank_cra_cooperative_roots.md', 'love_titos_community_giving.md', 'credit_union_community_grants.md', 'texas_mutual_workforce.md'].includes(g.fileName)
-  );
-  const q2Grants = allGrants.filter(g => 
-    ['texas_bar_foundation_legal_clinic.md', 'impact_austin_community.md', 'cdfi_fund_ta_emerging.md', 'workers_lab_innovation_fund.md', 'st_davids_economic_security.md'].includes(g.fileName)
-  );
-  const q3Grants = allGrants.filter(g => 
-    ['acf_forever_austin.md', 'usda_lfpp_supply_chain.md', 'austin_project_connect_cis.md', 'sba_microloan_intermediary_ta.md'].includes(g.fileName)
-  );
-  const q4Grants = allGrants.filter(g => 
-    ['usda_sdgg_ta.md', 'hhs_ced_job_creation.md', 'usda_rcdg_center.md', 'acf_hispanic_impact.md', 'sba_prime_microenterprise.md', 'dol_work_act_employee_ownership.md', 'epa_ejcps_coop_climate.md'].includes(g.fileName)
-  );
+  // Group grants dynamically by execution quarter
+  const q1Grants = allGrants.filter(g => g.tier.includes('Fall') || (g.deadline && ['09', '10', '11'].includes(g.deadline.split('-')[1])));
+  const q2Grants = allGrants.filter(g => g.tier.includes('Winter') || (g.deadline && ['12', '01', '02'].includes(g.deadline.split('-')[1])));
+  const q3Grants = allGrants.filter(g => g.tier.includes('Spring') || (g.deadline && ['03', '04', '05'].includes(g.deadline.split('-')[1])));
+  const q4Grants = allGrants.filter(g => g.tier.includes('Summer') || (g.deadline && ['06', '07', '08'].includes(g.deadline.split('-')[1])));
 
   const q1Total = q1Grants.reduce((s, g) => s + g.amount, 0);
   const q2Total = q2Grants.reduce((s, g) => s + g.amount, 0);
@@ -90,21 +82,21 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
               <span>LIVE DATA ENGINE</span>
             </span>
             <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
-              EIN: 81-2782668 • 501(c)(3)
+              501(c)(3) Public Charity
             </span>
             <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-cyan-950 text-cyan-300 border border-cyan-800">
-              RFC 5545 46-Event Feed
+              RFC 5545 Live Feed
             </span>
             <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-950 text-purple-300 border border-purple-800">
-              27 Master Proposal Packages
+              {allGrants.length} Active Proposals
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Example.org Institutional Advancement & Master Capitalization Board
+            Example Foundation Institutional Advancement & Capitalization Board
           </h2>
           <p className="text-sm text-slate-400 mt-1 max-w-3xl">
-            Live programmatic dashboard replacing static graphic mocks with continuous multi-year financial modeling, 
-            interactive quarterly pipeline milestones, and cliff-replacement telemetry.
+            Live programmatic dashboard with continuous multi-year financial modeling, 
+            interactive quarterly pipeline milestones, and strategic funding telemetry.
           </p>
         </div>
 
@@ -117,7 +109,7 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
             <span>Open Master Calendar</span>
           </button>
           <button
-            onClick={() => onNavigateToEditor('CallToAction.md')}
+            onClick={() => onNavigateToEditor('StrategicBlueprint.md')}
             className="flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm"
           >
             <Layers className="w-4 h-4" />
@@ -267,7 +259,7 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
             </div>
             <p className="text-2xl font-bold text-white mt-3">${(q1Total / 1000).toLocaleString()}k</p>
             <p className="text-xs text-slate-400 mt-1 line-clamp-2">
-              Dell LOI, Kellogg LOI, City EDD ACCT, CDF, RGK, CCHD Pre-App, EOX Capacity, St. David's LOI.
+              Apex Microgrid ($350k), Horizon STEM Robotics ($250k), Immediate Fall Sprints.
             </p>
             <div className="mt-3 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-cyan-400 font-medium">
               <span>Active Execution Window</span>
@@ -288,11 +280,11 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
               <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-950 text-purple-300 border border-purple-800">
                 Q2: Winter 2026–27
               </span>
-              <span className="text-xs text-slate-400 font-mono">5 Streams</span>
+              <span className="text-xs text-slate-400 font-mono">{q2Grants.length} Streams</span>
             </div>
             <p className="text-2xl font-bold text-white mt-3">${(q2Total / 1000).toLocaleString()}k</p>
             <p className="text-xs text-slate-400 mt-1 line-clamp-2">
-              Texas Bar, CCHD Full App, Workers Lab, Impact Austin ($80k GOS), St. David's Operating ($100k).
+              Evergreen Agroecology ($180k), Metropolis Digital Equity ($120k), Beacon Mobile Clinic ($200k).
             </p>
             <div className="mt-3 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-purple-400 font-medium">
               <span>Core Operating Base</span>
@@ -313,14 +305,14 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
               <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
                 Q3: Spring 2027
               </span>
-              <span className="text-xs text-slate-400 font-mono">4 Streams</span>
+              <span className="text-xs text-slate-400 font-mono">{q3Grants.length} Streams</span>
             </div>
             <p className="text-2xl font-bold text-white mt-3">${(q3Total / 1000).toLocaleString()}k</p>
             <p className="text-xs text-slate-400 mt-1 line-clamp-2">
-              Forever Austin ($35k), USDA LFPP ($250k), Project Connect CIS ($250k), SBA Microloan TA ($75k).
+              Summit Capital Fund ($300k), Pioneer Open Science ($500k), Major Spring Foundation Challenges.
             </p>
             <div className="mt-3 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-emerald-400 font-medium">
-              <span>Major Transit & Food Matches</span>
+              <span>Major Research & Capital Sprints</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </div>
           </div>
@@ -338,11 +330,11 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
               <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-950 text-amber-300 border border-amber-800">
                 Q4: Summer 2027
               </span>
-              <span className="text-xs text-slate-400 font-mono">7 Streams</span>
+              <span className="text-xs text-slate-400 font-mono">{q4Grants.length} Streams</span>
             </div>
             <p className="text-2xl font-bold text-white mt-3">${(q4Total / 1000).toLocaleString()}k</p>
             <p className="text-xs text-slate-400 mt-1 line-clamp-2">
-              HHS CED ($800k), EPA EJCPS ($500k), USDA SDGG ($175k), USDA RCDG ($200k), DOL WORK ($200k).
+              Federal Regional Resilient Infrastructure Challenge ($750k), Federal Agency Solicitations.
             </p>
             <div className="mt-3 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-amber-400 font-medium">
               <span>Federal Mega-Grants</span>
@@ -361,22 +353,21 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
               <span className="text-xs text-slate-500">Click any grant to open full proposal</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-              {displayedGrants.map(g => (
-                <div
-                  key={g.id}
-                  onClick={() => onSelectGrant(g)}
-                  className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/60 cursor-pointer transition flex items-center justify-between group"
+              {displayedGrants.map((grant) => (
+                <div 
+                  key={grant.id}
+                  onClick={() => onSelectGrant(grant)}
+                  className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-slate-700 hover:bg-slate-850 cursor-pointer transition flex items-center justify-between group"
                 >
                   <div className="min-w-0 pr-2">
-                    <p className="text-xs font-bold text-white group-hover:text-emerald-400 transition truncate">
-                      {g.funder}
+                    <p className="text-xs font-bold text-white truncate group-hover:text-emerald-400 transition-colors">
+                      {grant.program}
                     </p>
-                    <p className="text-[11px] text-slate-400 truncate mt-0.5">{g.program}</p>
-                    <p className="text-[10px] text-cyan-400 font-mono mt-0.5">Due: {g.deadlineFormatted}</p>
+                    <p className="text-[11px] text-slate-400 truncate">{grant.funder}</p>
                   </div>
-                  <div className="text-right whitespace-nowrap">
-                    <span className="text-xs font-bold text-emerald-400">${g.amount.toLocaleString()}</span>
-                  </div>
+                  <span className="text-xs font-mono font-bold text-emerald-400 shrink-0">
+                    {grant.amountFormatted}
+                  </span>
                 </div>
               ))}
             </div>
@@ -384,16 +375,16 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
         )}
       </div>
 
-      {/* Cliff Guardrails & Win-Rate Interactive Sensitivity Simulator */}
+      {/* Strategic 2027 Revenue Bridge & Win-Rate Simulator */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
         {/* Left: 2026 Cliff Replacement Matrix */}
         <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 shadow-lg">
           <div className="flex items-center space-x-2 text-white font-bold text-base mb-1">
             <ShieldCheck className="w-5 h-5 text-emerald-400" />
-            <span>Expiring 2026 Contracts Replaced</span>
+            <span>Expiring Funding Streams Replaced</span>
           </div>
           <p className="text-xs text-slate-400 mb-4">
-            Protecting Example.org against municipal & federal cliff expirations with secured institutional successors:
+            Protecting the organization against cliff expirations with secured institutional successors:
           </p>
 
           <div className="space-y-3">
@@ -403,13 +394,13 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-white">ARNL Housing Contract ($150,000)</span>
+                  <span className="text-xs font-bold text-white">Legacy Pilot Contract ($150,000)</span>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">REPLACED</span>
                 </div>
                 <p className="text-xs text-slate-300 mt-1">
-                  Succeded by <strong className="text-white">Austin Project Connect CIS ($250,000 / 2 yrs)</strong>
+                  Succeded by <strong className="text-white">Apex Clean Energy Microgrid ($350,000)</strong>
                 </p>
-                <p className="text-[11px] text-slate-500 mt-0.5">Anti-displacement & housing cooperative coaching contract.</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">Decentralized clean microgrid infrastructure and local jobs.</p>
               </div>
             </div>
 
@@ -419,13 +410,13 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-white">HFFI Food Enterprise Grant ($75,000)</span>
+                  <span className="text-xs font-bold text-white">Food Feasibility Grant ($75,000)</span>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">REPLACED</span>
                 </div>
                 <p className="text-xs text-slate-300 mt-1">
-                  Succeded by <strong className="text-white">USDA Local Food Promotion Program ($250,000)</strong>
+                  Succeded by <strong className="text-white">Evergreen Urban Agroecology ($180,000)</strong>
                 </p>
-                <p className="text-[11px] text-slate-500 mt-0.5">Local food supply chain & cooperative grocery market access.</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">Urban agroecology, compost hubs, and neighborhood food security.</p>
               </div>
             </div>
           </div>
@@ -444,7 +435,7 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
               </span>
             </div>
             <p className="text-xs text-slate-400 mb-4">
-              Simulate organizational revenue against our active $3.52M drafted pipeline:
+              Simulate organizational revenue against our active ${(kpis.totalPipelineAmount / 1_000_000).toFixed(2)}M drafted pipeline:
             </p>
 
             <input

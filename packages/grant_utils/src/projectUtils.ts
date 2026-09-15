@@ -2,7 +2,7 @@ import type { ProjectConfig, GrantRecord, MarkdownDoc } from './types.js';
 
 export const EXAMPLE_PROJECT_CONFIG: ProjectConfig = {
   id: 'example',
-  name: 'Example Foundation',
+  name: 'Example Community Foundation',
   shortName: 'Example.org',
   tagline: 'Sample 501(c)(3) Institutional Grantwriting, RFC 5545 Calendar & Git PR Platform',
   taxStatus: '501(c)(3)',
@@ -11,10 +11,10 @@ export const EXAMPLE_PROJECT_CONFIG: ProjectConfig = {
   calendarPath: 'calendar.ics',
   financialTargets: {
     targetYear: 2027,
-    confirmedRevenue: 65000,
+    confirmedRevenue: 75000,
     bareMinimum: 300000,
-    steadyState: 500000,
-    stretch: 700000
+    steadyState: 550000,
+    stretch: 850000
   },
   categories: [
     'Federal',
@@ -34,35 +34,35 @@ export const EXAMPLE_PROJECT_CONFIG: ProjectConfig = {
   ],
   gitConfig: {
     owner: 'ExampleOrg',
-    repo: 'grantwriting',
+    repo: 'grant-hub',
     defaultBranch: 'main',
     provider: 'github'
   }
 };
 
-export const ACBF_PROJECT_CONFIG: ProjectConfig = {
-  id: 'acbf',
-  name: 'Austin Cooperative Business Foundation',
-  shortName: 'ACBF',
-  tagline: 'Worker-owned cooperative ecosystem & non-extractive revolving loan fund',
+export const RESILIENCE_PROJECT_CONFIG: ProjectConfig = {
+  id: 'resilience',
+  name: 'Community Resilience & Clean Energy Hub',
+  shortName: 'Resilience Hub',
+  tagline: 'Decentralized clean microgrids, workforce development, and climate adaptation',
   taxStatus: '501(c)(3)',
-  dataDir: 'data/acbf',
+  dataDir: 'data/resilience',
   grantsSubdir: 'grants',
   calendarPath: 'calendar.ics',
   financialTargets: {
     targetYear: 2027,
-    confirmedRevenue: 65000,
-    bareMinimum: 300000,
-    steadyState: 500000,
-    stretch: 700000
+    confirmedRevenue: 100000,
+    bareMinimum: 350000,
+    steadyState: 600000,
+    stretch: 1000000
   },
   categories: [
     'Federal',
     'Regional Foundation',
     'National Foundation',
     'Municipal',
-    'Corporate/CRA',
-    'Movement/CDF'
+    'Corporate Giving',
+    'Community Foundation'
   ],
   tiers: [
     'Tier 1 (Fall Immediate)',
@@ -73,47 +73,46 @@ export const ACBF_PROJECT_CONFIG: ProjectConfig = {
     'Rolling'
   ],
   gitConfig: {
-    owner: 'AustinCooperativeBusinessFoundation',
-    repo: 'grantwriting',
+    owner: 'CommunityResilienceHub',
+    repo: 'grants-workspace',
     defaultBranch: 'main',
     provider: 'github'
   }
 };
 
-export const VAMOS_PROJECT_CONFIG: ProjectConfig = {
-  id: 'vamos',
-  name: 'Go Austin / Vamos Austin (GAVA)',
-  shortName: 'Vamos',
-  tagline: 'Community-owned food retail, health equity & Eastern Crescent food access',
-  taxStatus: '501(c)(3) & Community Enterprise',
-  dataDir: 'data/vamos',
+export const HEALTH_EQUITY_PROJECT_CONFIG: ProjectConfig = {
+  id: 'health-equity',
+  name: 'Community Health & Food Equity Alliance',
+  shortName: 'Health Equity',
+  tagline: 'Preventive healthcare, fresh food retail access, and health equity outreach',
+  taxStatus: '501(c)(3)',
+  dataDir: 'data/health-equity',
   grantsSubdir: 'grants',
-  calendarPath: 'data/vamos/calendar.ics',
+  calendarPath: 'calendar.ics',
   financialTargets: {
     targetYear: 2026,
-    confirmedRevenue: 100000,
+    confirmedRevenue: 80000,
     bareMinimum: 250000,
-    steadyState: 600000,
-    stretch: 1200000
+    steadyState: 500000,
+    stretch: 900000
   },
   categories: [
-    'Federal/USDA',
-    'State of Texas',
-    'City of Austin',
+    'Federal',
+    'State Government',
+    'Municipal',
     'Health & Equity Foundation',
-    'Corporate Community Giving',
-    'CDFI Lending & Capital'
+    'Corporate Giving'
   ],
   tiers: [
-    'Priority 1 (USDA Food Access)',
-    'Priority 2 (Texas & City Funds)',
-    'Priority 3 (Health Equity Foundations)',
-    'Priority 4 (Retail Corporate)',
-    'Priority 5 (CDFI Debt/Capital)'
+    'Tier 1 (Immediate)',
+    'Tier 2 (Core)',
+    'Tier 3 (Major Spring)',
+    'Tier 4 (Summer Federal)',
+    'Rolling'
   ],
   gitConfig: {
-    owner: 'AustinCooperativeBusinessFoundation',
-    repo: 'vamos-grants',
+    owner: 'HealthEquityAlliance',
+    repo: 'funding-pipeline',
     defaultBranch: 'main',
     provider: 'github'
   }
@@ -121,8 +120,8 @@ export const VAMOS_PROJECT_CONFIG: ProjectConfig = {
 
 const PROJECT_REGISTRY = new Map<string, ProjectConfig>([
   ['example', EXAMPLE_PROJECT_CONFIG],
-  ['acbf', ACBF_PROJECT_CONFIG],
-  ['vamos', VAMOS_PROJECT_CONFIG]
+  ['resilience', RESILIENCE_PROJECT_CONFIG],
+  ['health-equity', HEALTH_EQUITY_PROJECT_CONFIG]
 ]);
 
 export function registerProject(config: ProjectConfig): void {
@@ -145,8 +144,8 @@ export function filterGrantsByProject(grants: GrantRecord[], projectId: string):
   const normalized = projectId.toLowerCase();
   return grants.filter(g => {
     const p = g.filePath.toLowerCase();
-    if (normalized === 'example' || normalized === 'acbf') {
-      return p.includes('/example/') || p.startsWith('example/') || p.includes('/acbf/') || p.startsWith('data/acbf/');
+    if (normalized === 'example') {
+      return p.includes('/example/') || p.startsWith('example/') || !p.includes('/');
     }
     return p.includes(`/${normalized}/`) || p.startsWith(`${normalized}/`);
   });
@@ -156,8 +155,8 @@ export function filterDocsByProject(docs: MarkdownDoc[], projectId: string): Mar
   const normalized = projectId.toLowerCase();
   return docs.filter(d => {
     const p = d.relativePath.toLowerCase();
-    if (normalized === 'example' || normalized === 'acbf') {
-      return p.includes('/example/') || p.startsWith('example/') || p.includes('/acbf/') || p.startsWith('data/acbf/');
+    if (normalized === 'example') {
+      return p.includes('/example/') || p.startsWith('example/') || !p.includes('/');
     }
     return p.includes(`/${normalized}/`) || p.startsWith(`${normalized}/`);
   });

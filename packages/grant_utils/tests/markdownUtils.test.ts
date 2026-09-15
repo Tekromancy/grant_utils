@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { 
   getAllMarkdownDocs, 
   getMarkdownDocById, 
@@ -6,38 +6,84 @@ import {
   searchMarkdownDocs,
   splitFrontmatter,
   parseGrantMarkdown,
-  serializeGrantMarkdown
+  serializeGrantMarkdown,
+  setMarkdownDocs,
+  clearMarkdownDocs
 } from '../src/markdownUtils.js';
+import type { MarkdownDoc } from '../src/types.js';
+
+const MOCK_DOCS: MarkdownDoc[] = [
+  {
+    id: 'clean_energy_grant',
+    fileName: 'clean_energy_grant.md',
+    relativePath: 'data/grants/clean_energy_grant.md',
+    title: 'Clean Energy Community Infrastructure',
+    category: 'grant',
+    excerpt: 'Solar microgrid and workforce training program.',
+    content: '---\nid: clean_energy_grant\ntitle: Clean Energy Community Infrastructure\namount: 500000\n---\n# Clean Energy\nCommunity solar deployment.',
+    lineCount: 10,
+    wordCount: 50,
+    frontmatter: { id: 'clean_energy_grant', amount: 500000 }
+  },
+  {
+    id: 'sustainability_plan',
+    fileName: 'sustainability_plan.md',
+    relativePath: 'data/strategy/sustainability_plan.md',
+    title: 'Organizational Sustainability Plan',
+    category: 'strategy',
+    excerpt: 'Multi-year financial diversification strategy.',
+    content: '# Sustainability Plan\nDiversification blueprint.',
+    lineCount: 15,
+    wordCount: 80
+  }
+];
 
 describe('markdownUtils', () => {
-  it('should retrieve all markdown documents', () => {
+  beforeEach(() => {
+    clearMarkdownDocs();
+  });
+
+  it('should return empty list by default when no markdown docs are loaded', () => {
     const docs = getAllMarkdownDocs();
-    expect(docs.length).toBeGreaterThan(20);
+    expect(docs.length).toBe(0);
+  });
+
+  it('should retrieve dynamically registered markdown documents', () => {
+    setMarkdownDocs(MOCK_DOCS);
+    const docs = getAllMarkdownDocs();
+    expect(docs.length).toBe(2);
     expect(docs[0]).toHaveProperty('id');
     expect(docs[0]).toHaveProperty('title');
     expect(docs[0]).toHaveProperty('content');
   });
 
   it('should find documents by ID or relative path', () => {
-    const doc = getMarkdownDocById('cchd_economic_development');
+    setMarkdownDocs(MOCK_DOCS);
+    const doc = getMarkdownDocById('clean_energy_grant');
     expect(doc).toBeDefined();
-    expect(doc?.title).toContain('Catholic Campaign for Human Development');
+    expect(doc?.title).toContain('Clean Energy');
 
-    const byPath = getMarkdownDocById('acbf/grants/cchd_economic_development.md');
+    const byPath = getMarkdownDocById('data/grants/clean_energy_grant.md');
     expect(byPath).toBeDefined();
     expect(byPath?.id).toBe(doc?.id);
   });
 
   it('should filter documents by category', () => {
+    setMarkdownDocs(MOCK_DOCS);
     const grants = getDocsByCategory('grant');
-    expect(grants.length).toBeGreaterThan(15);
-    grants.forEach(g => expect(g.category).toBe('grant'));
+    expect(grants.length).toBe(1);
+    expect(grants[0].category).toBe('grant');
+
+    const strategy = getDocsByCategory('strategy');
+    expect(strategy.length).toBe(1);
+    expect(strategy[0].id).toBe('sustainability_plan');
   });
 
   it('should search documents accurately across title and content', () => {
-    const results = searchMarkdownDocs('Catholic Campaign');
-    expect(results.length).toBeGreaterThan(0);
-    expect(results.some(r => r.id === 'cchd_economic_development')).toBe(true);
+    setMarkdownDocs(MOCK_DOCS);
+    const results = searchMarkdownDocs('solar');
+    expect(results.length).toBe(1);
+    expect(results[0].id).toBe('clean_energy_grant');
   });
 
   describe('splitFrontmatter', () => {

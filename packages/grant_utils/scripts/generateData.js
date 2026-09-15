@@ -7,9 +7,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '../../../');
 const dataDir = path.join(rootDir, 'data');
-const acbfDir = path.join(dataDir, 'acbf');
-const vamosDir = path.join(dataDir, 'vamos');
-const grantsDir = path.join(acbfDir, 'grants');
 const calendarPath = path.join(rootDir, 'calendar.ics');
 
 // 1. Parse calendar.ics
@@ -21,7 +18,6 @@ function parseIcs(icsContent) {
 
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
-    // Handle unfolded lines (lines starting with space or tab)
     while (i + 1 < lines.length && /^[ \t]/.test(lines[i + 1])) {
       line += lines[i + 1].slice(1);
       i++;
@@ -74,31 +70,25 @@ function parseIcs(icsContent) {
         const parts = line.split(':');
         const rawDate = parts[1]?.trim();
         if (rawDate) {
-          if (rawDate.length === 8) {
-            // YYYYMMDD -> YYYY-MM-DD
-            currentEvent.startDate = `${rawDate.slice(0, 4)}-${rawDate.slice(4, 6)}-${rawDate.slice(6, 8)}`;
-          } else {
-            currentEvent.startDate = rawDate;
-          }
+          currentEvent.startDate = rawDate.length === 8
+            ? `${rawDate.slice(0, 4)}-${rawDate.slice(4, 6)}-${rawDate.slice(6, 8)}`
+            : rawDate;
         }
       } else if (line.startsWith('DTEND')) {
         const parts = line.split(':');
         const rawDate = parts[1]?.trim();
         if (rawDate) {
-          if (rawDate.length === 8) {
-            currentEvent.endDate = `${rawDate.slice(0, 4)}-${rawDate.slice(4, 6)}-${rawDate.slice(6, 8)}`;
-          } else {
-            currentEvent.endDate = rawDate;
-          }
+          currentEvent.endDate = rawDate.length === 8
+            ? `${rawDate.slice(0, 4)}-${rawDate.slice(4, 6)}-${rawDate.slice(6, 8)}`
+            : rawDate;
         }
       }
     }
   }
 
-  // Enrich events with grant file mappings & amounts if applicable
   events.forEach(evt => {
     const desc = evt.description || '';
-    const matchFile = desc.match(/(?:data\/)?(?:acbf|vamos)\/grants\/([a-zA-Z0-9_-]+\.md)/);
+    const matchFile = desc.match(/(?:data\/)?(?:[a-zA-Z0-9_-]+\/)?grants\/([a-zA-Z0-9_-]+\.md)/);
     if (matchFile) {
       evt.grantFile = matchFile[1];
     }
@@ -112,7 +102,7 @@ function parseIcs(icsContent) {
 }
 
 // 2. Scan all markdown files in data/ and extract YAML frontmatter
-function scanMarkdownDocs() {
+function scanMarkdownDocs(targetDir) {
   const docs = [];
 
   function walk(dir, category) {
@@ -121,7 +111,7 @@ function scanMarkdownDocs() {
     for (const ent of entries) {
       const fullPath = path.join(dir, ent.name);
       if (ent.isDirectory()) {
-        walk(fullPath, ent.name === 'grants' ? 'grants' : category);
+        walk(fullPath, ent.name === 'grants' ? 'grants' : ent.name);
       } else if (ent.isFile() && ent.name.endsWith('.md')) {
         const relativePath = path.relative(rootDir, fullPath);
         const content = fs.readFileSync(fullPath, 'utf8');
@@ -138,7 +128,6 @@ function scanMarkdownDocs() {
           }
         }
 
-        // Extract title: prefer frontmatter title, then first # Header, then filename
         let title = (frontmatter && frontmatter.title) ? String(frontmatter.title) : ent.name.replace(/\.md$/, '');
         if (!frontmatter || !frontmatter.title) {
           const titleMatch = content.match(/^#\s+(.+)$/m);
@@ -147,16 +136,11 @@ function scanMarkdownDocs() {
           }
         }
 
-        // Summary excerpt: first non-empty, non-header line from body content
         const lines = bodyContent.split('\n').filter(l => l.trim().length > 0 && !l.startsWith('#') && !l.startsWith('---'));
         const excerpt = (lines[0] || '').slice(0, 200);
 
         let docCat = category;
-        if (ent.name.includes('bylaws')) docCat = 'governance';
-        else if (ent.name.includes('research')) docCat = 'research';
-        else if (ent.name.includes('sustainability') || ent.name.includes('CallToAction') || ent.name.includes('dashboard') || ent.name.includes('Clerical')) docCat = 'strategy';
-        else if (relativePath.includes('grants/')) docCat = 'grant';
-        else if (category === 'vamos' || relativePath.includes('vamos/')) docCat = 'vamos';
+        if (relativePath.includes('grants/')) docCat = 'grant';
 
         docs.push({
           id: (frontmatter && frontmatter.id) ? String(frontmatter.id) : ent.name.replace(/\.md$/, ''),
@@ -174,16 +158,15 @@ function scanMarkdownDocs() {
     }
   }
 
-  walk(acbfDir, 'acbf');
-  if (fs.existsSync(vamosDir)) {
-    walk(vamosDir, 'vamos');
+  if (fs.existsSync(targetDir)) {
+    walk(targetDir, 'general');
   }
   return docs;
 }
 
 // Main execution
 if (!fs.existsSync(calendarPath) && !fs.existsSync(dataDir)) {
-  console.log('[generateData] No root calendar.ics or data/ folder found. Using pre-existing generated TypeScript data files in src/data/.');
+  console.log('[generateData] No root calendar.ics or data/ folder found. Preserving clean placeholder data files in src/data/.');
   process.exit(0);
 }
 
@@ -193,18 +176,15 @@ const calendarEvents = icsContent ? parseIcs(icsContent) : [];
 console.log(`Parsed ${calendarEvents.length} calendar events.`);
 
 console.log('Scanning markdown documents & parsing YAML frontmatter...');
-const allDocs = scanMarkdownDocs();
+const allDocs = scanMarkdownDocs(dataDir);
 console.log(`Scanned ${allDocs.length} markdown documents.`);
 
-// Assemble Grant Records from parsed Markdown Frontmatters (Single Source of Truth)
 const grantDocs = allDocs.filter(d => 
   d.relativePath.includes('grants/') && 
   d.frontmatter && 
-  d.frontmatter.id && 
-  d.frontmatter.amount !== undefined
+  d.frontmatter.id
 );
 
-// Deterministic sort: by deadline ascending, then fileName
 grantDocs.sort((a, b) => {
   const dateA = a.frontmatter.deadline || '9999-99-99';
   const dateB = b.frontmatter.deadline || '9999-99-99';
@@ -221,15 +201,15 @@ const grantRecords = grantDocs.map(doc => {
     program: String(fm.program || ''),
     amount,
     amountFormatted: String(fm.amountFormatted || `$${amount.toLocaleString('en-US')}`),
-    deadline: String(fm.deadline || ''),
-    deadlineFormatted: String(fm.deadlineFormatted || fm.deadline || ''),
+    deadline: String(fm.deadline || 'Rolling'),
+    deadlineFormatted: String(fm.deadlineFormatted || fm.deadline || 'Rolling'),
     tier: fm.tier || 'Rolling',
-    category: fm.category || 'Regional Foundation',
+    category: fm.category || 'Private Foundation',
     matchPercentage: Number(fm.matchPercentage) || 0,
     grantType: String(fm.grantType || ''),
     portalUrl: String(fm.portalUrl || ''),
     strategicPriority: String(fm.strategicPriority || ''),
-    status: String(fm.status || 'Ready to Submit'),
+    status: String(fm.status || 'Drafting'),
     fileName: doc.fileName,
     filePath: doc.relativePath,
     title: String(fm.title || doc.title),
@@ -241,11 +221,9 @@ const grantRecords = grantDocs.map(doc => {
 
 console.log(`Assembled ${grantRecords.length} grant records from markdown frontmatter.`);
 
-// Write generated files
 const generatedDir = path.resolve(__dirname, '../src/data');
 fs.mkdirSync(generatedDir, { recursive: true });
 
-// 1. generatedCalendar.ts
 const calendarTs = `// Auto-generated by generateData.js - DO NOT EDIT MANUALLY
 import type { CalendarEvent } from '../types.js';
 
@@ -253,7 +231,6 @@ export const CALENDAR_EVENTS: CalendarEvent[] = ${JSON.stringify(calendarEvents,
 `;
 fs.writeFileSync(path.join(generatedDir, 'generatedCalendar.ts'), calendarTs, 'utf8');
 
-// 2. generatedGrants.ts
 const grantsTs = `// Auto-generated by generateData.js - DO NOT EDIT MANUALLY
 import type { GrantRecord } from '../types.js';
 
@@ -264,7 +241,6 @@ export const TOTAL_GRANTS_COUNT = ${grantRecords.length};
 `;
 fs.writeFileSync(path.join(generatedDir, 'generatedGrants.ts'), grantsTs, 'utf8');
 
-// 3. generatedDocs.ts
 const docsTs = `// Auto-generated by generateData.js - DO NOT EDIT MANUALLY
 import type { MarkdownDoc } from '../types.js';
 

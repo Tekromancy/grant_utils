@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { 
   getAllGrants, 
   getGrantById, 
@@ -13,22 +13,121 @@ import {
   calculateSecuredFunding,
   calculateMatchRequirements,
   calculatePipelinePacing,
-  getDeadlineStatus
+  getDeadlineStatus,
+  registerGrants,
+  clearGrants
 } from '../src/grantsUtils.js';
+import type { GrantRecord } from '../src/types.js';
+
+const SAMPLE_TEST_GRANTS: GrantRecord[] = [
+  {
+    id: 'usda_sdgg_ta',
+    funder: 'USDA Rural Development',
+    program: 'Socially Disadvantaged Groups Grant (SDGG)',
+    amount: 175000,
+    amountFormatted: '$175,000',
+    deadline: '2027-06-15',
+    deadlineFormatted: 'June 15, 2027',
+    tier: 'Tier 4 (Summer Federal)',
+    category: 'Federal',
+    matchPercentage: 0,
+    grantType: 'Competitive Federal Grant',
+    portalUrl: 'https://grants.gov',
+    strategicPriority: 'Technical Assistance',
+    status: 'Planned',
+    fileName: 'usda_sdgg_ta.md',
+    filePath: 'data/grants/usda_sdgg_ta.md',
+    title: 'USDA SDGG Technical Assistance',
+    summary: 'Technical assistance for socially disadvantaged group development.',
+    content: '---\nid: usda_sdgg_ta\namount: 175000\n---\n# USDA SDGG Narrative',
+    wordCount: 300
+  },
+  {
+    id: 'kellogg_foundation_loi',
+    funder: 'W.K. Kellogg Foundation',
+    program: 'Racial Equity & Community Wealth Building',
+    amount: 250000,
+    amountFormatted: '$250,000',
+    deadline: '2026-10-31',
+    deadlineFormatted: 'October 31, 2026',
+    tier: 'Tier 1 (Fall Immediate)',
+    category: 'National Foundation',
+    matchPercentage: 0,
+    grantType: 'Letter of Inquiry (LOI)',
+    portalUrl: 'https://fluxx.org',
+    strategicPriority: 'Racial Equity',
+    status: 'Drafting',
+    fileName: 'kellogg_foundation_loi.md',
+    filePath: 'data/grants/kellogg_foundation_loi.md',
+    title: 'W.K. Kellogg Foundation LOI',
+    summary: 'Catalyzing community wealth and racial equity.',
+    content: '---\nid: kellogg_foundation_loi\namount: 250000\n---\n# Kellogg Narrative',
+    wordCount: 250
+  },
+  {
+    id: 'austin_edd_coop_coaching',
+    funder: 'City of Austin Economic Development',
+    program: 'Small Business & Co-op Coaching',
+    amount: 85000,
+    amountFormatted: '$85,000',
+    deadline: '2026-09-30',
+    deadlineFormatted: 'September 30, 2026',
+    tier: 'Tier 1 (Fall Immediate)',
+    category: 'Municipal',
+    matchPercentage: 0,
+    grantType: 'Municipal Contract',
+    portalUrl: 'https://austintexas.gov',
+    strategicPriority: 'Coaching',
+    status: 'Awarded',
+    fileName: 'austin_edd_coop_coaching.md',
+    filePath: 'data/grants/austin_edd_coop_coaching.md',
+    title: 'City of Austin Co-op Coaching',
+    summary: 'Technical coaching contract.',
+    content: '---\nid: austin_edd_coop_coaching\namount: 85000\n---\n# Municipal Coaching',
+    wordCount: 200
+  },
+  {
+    id: 'usda_lfpp_supply_chain',
+    funder: 'USDA Agricultural Marketing Service',
+    program: 'Local Food Promotion Program (LFPP)',
+    amount: 250000,
+    amountFormatted: '$250,000',
+    deadline: '2027-05-20',
+    deadlineFormatted: 'May 20, 2027',
+    tier: 'Tier 3 (Spring Major)',
+    category: 'Federal',
+    matchPercentage: 25,
+    grantType: 'Federal Matching Grant',
+    portalUrl: 'https://grants.gov',
+    strategicPriority: 'Local Food Systems',
+    status: 'Planned',
+    fileName: 'usda_lfpp_supply_chain.md',
+    filePath: 'data/grants/usda_lfpp_supply_chain.md',
+    title: 'USDA LFPP Supply Chain Expansion',
+    summary: 'Local food promotion and food supply chain resilience.',
+    content: '---\nid: usda_lfpp_supply_chain\namount: 250000\n---\n# LFPP Narrative',
+    wordCount: 400
+  }
+];
 
 describe('grantsUtils', () => {
-  it('should return all grant records across projects', () => {
+  beforeEach(() => {
+    clearGrants();
+  });
+
+  it('should return empty array by default when no grants are loaded', () => {
     const grants = getAllGrants();
-    expect(grants.length).toBe(40);
+    expect(grants).toEqual([]);
+  });
 
-    const acbfGrants = getAllGrants('acbf');
-    expect(acbfGrants.length).toBe(27);
-
-    const vamosGrants = getAllGrants('vamos');
-    expect(vamosGrants.length).toBe(13);
+  it('should support dynamic registration of grant records', () => {
+    registerGrants(SAMPLE_TEST_GRANTS);
+    const grants = getAllGrants();
+    expect(grants.length).toBe(4);
   });
 
   it('should find a grant by ID or file name', () => {
+    registerGrants(SAMPLE_TEST_GRANTS);
     const byId = getGrantById('usda_sdgg_ta');
     expect(byId).toBeDefined();
     expect(byId?.program).toContain('Socially Disadvantaged Groups');
@@ -40,39 +139,41 @@ describe('grantsUtils', () => {
   });
 
   it('should filter grants by category accurately', () => {
+    registerGrants(SAMPLE_TEST_GRANTS);
     const federal = getGrantsByCategory('Federal');
-    expect(federal.length).toBeGreaterThan(0);
+    expect(federal.length).toBe(2);
     expect(federal.every(g => g.category === 'Federal')).toBe(true);
 
-    const regional = getGrantsByCategory('Regional Foundation');
-    expect(regional.length).toBeGreaterThan(0);
-    expect(regional.every(g => g.category === 'Regional Foundation')).toBe(true);
+    const municipal = getGrantsByCategory('Municipal');
+    expect(municipal.length).toBe(1);
+    expect(municipal[0].id).toBe('austin_edd_coop_coaching');
   });
 
   it('should filter grants by tier', () => {
+    registerGrants(SAMPLE_TEST_GRANTS);
     const fallImmediate = getGrantsByTier('Fall');
-    expect(fallImmediate.length).toBeGreaterThan(0);
+    expect(fallImmediate.length).toBe(2);
     expect(fallImmediate.some(g => g.id === 'austin_edd_coop_coaching')).toBe(true);
   });
 
   it('should search grants by keyword across title, funder, program, and category', () => {
+    registerGrants(SAMPLE_TEST_GRANTS);
     const searchResult = searchGrants('kellogg');
     expect(searchResult.length).toBe(1);
     expect(searchResult[0].funder).toContain('Kellogg');
 
     const foodSearch = searchGrants('food');
-    expect(foodSearch.length).toBeGreaterThan(0);
+    expect(foodSearch.length).toBe(1);
+    expect(foodSearch[0].id).toBe('usda_lfpp_supply_chain');
   });
 
   it('should compute KPI summary with correct pipeline math and target metrics', () => {
+    registerGrants(SAMPLE_TEST_GRANTS);
     const kpis = getKPISummary();
-    expect(kpis.totalGrantsCount).toBe(27);
-    expect(kpis.totalPipelineAmount).toBeGreaterThan(3500000);
-    expect(kpis.confirmedRevenue2027).toBe(65000);
-    expect(kpis.bareMinimumTarget2027).toBe(300000);
-    expect(kpis.steadyStateTarget2027).toBe(500000);
-    expect(kpis.stretchTarget2027).toBe(700000);
-    expect(kpis.categoryTotals['Federal']).toBeGreaterThan(2000000);
+    expect(kpis.totalGrantsCount).toBe(4);
+    expect(kpis.totalPipelineAmount).toBe(175000 + 250000 + 85000 + 250000);
+    expect(kpis.categoryTotals['Federal']).toBe(425000);
+    expect(kpis.categoryTotals['Municipal']).toBe(85000);
   });
 
   it('should calculate days remaining correctly relative to a reference date', () => {
@@ -81,21 +182,6 @@ describe('grantsUtils', () => {
 
     const pastDays = calculateDaysRemaining('2026-09-01', '2026-09-10');
     expect(pastDays).toBe(-9);
-  });
-
-  it('should verify single-source-of-truth frontmatter integrity across all grants', () => {
-    const grants = getAllGrants();
-    expect(grants.length).toBe(40);
-    for (const g of grants) {
-      expect(g.id).toBeTruthy();
-      expect(g.funder).toBeTruthy();
-      expect(g.program).toBeTruthy();
-      expect(g.amount).toBeGreaterThan(0);
-      expect(g.amountFormatted).toContain('$');
-      expect(g.deadline).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-      expect(g.filePath).toMatch(/^(?:data\/)?(?:acbf|vamos|example)\/grants\/.+\.md$/);
-      expect(g.content).toContain('---');
-    }
   });
 
   it('should compute non-federal cost-share match requirements accurately', () => {
@@ -109,15 +195,13 @@ describe('grantsUtils', () => {
     expect(sbaPrime.totalProjectBudget).toBe(225000);
   });
 
-  it('should generate compliance checklists tailored to grant category and specific funder rules', () => {
+  it('should generate compliance checklists tailored to grant category and match rules', () => {
+    registerGrants(SAMPLE_TEST_GRANTS);
     const federalGrant = getGrantById('usda_sdgg_ta')!;
     const fedList = getGrantComplianceChecklist(federalGrant);
     expect(fedList.some(item => item.id === 'sam_gov')).toBe(true);
     expect(fedList.some(item => item.id === 'sf_424')).toBe(true);
-
-    const cchdGrant = getGrantById('cchd_economic_development')!;
-    const cchdList = getGrantComplianceChecklist(cchdGrant);
-    expect(cchdList.some(item => item.id === 'cchd_low_income')).toBe(true);
+    expect(fedList.some(item => item.id === 'tax_exempt_status')).toBe(true);
 
     const matchGrant = getGrantById('usda_lfpp_supply_chain')!;
     const matchList = getGrantComplianceChecklist(matchGrant);
@@ -125,12 +209,16 @@ describe('grantsUtils', () => {
   });
 
   it('should calculate pipeline totals, secured funding, and match requirements across datasets', () => {
+    registerGrants(SAMPLE_TEST_GRANTS);
     const pipeline = calculateTotalPipeline();
-    expect(pipeline).toBeGreaterThan(0);
+    expect(pipeline).toBe(760000);
+
+    const secured = calculateSecuredFunding();
+    expect(secured).toBe(85000);
 
     const matchReqs = calculateMatchRequirements();
-    expect(matchReqs.totalMatchRequired).toBeGreaterThan(0);
-    expect(matchReqs.grantsRequiringMatch.length).toBeGreaterThan(0);
+    expect(matchReqs.totalMatchRequired).toBe(62500);
+    expect(matchReqs.grantsRequiringMatch.length).toBe(1);
 
     const pacing = calculatePipelinePacing(500000, 500000);
     expect(pacing.percentageOfTarget).toBe(100);

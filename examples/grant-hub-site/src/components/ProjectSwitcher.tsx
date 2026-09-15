@@ -4,34 +4,17 @@ import React from 'react';
 import { Building2, ChevronDown, Check, Sparkles } from 'lucide-react';
 import { 
   EXAMPLE_PROJECT_CONFIG,
-  ACBF_PROJECT_CONFIG, 
-  VAMOS_PROJECT_CONFIG, 
+  RESILIENCE_PROJECT_CONFIG, 
+  HEALTH_EQUITY_PROJECT_CONFIG, 
   type ProjectConfig 
 } from '@tekromancy/grant_utils';
 
-export { EXAMPLE_PROJECT_CONFIG, ACBF_PROJECT_CONFIG, VAMOS_PROJECT_CONFIG };
-
-export const STARTER_PROJECT_CONFIG: ProjectConfig = {
-  id: 'starter',
-  name: 'Evergreen Community Foundation',
-  shortName: 'Evergreen Hub',
-  tagline: 'Sample 501(c)(3) Environmental & Community Development Hub',
-  taxStatus: '501(c)(3)',
-  dataDir: 'data',
-  calendarPath: 'calendar.ics',
-  financialTargets: {
-    targetYear: 2027,
-    confirmedRevenue: 150000,
-    bareMinimum: 400000,
-    steadyState: 750000,
-    stretch: 1200000,
-  }
-};
+export { EXAMPLE_PROJECT_CONFIG, RESILIENCE_PROJECT_CONFIG, HEALTH_EQUITY_PROJECT_CONFIG };
 
 export const AVAILABLE_PROJECTS: ProjectConfig[] = [
   EXAMPLE_PROJECT_CONFIG,
-  STARTER_PROJECT_CONFIG,
-  VAMOS_PROJECT_CONFIG
+  RESILIENCE_PROJECT_CONFIG,
+  HEALTH_EQUITY_PROJECT_CONFIG
 ];
 
 interface Props {
