@@ -22,23 +22,28 @@ import {
   getUpcomingEvents,
   calculateDaysRemaining,
   type GrantRecord,
-  type GrantCategory
+  type GrantCategory,
+  type CalendarEvent
 } from '@tekromancy/grant_utils';
 
 interface Props {
   onSelectGrant: (grant: GrantRecord) => void;
   onNavigateToCalendar: () => void;
   onNavigateToEditor: (fileName?: string) => void;
+  grants?: GrantRecord[];
+  events?: CalendarEvent[];
 }
 
 export const LiveExecutiveGraphic: React.FC<Props> = ({
   onSelectGrant,
   onNavigateToCalendar,
   onNavigateToEditor,
+  grants,
+  events,
 }) => {
-  const kpis = getKPISummary();
-  const allGrants = getAllGrants();
-  const upcomingEvents = getUpcomingEvents('2026-09-10', 8);
+  const allGrants = grants && grants.length > 0 ? grants : getAllGrants();
+  const kpis = getKPISummary(undefined, allGrants);
+  const upcomingEvents = getUpcomingEvents('2026-09-10', 8, events);
 
   const [selectedQuarter, setSelectedQuarter] = useState<'all' | 'Q1' | 'Q2' | 'Q3' | 'Q4'>('all');
   const [winRateSlider, setWinRateSlider] = useState<number>(14);

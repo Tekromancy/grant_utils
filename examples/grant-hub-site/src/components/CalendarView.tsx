@@ -22,6 +22,7 @@ import {
 interface Props {
   onSelectGrant: (grant: GrantRecord) => void;
   onNavigateToEditor: (fileName?: string) => void;
+  events?: CalendarEvent[];
 }
 
 const MONTH_NAMES = [
@@ -31,15 +32,17 @@ const MONTH_NAMES = [
 
 export const CalendarView: React.FC<Props> = ({
   onSelectGrant,
-  onNavigateToEditor
+  onNavigateToEditor,
+  events
 }) => {
   const [year, setYear] = useState(2026);
   const [month, setMonth] = useState(9); // September 2026
   const [selectedDayEvents, setSelectedDayEvents] = useState<CalendarEvent[] | null>(null);
   const [selectedDateStr, setSelectedDateStr] = useState<string>('2026-09-10');
 
-  const monthMatrix = getMonthMatrix(year, month, '2026-09-10');
-  const monthEvents = getEventsForMonth(year, month);
+  const allEvents = events && events.length > 0 ? events : [];
+  const monthMatrix = getMonthMatrix(year, month, '2026-09-10', allEvents);
+  const monthEvents = getEventsForMonth(year, month, allEvents);
 
   function prevMonth() {
     if (month === 1) {

@@ -27,15 +27,20 @@ interface Props {
   onSelectGrant: (grant: GrantRecord) => void;
   onNavigateToCalendar: () => void;
   onNavigateToEditor: (fileName?: string) => void;
+  grants?: GrantRecord[];
+  events?: CalendarEvent[];
 }
 
 export const DashboardView: React.FC<Props> = ({
   onSelectGrant,
   onNavigateToCalendar,
-  onNavigateToEditor
+  onNavigateToEditor,
+  grants,
+  events
 }) => {
-  const kpis = getKPISummary();
-  const upcomingEvents = getUpcomingEvents('2026-09-10', 10);
+  const allGrants = grants && grants.length > 0 ? grants : undefined;
+  const kpis = getKPISummary(undefined, allGrants);
+  const upcomingEvents = getUpcomingEvents('2026-09-10', 10, events);
   const [showGraphic, setShowGraphic] = useState(true);
 
   return (
@@ -57,6 +62,8 @@ export const DashboardView: React.FC<Props> = ({
             onSelectGrant={onSelectGrant}
             onNavigateToCalendar={onNavigateToCalendar}
             onNavigateToEditor={onNavigateToEditor}
+            grants={grants}
+            events={events}
           />
         </div>
       ) : (

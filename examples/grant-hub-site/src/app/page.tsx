@@ -21,7 +21,6 @@ import {
   saveBrowserAuthToken, 
   clearBrowserAuthToken,
   getAllMarkdownDocs,
-  getAllGrants,
   registerGrants,
   setCalendarEvents,
   setMarkdownDocs,
@@ -163,7 +162,6 @@ export default function Home() {
     setActiveTab('git');
   }
 
-  const allGrants = getAllGrants();
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
@@ -172,7 +170,7 @@ export default function Home() {
         setActiveTab={setActiveTab}
         authConfig={authConfig}
         editedFilesCount={Object.keys(editedFiles).length}
-        grantsCount={allGrants.length}
+        grantsCount={SAMPLE_FICTITIOUS_GRANTS.length}
         currentProject={currentProject}
         onSelectProject={handleSelectProject}
         onOpenSearch={() => setIsCommandPaletteOpen(true)}
@@ -199,6 +197,8 @@ export default function Home() {
               setEditorInitialFile(file);
               setActiveTab('editor');
             }}
+            grants={SAMPLE_FICTITIOUS_GRANTS}
+            events={SAMPLE_FICTITIOUS_EVENTS}
           />
         )}
 
@@ -231,6 +231,7 @@ export default function Home() {
               setEditorInitialFile(file);
               setActiveTab('editor');
             }}
+            events={SAMPLE_FICTITIOUS_EVENTS}
           />
         )}
 
