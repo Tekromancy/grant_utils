@@ -1,56 +1,862 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Sample Grant Hub//Grantwriting Calendar//EN
+PRODID:-//Example Grant Hub//Grantwriting Calendar//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:Sample Grants & Deadlines
+X-WR-CALNAME:Institutional Grant Deadlines & Capitalization Milestones
 X-WR-TIMEZONE:America/Chicago
 BEGIN:VEVENT
-UID:sample-grant-01@samplegranthub.org
-DTSTAMP:20260914T120000Z
+UID:inst-sam-gov-renewal-2026@example.org
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20260930
+SUMMARY:[COMPLIANCE] Annual SAM.gov & UEI Entity Registration Renewal
+DESCRIPTION:Annual verification and renewal of organization SAM.gov Unique Entity Identifier (UEI) and notarized administrator letters.\nPortal: https://sam.gov
+LOCATION:SAM.gov System for Award Management
+CATEGORIES:COMPLIANCE,FEDERAL,ANNUAL_RENEWAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P14D
+DESCRIPTION:2-Week Warning: SAM.gov Entity Registration Renewal
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:inst-fed-sf425-q3-2026@example.org
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261030
+SUMMARY:[REPORTING] Semi-Annual Federal SF-425 Financial & Milestone Report
+DESCRIPTION:Submission of semi-annual federal cash transactions and programmatic milestone metrics for active public awards.
+LOCATION:Payment Management System (PMS)
+CATEGORIES:REPORTING,FEDERAL,FINANCIAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P7D
+DESCRIPTION:1-Week Reminder: Federal SF-425 Report Due
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:inst-irs-form990-2026@example.org
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261115
+SUMMARY:[GOVERNANCE] Annual IRS Form 990-PF Public Filing & Board Review
+DESCRIPTION:Fiscal year informational tax return public disclosure and Trustee Governance Committee sign-off.
+LOCATION:IRS / Internal Audit Committee
+CATEGORIES:GOVERNANCE,TAX,COMPLIANCE
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P14D
+DESCRIPTION:Board Review: Form 990 Package
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:inst-capitalization-workshop-2026@example.org
+DTSTART;VALUE=DATE:20261210
+DTEND;VALUE=DATE:20261210
+SUMMARY:[STRATEGY] Master Capitalization Strategy & 2027 Pipeline Workshop
+DESCRIPTION:Annual leadership retreat to assess pipeline pacing\, secured multi-year revenue\, and 2027 grant submission targets.
+LOCATION:Community Foundation Innovation Lab
+CATEGORIES:STRATEGY,GOVERNANCE
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:inst-funder-briefing-2027@example.org
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270120
+SUMMARY:[COMMUNITY] Annual Funder Briefing & Community Impact Town Hall
+DESCRIPTION:Public briefing for philanthropic partners\, civic leaders\, and community stakeholders showcasing project outcomes.
+LOCATION:Civic Auditorium & Livestream
+CATEGORIES:COMMUNITY,PHILANTHROPY
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:inst-midyear-board-2027@example.org
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270215
+SUMMARY:[GOVERNANCE] Mid-Year Board of Trustees Grant Appropriations Review
+DESCRIPTION:Review of secured foundation grants\, matching fund allocations\, and capital campaign milestones.
+LOCATION:Boardroom / Video Conference
+CATEGORIES:GOVERNANCE,BOARD
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:inst-spring-research-sprint-2027@example.org
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270301
+SUMMARY:[STRATEGY] Spring Grant Research Sprint & Federal NOFO Scan Kickoff
+DESCRIPTION:Comprehensive research scan of newly posted Notices of Funding Opportunity on Grants.gov and state agency portals.
+LOCATION:Grant Research Office
+CATEGORIES:STRATEGY,RESEARCH
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:inst-grantsgov-audit-2027@example.org
+DTSTART;VALUE=DATE:20270401
+DTEND;VALUE=DATE:20270401
+SUMMARY:[COMPLIANCE] Grants.gov Workspace & E-Authentication Credential Audit
+DESCRIPTION:Annual audit of Authorized Organization Representative (AOR) credentials\, Login.gov access\, and Workspace roles.
+LOCATION:Grants.gov Organization Portal
+CATEGORIES:COMPLIANCE,FEDERAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:inst-closeout-stewardship-2027@example.org
+DTSTART;VALUE=DATE:20270615
+DTEND;VALUE=DATE:20270615
+SUMMARY:[REPORTING] Annual Grant Closeout & Foundation Stewardship Report
+DESCRIPTION:Delivery of narrative impact reports\, certified budget reconciliations\, and photo documentation to foundation funders.
+LOCATION:Philanthropy Operations Office
+CATEGORIES:REPORTING,STEWARDSHIP
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:apex-draft-review@sample.org
+DTSTART;VALUE=DATE:20260915
+DTEND;VALUE=DATE:20260915
+SUMMARY:[DRAFT] Narrative Peer Review: Apex Clean Energy Microgrid
+DESCRIPTION:Complete internal review of technical microgrid engineering narrative\, battery storage specs\, and energy savings models.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,ENERGY
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:apex-budget-approval@sample.org
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261001
+SUMMARY:[BUDGET] Cost Breakdown Approval: Apex Clean Energy Microgrid
+DESCRIPTION:Detailed equipment quote reconciliation for solar PV arrays\, lithium iron phosphate battery racks\, and inverter interconnects.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,ENERGY
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:apex-compliance-attachments@sample.org
+DTSTART;VALUE=DATE:20261008
+DTEND;VALUE=DATE:20261008
+SUMMARY:[COMPLIANCE] Final Attachment Assembly: Apex Clean Energy
+DESCRIPTION:Assemble 501(c)(3) tax status letter\, board roster\, site landlord access agreements\, and electrical engineering sign-offs.
+LOCATION:Apex Grants Portal
+CATEGORIES:COMPLIANCE,FOUNDATION
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:apex-early-submit@sample.org
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261014
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Apex Clean Energy
+DESCRIPTION:Execute final electronic submission 24 hours in advance to guarantee receipt and avoid portal server bottlenecks.
+LOCATION:Apex Grants Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT4H
+DESCRIPTION:Submit Apex Proposal Today
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:apex-microgrid-deadline@sample.org
+DTSTART;VALUE=DATE:20261015
+DTEND;VALUE=DATE:20261015
+SUMMARY:[DEADLINE] Apex Climate Foundation: Microgrid Challenge
+DESCRIPTION:Submission deadline for Apex Clean Energy & Resilient Community Microgrid ($350\,000).\nFunder: Apex Climate & Energy Foundation.\nPackage: data/example/grants/01_apex_clean_energy_microgrid.md
+LOCATION:Apex Grants Portal
+CATEGORIES:DEADLINE,FOUNDATION,ENERGY
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P7D
+DESCRIPTION:Upcoming Deadline: Apex Microgrid Grant
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:FINAL DEADLINE TOMORROW: Apex Microgrid Grant
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:horizon-draft-review@sample.org
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261020
+SUMMARY:[DRAFT] Narrative Review: Horizon Robotics Academy
+DESCRIPTION:Finalize robotics curriculum module descriptions\, open-source hardware kit lists\, and educator training pathways.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,STEM
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:horizon-budget-review@sample.org
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261106
+SUMMARY:[BUDGET] Equipment & Lab Budget: Horizon Robotics Academy
+DESCRIPTION:Finalize line-item quotes for 3D printers\, microcontroller kits\, soldering benches\, and youth stipends.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,STEM
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:horizon-compliance-letters@sample.org
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261113
+SUMMARY:[COMPLIANCE] School District MOUs & Partner Letters: Horizon Robotics
+DESCRIPTION:Obtain signed partnership MOUs from participating high schools and community maker spaces.
+LOCATION:Internal Grant Office
+CATEGORIES:COMPLIANCE,CORPORATE
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:horizon-early-submit@sample.org
+DTSTART;VALUE=DATE:20261119
+DTEND;VALUE=DATE:20261119
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Horizon Robotics
+DESCRIPTION:Execute final portal electronic submission for Horizon Technology Fund.
+LOCATION:Horizon Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT4H
+DESCRIPTION:Submit Horizon Robotics Proposal Today
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:horizon-stem-deadline@sample.org
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261120
+SUMMARY:[DEADLINE] Horizon Fund: Open Robotics Workforce Academy
+DESCRIPTION:Submission deadline for Horizon STEM & Open Robotics Academy ($250\,000).\nFunder: Horizon Technology & Innovation Fund.\nPackage: data/example/grants/02_horizon_stem_robotics_academy.md
+LOCATION:Horizon Portal
+CATEGORIES:DEADLINE,CORPORATE,STEM
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P7D
+DESCRIPTION:Upcoming Deadline: Horizon Robotics Academy
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:evergreen-draft-review@sample.org
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261115
+SUMMARY:[DRAFT] Agroecology Work Plan Review: Evergreen Trust
+DESCRIPTION:Review compost hub engineering diagrams\, urban farm yield projections\, and community food sovereignty metrics.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,AGRICULTURE
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:evergreen-budget-review@sample.org
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261201
+SUMMARY:[BUDGET] Soil & Nursery Supply Line-Items: Evergreen Trust
+DESCRIPTION:Reconcile organic soil amendment bulk pricing\, rainwater catchment cistern quotes\, and greenhouse supplies.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,AGRICULTURE
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:evergreen-compliance-land@sample.org
+DTSTART;VALUE=DATE:20261208
+DTEND;VALUE=DATE:20261208
+SUMMARY:[COMPLIANCE] Land Access MOU & Soil Testing Reports: Evergreen Trust
+DESCRIPTION:Attach heavy metals soil testing clearance and municipal community garden lease agreements.
+LOCATION:Internal Grant Office
+CATEGORIES:COMPLIANCE,REGIONAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:evergreen-early-submit@sample.org
+DTSTART;VALUE=DATE:20261214
+DTEND;VALUE=DATE:20261214
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Evergreen Agroecology
+DESCRIPTION:Submit completed proposal package to Evergreen Ecological Trust portal.
+LOCATION:Evergreen Online Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT4H
+DESCRIPTION:Submit Evergreen Agroecology Proposal Today
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:evergreen-agro-deadline@sample.org
+DTSTART;VALUE=DATE:20261215
+DTEND;VALUE=DATE:20261215
+SUMMARY:[DEADLINE] Evergreen Trust: Urban Agroecology Grant
+DESCRIPTION:Submission deadline for Evergreen Urban Agroecology Grant ($180\,000).\nFunder: Evergreen Ecological Trust.\nPackage: data/example/grants/03_evergreen_urban_agroecology.md
+LOCATION:Evergreen Online Portal
+CATEGORIES:DEADLINE,REGIONAL,AGRICULTURE
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:metropolis-draft-review@sample.org
+DTSTART;VALUE=DATE:20270105
+DTEND;VALUE=DATE:20270105
+SUMMARY:[DRAFT] Proposal Review: Metropolis Digital Equity Challenge
+DESCRIPTION:Review public WiFi mesh architecture\, refurbished computer distribution plan\, and digital literacy syllabus.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,MUNICIPAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:metropolis-budget-review@sample.org
+DTSTART;VALUE=DATE:20270116
+DTEND;VALUE=DATE:20270116
+SUMMARY:[BUDGET] Hardware Procurement Budget: Metropolis Digital Equity
+DESCRIPTION:Finalize pricing on 150 refurbished laptops\, wireless access points\, and multilingual digital instructor fees.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,MUNICIPAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:metropolis-compliance-vendor@sample.org
+DTSTART;VALUE=DATE:20270123
+DTEND;VALUE=DATE:20270123
+SUMMARY:[COMPLIANCE] Municipal Vendor Certification & Compliance Package
+DESCRIPTION:Upload municipal vendor compliance forms\, non-discrimination disclosures\, and local insurance certificates.
+LOCATION:Metropolis City Portal
+CATEGORIES:COMPLIANCE,MUNICIPAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:metropolis-early-submit@sample.org
+DTSTART;VALUE=DATE:20270129
+DTEND;VALUE=DATE:20270129
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Metropolis Digital Equity
+DESCRIPTION:Electronic submission on Metropolis Municipal Innovation Office portal.
+LOCATION:Metropolis City Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT4H
+DESCRIPTION:Submit Metropolis Digital Proposal Today
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:metropolis-digital-deadline@sample.org
+DTSTART;VALUE=DATE:20270130
+DTEND;VALUE=DATE:20270130
+SUMMARY:[DEADLINE] Metropolis Innovation: Digital Equity Challenge
+DESCRIPTION:Submission deadline for Metropolis Digital Inclusion Grant ($120\,000).\nFunder: Metropolis Municipal Innovation Office.\nPackage: data/example/grants/04_metropolis_digital_equity.md
+LOCATION:Metropolis City Portal
+CATEGORIES:DEADLINE,MUNICIPAL,BROADBAND
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:beacon-draft-review@sample.org
+DTSTART;VALUE=DATE:20270128
+DTEND;VALUE=DATE:20270128
+SUMMARY:[DRAFT] Clinical Protocol & Outreach Plan: Beacon Mobile Health
+DESCRIPTION:Review preventative health screening protocols\, clinical nurse staffing model\, and mobile van route schedules.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,HEALTH
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:beacon-budget-review@sample.org
+DTSTART;VALUE=DATE:20270214
+DTEND;VALUE=DATE:20270214
+SUMMARY:[BUDGET] Medical Mobile Van Budget: Beacon Health
+DESCRIPTION:Reconcile van lease\, medical diagnostic kits\, refrigeration for vaccines\, and clinical staff hourly compensation.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,HEALTH
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:beacon-compliance-license@sample.org
+DTSTART;VALUE=DATE:20270221
+DTEND;VALUE=DATE:20270221
+SUMMARY:[COMPLIANCE] Clinical Licensure & Malpractice Verification: Beacon Health
+DESCRIPTION:Assemble healthcare provider board certifications\, HIPAA compliance protocols\, and liability insurance.
+LOCATION:Beacon Health Portal
+CATEGORIES:COMPLIANCE,REGIONAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:beacon-early-submit@sample.org
+DTSTART;VALUE=DATE:20270227
+DTEND;VALUE=DATE:20270227
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Beacon Health Clinic
+DESCRIPTION:Execute final electronic submission on Beacon Health Philanthropy portal.
+LOCATION:Beacon Health Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT4H
+DESCRIPTION:Submit Beacon Health Proposal Today
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:beacon-clinic-deadline@sample.org
+DTSTART;VALUE=DATE:20270228
+DTEND;VALUE=DATE:20270228
+SUMMARY:[DEADLINE] Beacon Philanthropy: Mobile Wellness Clinic
+DESCRIPTION:Submission deadline for Beacon Community Health Outreach ($200\,000).\nFunder: Beacon Health Philanthropy.\nPackage: data/example/grants/05_beacon_health_mobile_clinic.md
+LOCATION:Beacon Health Portal
+CATEGORIES:DEADLINE,HEALTH,REGIONAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cascade-draft-review@sample.org
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270215
+SUMMARY:[DRAFT] Riparian Ecology Work Plan: Cascade River Foundation
+DESCRIPTION:Review wetland bio-filtration design\, native willow planting schedules\, and community stream clean-up metrics.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,CONSERVATION
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cascade-budget-review@sample.org
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270301
+SUMMARY:[BUDGET] Habitat Engineering Line-Items: Cascade River Foundation
+DESCRIPTION:Finalize native plant nursery procurement\, water testing sensor telemetry units\, and field team gear.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,CONSERVATION
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cascade-compliance-water@sample.org
+DTSTART;VALUE=DATE:20270308
+DTEND;VALUE=DATE:20270308
+SUMMARY:[COMPLIANCE] Environmental Permitting & Watershed Agency MOUs
+DESCRIPTION:Attach river corridor restoration permits and state clean water quality authority endorsements.
+LOCATION:Cascade Online Portal
+CATEGORIES:COMPLIANCE,REGIONAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cascade-early-submit@sample.org
+DTSTART;VALUE=DATE:20270314
+DTEND;VALUE=DATE:20270314
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Cascade Watershed
+DESCRIPTION:Electronic submission on Cascade River Ecological Foundation portal.
+LOCATION:Cascade Online Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT4H
+DESCRIPTION:Submit Cascade Watershed Proposal Today
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:cascade-watershed-deadline@sample.org
+DTSTART;VALUE=DATE:20270315
+DTEND;VALUE=DATE:20270315
+SUMMARY:[DEADLINE] Cascade River Foundation: Watershed Ecology Grant
+DESCRIPTION:Submission deadline for Cascade Watershed Stewardship ($225\,000).\nFunder: Cascade River Ecological Foundation.\nPackage: data/example/grants/06_cascade_watershed_ecology.md
+LOCATION:Cascade Online Portal
+CATEGORIES:DEADLINE,CONSERVATION,REGIONAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summit-draft-review@sample.org
+DTSTART;VALUE=DATE:20270315
+DTEND;VALUE=DATE:20270315
+SUMMARY:[DRAFT] Loan Fund Underwriting Policy: Summit Economic Fund
+DESCRIPTION:Review revolving loan fund investment policy\, democratic governance rubric\, and default reserve model.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,ECONOMIC
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summit-budget-match@sample.org
+DTSTART;VALUE=DATE:20270401
+DTEND;VALUE=DATE:20270401
+SUMMARY:[BUDGET] 25% Statutory Match Commitment Reconciliation ($75\,000)
+DESCRIPTION:Certify and attach letters of commitment for 25% non-federal matching funds from local CDFI partners.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,MATCH_FUNDING
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summit-compliance-board@sample.org
+DTSTART;VALUE=DATE:20270408
+DTEND;VALUE=DATE:20270408
+SUMMARY:[COMPLIANCE] Board Lending Authority Resolution & CDFI Certification
+DESCRIPTION:Attach Board of Trustees authorization resolution for loan fund management and CDFI partner credentials.
+LOCATION:Summit Grants Portal
+CATEGORIES:COMPLIANCE,FOUNDATION
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summit-early-submit@sample.org
+DTSTART;VALUE=DATE:20270414
+DTEND;VALUE=DATE:20270414
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Summit Capital Fund
+DESCRIPTION:Submit completed loan fund proposal to Summit Community Economic Fund portal.
+LOCATION:Summit Grants Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT4H
+DESCRIPTION:Submit Summit Fund Proposal Today
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:summit-seed-deadline@sample.org
 DTSTART;VALUE=DATE:20270415
 DTEND;VALUE=DATE:20270415
-SUMMARY:DEADLINE: EDA Build to Scale ($300,000)
-DESCRIPTION:Cooperative Capitalization & Revolving Debt Pool\nFunder: U.S. Economic Development Administration\nAmount: $300,000\nPackage: data/grants/01_coop_revolving_loan_fund.md
-LOCATION:https://grants.gov
-CATEGORIES:Federal,Major Spring Federal
+SUMMARY:[DEADLINE] Summit Fund: Democratic Enterprise Capital
+DESCRIPTION:Submission deadline for Summit Cooperative Capital Fund ($300\,000).\nFunder: Summit Community Economic Fund.\nPackage: data/example/grants/07_summit_enterprise_seed_fund.md
+LOCATION:Summit Grants Portal
+CATEGORIES:DEADLINE,FOUNDATION,ECONOMIC
 STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:urban-draft-review@sample.org
+DTSTART;VALUE=DATE:20270330
+DTEND;VALUE=DATE:20270330
+SUMMARY:[DRAFT] Forestry Species Selection & Heat Mapping: Urban Green Canopy
+DESCRIPTION:Review climate-adapted native tree species matrix\, pedestrian canopy GIS heat maps\, and watering maintenance plan.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,FORESTRY
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:urban-budget-review@sample.org
+DTSTART;VALUE=DATE:20270415
+DTEND;VALUE=DATE:20270415
+SUMMARY:[BUDGET] 2\,000 Sapling Procurement & Tree Spade Equipment Budget
+DESCRIPTION:Finalize native sapling nursery contracts\, root barrier supplies\, and seasonal watering vehicle rentals.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,FORESTRY
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:urban-compliance-permits@sample.org
+DTSTART;VALUE=DATE:20270423
+DTEND;VALUE=DATE:20270423
+SUMMARY:[COMPLIANCE] Parks & Recreation Right-of-Way Planting Permits
+DESCRIPTION:Upload municipal street tree permits\, utility line clearance approvals\, and neighborhood association letters.
+LOCATION:Green Canopy Portal
+CATEGORIES:COMPLIANCE,REGIONAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:urban-early-submit@sample.org
+DTSTART;VALUE=DATE:20270429
+DTEND;VALUE=DATE:20270429
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Urban Green Canopy
+DESCRIPTION:Execute final electronic submission on Urban Green Canopy Trust portal.
+LOCATION:Green Canopy Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
 BEGIN:VALARM
-TRIGGER:-P14D
 ACTION:DISPLAY
-DESCRIPTION:REMINDER: 14 Days until EDA Build to Scale deadline
+TRIGGER:-PT4H
+DESCRIPTION:Submit Urban Canopy Proposal Today
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:sample-grant-02@samplegranthub.org
-DTSTAMP:20260914T120000Z
-DTSTART;VALUE=DATE:20261130
-DTEND;VALUE=DATE:20261130
-SUMMARY:DEADLINE: EPA Solar for All ($250,000)
-DESCRIPTION:Community Solar & Resilient Microgrid Infrastructure\nFunder: U.S. Environmental Protection Agency\nAmount: $250,000\nPackage: data/grants/02_community_solar_infrastructure.md
-LOCATION:https://grants.gov
-CATEGORIES:Federal,Immediate Fall Federal
+UID:urban-canopy-deadline@sample.org
+DTSTART;VALUE=DATE:20270430
+DTEND;VALUE=DATE:20270430
+SUMMARY:[DEADLINE] Urban Green Canopy: Heat Island Mitigation Grant
+DESCRIPTION:Submission deadline for Metropolitan Urban Canopy Initiative ($160\,000).\nFunder: Urban Green Canopy Trust.\nPackage: data/example/grants/08_urban_canopy_forestry_initiative.md
+LOCATION:Green Canopy Portal
+CATEGORIES:DEADLINE,FORESTRY,ENVIRONMENT
 STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:pioneer-draft-review@sample.org
+DTSTART;VALUE=DATE:20270430
+DTEND;VALUE=DATE:20270430
+SUMMARY:[DRAFT] Open Science Software Architecture & Governance Plan
+DESCRIPTION:Review open dataset schema specifications\, reproducible lab container environments\, and peer governance protocols.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,OPEN_SCIENCE
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:pioneer-budget-review@sample.org
+DTSTART;VALUE=DATE:20270515
+DTEND;VALUE=DATE:20270515
+SUMMARY:[BUDGET] Compute Infrastructure & Open Source Lab Fellowships
+DESCRIPTION:Reconcile cloud compute allocations\, open data repository storage costs\, and researcher stipends.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,RESEARCH
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:pioneer-compliance-ip@sample.org
+DTSTART;VALUE=DATE:20270523
+DTEND;VALUE=DATE:20270523
+SUMMARY:[COMPLIANCE] Open Access Data Sharing & MIT / Apache 2.0 IP Policy
+DESCRIPTION:Attach institutional open access publication commitment and permissive open-source software license declarations.
+LOCATION:Pioneer Portal
+CATEGORIES:COMPLIANCE,FOUNDATION
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:pioneer-early-submit@sample.org
+DTSTART;VALUE=DATE:20270529
+DTEND;VALUE=DATE:20270529
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Pioneer Open Science
+DESCRIPTION:Electronic submission on Pioneer Global Research Foundation portal.
+LOCATION:Pioneer Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
 BEGIN:VALARM
-TRIGGER:-P14D
 ACTION:DISPLAY
-DESCRIPTION:REMINDER: 14 Days until EPA Solar for All deadline
+TRIGGER:-PT4H
+DESCRIPTION:Submit Pioneer Science Proposal Today
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:sample-grant-03@samplegranthub.org
-DTSTAMP:20260914T120000Z
-DTSTART;VALUE=DATE:20270115
-DTEND;VALUE=DATE:20270115
-SUMMARY:DEADLINE: Regional Foundation Leadership Academy ($200,000)
-DESCRIPTION:Bilingual Worker-Owner Leadership Academy\nFunder: Regional Community Foundation\nAmount: $200,000\nPackage: data/grants/03_workforce_leadership_academy.md
-LOCATION:https://example-foundation.org
-CATEGORIES:Regional Foundation,Core Winter Regional
+UID:pioneer-science-deadline@sample.org
+DTSTART;VALUE=DATE:20270530
+DTEND;VALUE=DATE:20270530
+SUMMARY:[DEADLINE] Pioneer Foundation: Open Science Lab
+DESCRIPTION:Submission deadline for Pioneer Open Science Grant ($500\,000).\nFunder: Pioneer Global Research Foundation.\nPackage: data/example/grants/09_pioneer_open_science.md
+LOCATION:Pioneer Portal
+CATEGORIES:DEADLINE,RESEARCH,OPEN_SCIENCE
 STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eda-draft-review@sample.org
+DTSTART;VALUE=DATE:20270530
+DTEND;VALUE=DATE:20270530
+SUMMARY:[DRAFT] EDA Regional Work Plan & Economic Impact Projections
+DESCRIPTION:Review advanced manufacturing shared equipment facility design\, job creation economic models\, and regional consortium agreements.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,FEDERAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eda-budget-match@sample.org
+DTSTART;VALUE=DATE:20270615
+DTEND;VALUE=DATE:20270615
+SUMMARY:[BUDGET] SF-424A Form & 20% Non-Federal Match ($150\,000)
+DESCRIPTION:Finalize federal standard form SF-424A line items and certify $150\,000 non-federal cost-share matching contributions.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,MATCH_FUNDING,FEDERAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eda-compliance-aor@sample.org
+DTSTART;VALUE=DATE:20270623
+DTEND;VALUE=DATE:20270623
+SUMMARY:[COMPLIANCE] SAM.gov UEI Check & Authorized Representative Sign-Off
+DESCRIPTION:Perform SAM.gov active status verification\, attach Lobbying Disclosure (SF-LLL)\, and obtain CEO signature.
+LOCATION:Grants.gov Workspace
+CATEGORIES:COMPLIANCE,FEDERAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eda-early-submit@sample.org
+DTSTART;VALUE=DATE:20270629
+DTEND;VALUE=DATE:20270629
+SUMMARY:[SUBMIT] Early Grants.gov Submission (24-Hour Buffer Rule)
+DESCRIPTION:Execute final Grants.gov Workspace package submission with confirmation tracking ID.
+LOCATION:Grants.gov
+CATEGORIES:SUBMISSION,BUFFER,FEDERAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
 BEGIN:VALARM
-TRIGGER:-P14D
 ACTION:DISPLAY
-DESCRIPTION:REMINDER: 14 Days until Foundation Leadership Academy deadline
+TRIGGER:-PT4H
+DESCRIPTION:Submit EDA Federal Workspace Today
 END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:federal-infrastructure-deadline@sample.org
+DTSTART;VALUE=DATE:20270630
+DTEND;VALUE=DATE:20270630
+SUMMARY:[DEADLINE] EDA: Regional Resilient Infrastructure Challenge
+DESCRIPTION:Submission deadline for Federal Regional Innovation & Resilient Infrastructure ($750\,000).\nFunder: Federal Economic Development Administration.\nPackage: data/example/grants/10_federal_resilient_infrastructure.md
+LOCATION:Grants.gov
+CATEGORIES:DEADLINE,FEDERAL,INFRASTRUCTURE
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P14D
+DESCRIPTION:2-Week Federal Deadline Warning: EDA Challenge
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:arts-draft-review@sample.org
+DTSTART;VALUE=DATE:20270615
+DTEND;VALUE=DATE:20270615
+SUMMARY:[DRAFT] Oral History Curriculum & Digital Humanities Work Plan
+DESCRIPTION:Review oral history interview guide\, community elder recording schedules\, and open access digital catalog specs.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,ARTS
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:arts-budget-review@sample.org
+DTSTART;VALUE=DATE:20270701
+DTEND;VALUE=DATE:20270701
+SUMMARY:[BUDGET] Audio-Visual Archival Gear & Youth Archivist Stipends
+DESCRIPTION:Reconcile studio microphone pricing\, digital storage arrays\, and youth oral history apprentice compensation.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,ARTS
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:arts-compliance-releases@sample.org
+DTSTART;VALUE=DATE:20270708
+DTEND;VALUE=DATE:20270708
+SUMMARY:[COMPLIANCE] Participant Media Releases & Creative Commons Terms
+DESCRIPTION:Attach institutional media consent releases and Creative Commons Attribution (CC-BY) archival agreements.
+LOCATION:Luminary Online Portal
+CATEGORIES:COMPLIANCE,REGIONAL
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:arts-early-submit@sample.org
+DTSTART;VALUE=DATE:20270714
+DTEND;VALUE=DATE:20270714
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Civic Storytelling Archive
+DESCRIPTION:Submit completed package to Luminary Cultural Arts Trust portal.
+LOCATION:Luminary Online Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT4H
+DESCRIPTION:Submit Civic Storytelling Proposal Today
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:community-arts-deadline@sample.org
+DTSTART;VALUE=DATE:20270715
+DTEND;VALUE=DATE:20270715
+SUMMARY:[DEADLINE] Luminary Cultural Trust: Civic Storytelling Archive
+DESCRIPTION:Submission deadline for Civic Storytelling & Open Cultural Media Archive ($140\,000).\nFunder: Luminary Cultural Arts Trust.\nPackage: data/example/grants/11_community_arts_media_archive.md
+LOCATION:Luminary Online Portal
+CATEGORIES:DEADLINE,ARTS,CULTURE
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:mutualaid-draft-review@sample.org
+DTSTART;VALUE=DATE:20270730
+DTEND;VALUE=DATE:20270730
+SUMMARY:[DRAFT] Mesh Network Architecture & Emergency Logistics Plan
+DESCRIPTION:Review off-grid LoRa radio repeater map\, emergency solar battery cache specifications\, and mutual aid dispatch SOPs.
+LOCATION:Internal Grant Office
+CATEGORIES:DRAFT,MUTUAL_AID
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:mutualaid-budget-review@sample.org
+DTSTART;VALUE=DATE:20270815
+DTEND;VALUE=DATE:20270815
+SUMMARY:[BUDGET] Radio Equipment & Solar Emergency Supply Caches
+DESCRIPTION:Finalize quotes for 500 emergency solar radios\, water purification units\, and neighborhood hub supply containers.
+LOCATION:Internal Grant Office
+CATEGORIES:BUDGET,DISASTER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:mutualaid-compliance-fcc@sample.org
+DTSTART;VALUE=DATE:20270823
+DTEND;VALUE=DATE:20270823
+SUMMARY:[COMPLIANCE] FCC Frequency Compliance & First Responder Coordination
+DESCRIPTION:Upload ISM 915MHz unlicensed frequency engineering report and local emergency management coordination letters.
+LOCATION:Resilient Communities Grants Portal
+CATEGORIES:COMPLIANCE,FOUNDATION
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:mutualaid-early-submit@sample.org
+DTSTART;VALUE=DATE:20270829
+DTEND;VALUE=DATE:20270829
+SUMMARY:[SUBMIT] Early Submission Buffer (T-24h): Emergency Mutual Aid
+DESCRIPTION:Execute final electronic submission on Resilient Communities Fund portal.
+LOCATION:Resilient Communities Grants Portal
+CATEGORIES:SUBMISSION,BUFFER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT4H
+DESCRIPTION:Submit Emergency Mutual Aid Proposal Today
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:disaster-mutual-aid-deadline@sample.org
+DTSTART;VALUE=DATE:20270830
+DTEND;VALUE=DATE:20270830
+SUMMARY:[DEADLINE] Resilient Communities Fund: Emergency Mutual Aid
+DESCRIPTION:Submission deadline for Community Emergency Preparedness & Mutual Aid ($400\,000).\nFunder: National Resilient Communities Fund.\nPackage: data/example/grants/12_disaster_mutual_aid_network.md
+LOCATION:Resilient Communities Grants Portal
+CATEGORIES:DEADLINE,MUTUAL_AID,DISASTER
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
 END:VEVENT
 END:VCALENDAR

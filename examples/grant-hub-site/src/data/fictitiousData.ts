@@ -531,6 +531,166 @@ status: "Planned"
 ];
 
 export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
+  // --- INSTITUTIONAL GOVERNANCE & AUDITS ---
+  {
+    uid: 'inst-sam-gov-renewal-2026@example.org',
+    title: '[COMPLIANCE] Annual SAM.gov & UEI Entity Registration Renewal',
+    description: 'Annual verification and renewal of organization SAM.gov Unique Entity Identifier (UEI) and notarized administrator letters.\nPortal: https://sam.gov',
+    startDate: '2026-09-30',
+    endDate: '2026-09-30',
+    location: 'SAM.gov System for Award Management',
+    categories: ['COMPLIANCE', 'FEDERAL', 'ANNUAL_RENEWAL'],
+    status: 'CONFIRMED',
+    alarms: [
+      { trigger: '-P14D', description: '2-Week Warning: SAM.gov Entity Registration Renewal' }
+    ]
+  },
+  {
+    uid: 'inst-fed-sf425-q3-2026@example.org',
+    title: '[REPORTING] Semi-Annual Federal SF-425 Financial & Milestone Report',
+    description: 'Submission of semi-annual federal cash transactions and programmatic milestone metrics for active public awards.',
+    startDate: '2026-10-30',
+    endDate: '2026-10-30',
+    location: 'Payment Management System (PMS)',
+    categories: ['REPORTING', 'FEDERAL', 'FINANCIAL'],
+    status: 'CONFIRMED',
+    alarms: [
+      { trigger: '-P7D', description: '1-Week Reminder: Federal SF-425 Report Due' }
+    ]
+  },
+  {
+    uid: 'inst-irs-form990-2026@example.org',
+    title: '[GOVERNANCE] Annual IRS Form 990-PF Public Filing & Board Review',
+    description: 'Fiscal year informational tax return public disclosure and Trustee Governance Committee sign-off.',
+    startDate: '2026-11-15',
+    endDate: '2026-11-15',
+    location: 'IRS / Internal Audit Committee',
+    categories: ['GOVERNANCE', 'TAX', 'COMPLIANCE'],
+    status: 'CONFIRMED',
+    alarms: [
+      { trigger: '-P14D', description: 'Board Review: Form 990 Package' }
+    ]
+  },
+  {
+    uid: 'inst-capitalization-workshop-2026@example.org',
+    title: '[STRATEGY] Master Capitalization Strategy & 2027 Pipeline Workshop',
+    description: 'Annual leadership retreat to assess pipeline pacing, secured multi-year revenue, and 2027 grant submission targets.',
+    startDate: '2026-12-10',
+    endDate: '2026-12-10',
+    location: 'Community Foundation Innovation Lab',
+    categories: ['STRATEGY', 'GOVERNANCE'],
+    status: 'CONFIRMED',
+    alarms: []
+  },
+  {
+    uid: 'inst-funder-briefing-2027@example.org',
+    title: '[COMMUNITY] Annual Funder Briefing & Community Impact Town Hall',
+    description: 'Public briefing for philanthropic partners, civic leaders, and community stakeholders showcasing project outcomes.',
+    startDate: '2027-01-20',
+    endDate: '2027-01-20',
+    location: 'Civic Auditorium & Livestream',
+    categories: ['COMMUNITY', 'PHILANTHROPY'],
+    status: 'CONFIRMED',
+    alarms: []
+  },
+  {
+    uid: 'inst-midyear-board-2027@example.org',
+    title: '[GOVERNANCE] Mid-Year Board of Trustees Grant Appropriations Review',
+    description: 'Review of secured foundation grants, matching fund allocations, and capital campaign milestones.',
+    startDate: '2027-02-15',
+    endDate: '2027-02-15',
+    location: 'Boardroom / Video Conference',
+    categories: ['GOVERNANCE', 'BOARD'],
+    status: 'CONFIRMED',
+    alarms: []
+  },
+  {
+    uid: 'inst-spring-research-sprint-2027@example.org',
+    title: '[STRATEGY] Spring Grant Research Sprint & Federal NOFO Scan Kickoff',
+    description: 'Comprehensive research scan of newly posted Notices of Funding Opportunity on Grants.gov and state agency portals.',
+    startDate: '2027-03-01',
+    endDate: '2027-03-01',
+    location: 'Grant Research Office',
+    categories: ['STRATEGY', 'RESEARCH'],
+    status: 'CONFIRMED',
+    alarms: []
+  },
+  {
+    uid: 'inst-grantsgov-audit-2027@example.org',
+    title: '[COMPLIANCE] Grants.gov Workspace & E-Authentication Credential Audit',
+    description: 'Annual audit of Authorized Organization Representative (AOR) credentials, Login.gov access, and Workspace roles.',
+    startDate: '2027-04-01',
+    endDate: '2027-04-01',
+    location: 'Grants.gov Organization Portal',
+    categories: ['COMPLIANCE', 'FEDERAL'],
+    status: 'CONFIRMED',
+    alarms: []
+  },
+  {
+    uid: 'inst-closeout-stewardship-2027@example.org',
+    title: '[REPORTING] Annual Grant Closeout & Foundation Stewardship Report',
+    description: 'Delivery of narrative impact reports, certified budget reconciliations, and photo documentation to foundation funders.',
+    startDate: '2027-06-15',
+    endDate: '2027-06-15',
+    location: 'Philanthropy Operations Office',
+    categories: ['REPORTING', 'STEWARDSHIP'],
+    status: 'CONFIRMED',
+    alarms: []
+  },
+
+  // --- GRANT 01: APEX CLEAN ENERGY MICROGRID ($350,000) ---
+  {
+    uid: 'apex-draft-review@sample.org',
+    title: '[DRAFT] Narrative Peer Review: Apex Clean Energy Microgrid',
+    description: 'Complete internal review of technical microgrid engineering narrative, battery storage specs, and energy savings models.',
+    startDate: '2026-09-15',
+    endDate: '2026-09-15',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'ENERGY'],
+    status: 'CONFIRMED',
+    grantFile: '01_apex_clean_energy_microgrid.md',
+    amount: 350000,
+    alarms: []
+  },
+  {
+    uid: 'apex-budget-approval@sample.org',
+    title: '[BUDGET] Cost Breakdown Approval: Apex Clean Energy Microgrid',
+    description: 'Detailed equipment quote reconciliation for solar PV arrays, lithium iron phosphate battery racks, and inverter interconnects.',
+    startDate: '2026-10-01',
+    endDate: '2026-10-01',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'ENERGY'],
+    status: 'CONFIRMED',
+    grantFile: '01_apex_clean_energy_microgrid.md',
+    amount: 350000,
+    alarms: []
+  },
+  {
+    uid: 'apex-compliance-attachments@sample.org',
+    title: '[COMPLIANCE] Final Attachment Assembly: Apex Clean Energy',
+    description: 'Assemble 501(c)(3) tax status letter, board roster, site landlord access agreements, and electrical engineering sign-offs.',
+    startDate: '2026-10-08',
+    endDate: '2026-10-08',
+    location: 'Apex Grants Portal',
+    categories: ['COMPLIANCE', 'FOUNDATION'],
+    status: 'CONFIRMED',
+    grantFile: '01_apex_clean_energy_microgrid.md',
+    amount: 350000,
+    alarms: []
+  },
+  {
+    uid: 'apex-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Apex Clean Energy',
+    description: 'Execute final electronic submission 24 hours in advance to guarantee receipt and avoid portal server bottlenecks.',
+    startDate: '2026-10-14',
+    endDate: '2026-10-14',
+    location: 'Apex Grants Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '01_apex_clean_energy_microgrid.md',
+    amount: 350000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Apex Proposal Today' }]
+  },
   {
     uid: 'apex-microgrid-deadline@sample.org',
     title: '[DEADLINE] Apex Climate Foundation: Microgrid Challenge',
@@ -547,6 +707,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     grantFile: '01_apex_clean_energy_microgrid.md',
     amount: 350000
   },
+
+  // --- GRANT 02: HORIZON STEM ROBOTICS ACADEMY ($250,000) ---
+  {
+    uid: 'horizon-draft-review@sample.org',
+    title: '[DRAFT] Narrative Review: Horizon Robotics Academy',
+    description: 'Finalize robotics curriculum module descriptions, open-source hardware kit lists, and educator training pathways.',
+    startDate: '2026-10-20',
+    endDate: '2026-10-20',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'STEM'],
+    status: 'CONFIRMED',
+    grantFile: '02_horizon_stem_robotics_academy.md',
+    amount: 250000,
+    alarms: []
+  },
+  {
+    uid: 'horizon-budget-review@sample.org',
+    title: '[BUDGET] Equipment & Lab Budget: Horizon Robotics Academy',
+    description: 'Finalize line-item quotes for 3D printers, microcontroller kits, soldering benches, and youth stipends.',
+    startDate: '2026-11-06',
+    endDate: '2026-11-06',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'STEM'],
+    status: 'CONFIRMED',
+    grantFile: '02_horizon_stem_robotics_academy.md',
+    amount: 250000,
+    alarms: []
+  },
+  {
+    uid: 'horizon-compliance-letters@sample.org',
+    title: '[COMPLIANCE] School District MOUs & Partner Letters: Horizon Robotics',
+    description: 'Obtain signed partnership MOUs from participating high schools and community maker spaces.',
+    startDate: '2026-11-13',
+    endDate: '2026-11-13',
+    location: 'Internal Grant Office',
+    categories: ['COMPLIANCE', 'CORPORATE'],
+    status: 'CONFIRMED',
+    grantFile: '02_horizon_stem_robotics_academy.md',
+    amount: 250000,
+    alarms: []
+  },
+  {
+    uid: 'horizon-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Horizon Robotics',
+    description: 'Execute final portal electronic submission for Horizon Technology Fund.',
+    startDate: '2026-11-19',
+    endDate: '2026-11-19',
+    location: 'Horizon Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '02_horizon_stem_robotics_academy.md',
+    amount: 250000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Horizon Robotics Proposal Today' }]
+  },
   {
     uid: 'horizon-stem-deadline@sample.org',
     title: '[DEADLINE] Horizon Fund: Open Robotics Workforce Academy',
@@ -562,6 +776,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     grantFile: '02_horizon_stem_robotics_academy.md',
     amount: 250000
   },
+
+  // --- GRANT 03: EVERGREEN URBAN AGROECOLOGY ($180,000) ---
+  {
+    uid: 'evergreen-draft-review@sample.org',
+    title: '[DRAFT] Agroecology Work Plan Review: Evergreen Trust',
+    description: 'Review compost hub engineering diagrams, urban farm yield projections, and community food sovereignty metrics.',
+    startDate: '2026-11-15',
+    endDate: '2026-11-15',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'AGRICULTURE'],
+    status: 'CONFIRMED',
+    grantFile: '03_evergreen_urban_agroecology.md',
+    amount: 180000,
+    alarms: []
+  },
+  {
+    uid: 'evergreen-budget-review@sample.org',
+    title: '[BUDGET] Soil & Nursery Supply Line-Items: Evergreen Trust',
+    description: 'Reconcile organic soil amendment bulk pricing, rainwater catchment cistern quotes, and greenhouse supplies.',
+    startDate: '2026-12-01',
+    endDate: '2026-12-01',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'AGRICULTURE'],
+    status: 'CONFIRMED',
+    grantFile: '03_evergreen_urban_agroecology.md',
+    amount: 180000,
+    alarms: []
+  },
+  {
+    uid: 'evergreen-compliance-land@sample.org',
+    title: '[COMPLIANCE] Land Access MOU & Soil Testing Reports: Evergreen Trust',
+    description: 'Attach heavy metals soil testing clearance and municipal community garden lease agreements.',
+    startDate: '2026-12-08',
+    endDate: '2026-12-08',
+    location: 'Internal Grant Office',
+    categories: ['COMPLIANCE', 'REGIONAL'],
+    status: 'CONFIRMED',
+    grantFile: '03_evergreen_urban_agroecology.md',
+    amount: 180000,
+    alarms: []
+  },
+  {
+    uid: 'evergreen-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Evergreen Agroecology',
+    description: 'Submit completed proposal package to Evergreen Ecological Trust portal.',
+    startDate: '2026-12-14',
+    endDate: '2026-12-14',
+    location: 'Evergreen Online Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '03_evergreen_urban_agroecology.md',
+    amount: 180000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Evergreen Agroecology Proposal Today' }]
+  },
   {
     uid: 'evergreen-agro-deadline@sample.org',
     title: '[DEADLINE] Evergreen Trust: Urban Agroecology Grant',
@@ -574,6 +842,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     alarms: [],
     grantFile: '03_evergreen_urban_agroecology.md',
     amount: 180000
+  },
+
+  // --- GRANT 04: METROPOLIS DIGITAL EQUITY ($120,000) ---
+  {
+    uid: 'metropolis-draft-review@sample.org',
+    title: '[DRAFT] Proposal Review: Metropolis Digital Equity Challenge',
+    description: 'Review public WiFi mesh architecture, refurbished computer distribution plan, and digital literacy syllabus.',
+    startDate: '2027-01-05',
+    endDate: '2027-01-05',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'MUNICIPAL'],
+    status: 'CONFIRMED',
+    grantFile: '04_metropolis_digital_equity.md',
+    amount: 120000,
+    alarms: []
+  },
+  {
+    uid: 'metropolis-budget-review@sample.org',
+    title: '[BUDGET] Hardware Procurement Budget: Metropolis Digital Equity',
+    description: 'Finalize pricing on 150 refurbished laptops, wireless access points, and multilingual digital instructor fees.',
+    startDate: '2027-01-16',
+    endDate: '2027-01-16',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'MUNICIPAL'],
+    status: 'CONFIRMED',
+    grantFile: '04_metropolis_digital_equity.md',
+    amount: 120000,
+    alarms: []
+  },
+  {
+    uid: 'metropolis-compliance-vendor@sample.org',
+    title: '[COMPLIANCE] Municipal Vendor Certification & Compliance Package',
+    description: 'Upload municipal vendor compliance forms, non-discrimination disclosures, and local insurance certificates.',
+    startDate: '2027-01-23',
+    endDate: '2027-01-23',
+    location: 'Metropolis City Portal',
+    categories: ['COMPLIANCE', 'MUNICIPAL'],
+    status: 'CONFIRMED',
+    grantFile: '04_metropolis_digital_equity.md',
+    amount: 120000,
+    alarms: []
+  },
+  {
+    uid: 'metropolis-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Metropolis Digital Equity',
+    description: 'Electronic submission on Metropolis Municipal Innovation Office portal.',
+    startDate: '2027-01-29',
+    endDate: '2027-01-29',
+    location: 'Metropolis City Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '04_metropolis_digital_equity.md',
+    amount: 120000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Metropolis Digital Proposal Today' }]
   },
   {
     uid: 'metropolis-digital-deadline@sample.org',
@@ -588,6 +910,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     grantFile: '04_metropolis_digital_equity.md',
     amount: 120000
   },
+
+  // --- GRANT 05: BEACON HEALTH MOBILE WELLNESS CLINIC ($200,000) ---
+  {
+    uid: 'beacon-draft-review@sample.org',
+    title: '[DRAFT] Clinical Protocol & Outreach Plan: Beacon Mobile Health',
+    description: 'Review preventative health screening protocols, clinical nurse staffing model, and mobile van route schedules.',
+    startDate: '2027-01-28',
+    endDate: '2027-01-28',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'HEALTH'],
+    status: 'CONFIRMED',
+    grantFile: '05_beacon_health_mobile_clinic.md',
+    amount: 200000,
+    alarms: []
+  },
+  {
+    uid: 'beacon-budget-review@sample.org',
+    title: '[BUDGET] Medical Mobile Van Budget: Beacon Health',
+    description: 'Reconcile van lease, medical diagnostic kits, refrigeration for vaccines, and clinical staff hourly compensation.',
+    startDate: '2027-02-14',
+    endDate: '2027-02-14',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'HEALTH'],
+    status: 'CONFIRMED',
+    grantFile: '05_beacon_health_mobile_clinic.md',
+    amount: 200000,
+    alarms: []
+  },
+  {
+    uid: 'beacon-compliance-license@sample.org',
+    title: '[COMPLIANCE] Clinical Licensure & Malpractice Verification: Beacon Health',
+    description: 'Assemble healthcare provider board certifications, HIPAA compliance protocols, and liability insurance.',
+    startDate: '2027-02-21',
+    endDate: '2027-02-21',
+    location: 'Beacon Health Portal',
+    categories: ['COMPLIANCE', 'REGIONAL'],
+    status: 'CONFIRMED',
+    grantFile: '05_beacon_health_mobile_clinic.md',
+    amount: 200000,
+    alarms: []
+  },
+  {
+    uid: 'beacon-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Beacon Health Clinic',
+    description: 'Execute final electronic submission on Beacon Health Philanthropy portal.',
+    startDate: '2027-02-27',
+    endDate: '2027-02-27',
+    location: 'Beacon Health Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '05_beacon_health_mobile_clinic.md',
+    amount: 200000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Beacon Health Proposal Today' }]
+  },
   {
     uid: 'beacon-clinic-deadline@sample.org',
     title: '[DEADLINE] Beacon Philanthropy: Mobile Wellness Clinic',
@@ -600,6 +976,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     alarms: [],
     grantFile: '05_beacon_health_mobile_clinic.md',
     amount: 200000
+  },
+
+  // --- GRANT 06: CASCADE WATERSHED ECOLOGY ($225,000) ---
+  {
+    uid: 'cascade-draft-review@sample.org',
+    title: '[DRAFT] Riparian Ecology Work Plan: Cascade River Foundation',
+    description: 'Review wetland bio-filtration design, native willow planting schedules, and community stream clean-up metrics.',
+    startDate: '2027-02-15',
+    endDate: '2027-02-15',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'CONSERVATION'],
+    status: 'CONFIRMED',
+    grantFile: '06_cascade_watershed_ecology.md',
+    amount: 225000,
+    alarms: []
+  },
+  {
+    uid: 'cascade-budget-review@sample.org',
+    title: '[BUDGET] Habitat Engineering Line-Items: Cascade River Foundation',
+    description: 'Finalize native plant nursery procurement, water testing sensor telemetry units, and field team gear.',
+    startDate: '2027-03-01',
+    endDate: '2027-03-01',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'CONSERVATION'],
+    status: 'CONFIRMED',
+    grantFile: '06_cascade_watershed_ecology.md',
+    amount: 225000,
+    alarms: []
+  },
+  {
+    uid: 'cascade-compliance-water@sample.org',
+    title: '[COMPLIANCE] Environmental Permitting & Watershed Agency MOUs',
+    description: 'Attach river corridor restoration permits and state clean water quality authority endorsements.',
+    startDate: '2027-03-08',
+    endDate: '2027-03-08',
+    location: 'Cascade Online Portal',
+    categories: ['COMPLIANCE', 'REGIONAL'],
+    status: 'CONFIRMED',
+    grantFile: '06_cascade_watershed_ecology.md',
+    amount: 225000,
+    alarms: []
+  },
+  {
+    uid: 'cascade-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Cascade Watershed',
+    description: 'Electronic submission on Cascade River Ecological Foundation portal.',
+    startDate: '2027-03-14',
+    endDate: '2027-03-14',
+    location: 'Cascade Online Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '06_cascade_watershed_ecology.md',
+    amount: 225000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Cascade Watershed Proposal Today' }]
   },
   {
     uid: 'cascade-watershed-deadline@sample.org',
@@ -614,6 +1044,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     grantFile: '06_cascade_watershed_ecology.md',
     amount: 225000
   },
+
+  // --- GRANT 07: SUMMIT COOPERATIVE SEED FUND ($300,000) ---
+  {
+    uid: 'summit-draft-review@sample.org',
+    title: '[DRAFT] Loan Fund Underwriting Policy: Summit Economic Fund',
+    description: 'Review revolving loan fund investment policy, democratic governance rubric, and default reserve model.',
+    startDate: '2027-03-15',
+    endDate: '2027-03-15',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'ECONOMIC'],
+    status: 'CONFIRMED',
+    grantFile: '07_summit_enterprise_seed_fund.md',
+    amount: 300000,
+    alarms: []
+  },
+  {
+    uid: 'summit-budget-match@sample.org',
+    title: '[BUDGET] 25% Statutory Match Commitment Reconciliation ($75,000)',
+    description: 'Certify and attach letters of commitment for 25% non-federal matching funds from local CDFI partners.',
+    startDate: '2027-04-01',
+    endDate: '2027-04-01',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'MATCH_FUNDING'],
+    status: 'CONFIRMED',
+    grantFile: '07_summit_enterprise_seed_fund.md',
+    amount: 300000,
+    alarms: []
+  },
+  {
+    uid: 'summit-compliance-board@sample.org',
+    title: '[COMPLIANCE] Board Lending Authority Resolution & CDFI Certification',
+    description: 'Attach Board of Trustees authorization resolution for loan fund management and CDFI partner credentials.',
+    startDate: '2027-04-08',
+    endDate: '2027-04-08',
+    location: 'Summit Grants Portal',
+    categories: ['COMPLIANCE', 'FOUNDATION'],
+    status: 'CONFIRMED',
+    grantFile: '07_summit_enterprise_seed_fund.md',
+    amount: 300000,
+    alarms: []
+  },
+  {
+    uid: 'summit-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Summit Capital Fund',
+    description: 'Submit completed loan fund proposal to Summit Community Economic Fund portal.',
+    startDate: '2027-04-14',
+    endDate: '2027-04-14',
+    location: 'Summit Grants Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '07_summit_enterprise_seed_fund.md',
+    amount: 300000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Summit Fund Proposal Today' }]
+  },
   {
     uid: 'summit-seed-deadline@sample.org',
     title: '[DEADLINE] Summit Fund: Democratic Enterprise Capital',
@@ -626,6 +1110,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     alarms: [],
     grantFile: '07_summit_enterprise_seed_fund.md',
     amount: 300000
+  },
+
+  // --- GRANT 08: URBAN CANOPY & HEAT ISLAND ($160,000) ---
+  {
+    uid: 'urban-draft-review@sample.org',
+    title: '[DRAFT] Forestry Species Selection & Heat Mapping: Urban Green Canopy',
+    description: 'Review climate-adapted native tree species matrix, pedestrian canopy GIS heat maps, and watering maintenance plan.',
+    startDate: '2027-03-30',
+    endDate: '2027-03-30',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'FORESTRY'],
+    status: 'CONFIRMED',
+    grantFile: '08_urban_canopy_forestry_initiative.md',
+    amount: 160000,
+    alarms: []
+  },
+  {
+    uid: 'urban-budget-review@sample.org',
+    title: '[BUDGET] 2,000 Sapling Procurement & Tree Spade Equipment Budget',
+    description: 'Finalize native sapling nursery contracts, root barrier supplies, and seasonal watering vehicle rentals.',
+    startDate: '2027-04-15',
+    endDate: '2027-04-15',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'FORESTRY'],
+    status: 'CONFIRMED',
+    grantFile: '08_urban_canopy_forestry_initiative.md',
+    amount: 160000,
+    alarms: []
+  },
+  {
+    uid: 'urban-compliance-permits@sample.org',
+    title: '[COMPLIANCE] Parks & Recreation Right-of-Way Planting Permits',
+    description: 'Upload municipal street tree permits, utility line clearance approvals, and neighborhood association letters.',
+    startDate: '2027-04-23',
+    endDate: '2027-04-23',
+    location: 'Green Canopy Portal',
+    categories: ['COMPLIANCE', 'REGIONAL'],
+    status: 'CONFIRMED',
+    grantFile: '08_urban_canopy_forestry_initiative.md',
+    amount: 160000,
+    alarms: []
+  },
+  {
+    uid: 'urban-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Urban Green Canopy',
+    description: 'Execute final electronic submission on Urban Green Canopy Trust portal.',
+    startDate: '2027-04-29',
+    endDate: '2027-04-29',
+    location: 'Green Canopy Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '08_urban_canopy_forestry_initiative.md',
+    amount: 160000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Urban Canopy Proposal Today' }]
   },
   {
     uid: 'urban-canopy-deadline@sample.org',
@@ -640,6 +1178,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     grantFile: '08_urban_canopy_forestry_initiative.md',
     amount: 160000
   },
+
+  // --- GRANT 09: PIONEER OPEN SCIENCE LAB ($500,000) ---
+  {
+    uid: 'pioneer-draft-review@sample.org',
+    title: '[DRAFT] Open Science Software Architecture & Governance Plan',
+    description: 'Review open dataset schema specifications, reproducible lab container environments, and peer governance protocols.',
+    startDate: '2027-04-30',
+    endDate: '2027-04-30',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'OPEN_SCIENCE'],
+    status: 'CONFIRMED',
+    grantFile: '09_pioneer_open_science.md',
+    amount: 500000,
+    alarms: []
+  },
+  {
+    uid: 'pioneer-budget-review@sample.org',
+    title: '[BUDGET] Compute Infrastructure & Open Source Lab Fellowships',
+    description: 'Reconcile cloud compute allocations, open data repository storage costs, and researcher stipends.',
+    startDate: '2027-05-15',
+    endDate: '2027-05-15',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'RESEARCH'],
+    status: 'CONFIRMED',
+    grantFile: '09_pioneer_open_science.md',
+    amount: 500000,
+    alarms: []
+  },
+  {
+    uid: 'pioneer-compliance-ip@sample.org',
+    title: '[COMPLIANCE] Open Access Data Sharing & MIT / Apache 2.0 IP Policy',
+    description: 'Attach institutional open access publication commitment and permissive open-source software license declarations.',
+    startDate: '2027-05-23',
+    endDate: '2027-05-23',
+    location: 'Pioneer Portal',
+    categories: ['COMPLIANCE', 'FOUNDATION'],
+    status: 'CONFIRMED',
+    grantFile: '09_pioneer_open_science.md',
+    amount: 500000,
+    alarms: []
+  },
+  {
+    uid: 'pioneer-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Pioneer Open Science',
+    description: 'Electronic submission on Pioneer Global Research Foundation portal.',
+    startDate: '2027-05-29',
+    endDate: '2027-05-29',
+    location: 'Pioneer Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '09_pioneer_open_science.md',
+    amount: 500000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Pioneer Science Proposal Today' }]
+  },
   {
     uid: 'pioneer-science-deadline@sample.org',
     title: '[DEADLINE] Pioneer Foundation: Open Science Lab',
@@ -652,6 +1244,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     alarms: [],
     grantFile: '09_pioneer_open_science.md',
     amount: 500000
+  },
+
+  // --- GRANT 10: FEDERAL EDA REGIONAL INNOVATION CHALLENGE ($750,000) ---
+  {
+    uid: 'eda-draft-review@sample.org',
+    title: '[DRAFT] EDA Regional Work Plan & Economic Impact Projections',
+    description: 'Review advanced manufacturing shared equipment facility design, job creation economic models, and regional consortium agreements.',
+    startDate: '2027-05-30',
+    endDate: '2027-05-30',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'FEDERAL'],
+    status: 'CONFIRMED',
+    grantFile: '10_federal_resilient_infrastructure.md',
+    amount: 750000,
+    alarms: []
+  },
+  {
+    uid: 'eda-budget-match@sample.org',
+    title: '[BUDGET] SF-424A Form & 20% Non-Federal Match ($150,000)',
+    description: 'Finalize federal standard form SF-424A line items and certify $150,000 non-federal cost-share matching contributions.',
+    startDate: '2027-06-15',
+    endDate: '2027-06-15',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'MATCH_FUNDING', 'FEDERAL'],
+    status: 'CONFIRMED',
+    grantFile: '10_federal_resilient_infrastructure.md',
+    amount: 750000,
+    alarms: []
+  },
+  {
+    uid: 'eda-compliance-aor@sample.org',
+    title: '[COMPLIANCE] SAM.gov UEI Check & Authorized Representative Sign-Off',
+    description: 'Perform SAM.gov active status verification, attach Lobbying Disclosure (SF-LLL), and obtain CEO signature.',
+    startDate: '2027-06-23',
+    endDate: '2027-06-23',
+    location: 'Grants.gov Workspace',
+    categories: ['COMPLIANCE', 'FEDERAL'],
+    status: 'CONFIRMED',
+    grantFile: '10_federal_resilient_infrastructure.md',
+    amount: 750000,
+    alarms: []
+  },
+  {
+    uid: 'eda-early-submit@sample.org',
+    title: '[SUBMIT] Early Grants.gov Submission (24-Hour Buffer Rule)',
+    description: 'Execute final Grants.gov Workspace package submission with confirmation tracking ID.',
+    startDate: '2027-06-29',
+    endDate: '2027-06-29',
+    location: 'Grants.gov',
+    categories: ['SUBMISSION', 'BUFFER', 'FEDERAL'],
+    status: 'CONFIRMED',
+    grantFile: '10_federal_resilient_infrastructure.md',
+    amount: 750000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit EDA Federal Workspace Today' }]
   },
   {
     uid: 'federal-infrastructure-deadline@sample.org',
@@ -668,6 +1314,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     grantFile: '10_federal_resilient_infrastructure.md',
     amount: 750000
   },
+
+  // --- GRANT 11: CIVIC STORYTELLING & CULTURAL ARCHIVE ($140,000) ---
+  {
+    uid: 'arts-draft-review@sample.org',
+    title: '[DRAFT] Oral History Curriculum & Digital Humanities Work Plan',
+    description: 'Review oral history interview guide, community elder recording schedules, and open access digital catalog specs.',
+    startDate: '2027-06-15',
+    endDate: '2027-06-15',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'ARTS'],
+    status: 'CONFIRMED',
+    grantFile: '11_community_arts_media_archive.md',
+    amount: 140000,
+    alarms: []
+  },
+  {
+    uid: 'arts-budget-review@sample.org',
+    title: '[BUDGET] Audio-Visual Archival Gear & Youth Archivist Stipends',
+    description: 'Reconcile studio microphone pricing, digital storage arrays, and youth oral history apprentice compensation.',
+    startDate: '2027-07-01',
+    endDate: '2027-07-01',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'ARTS'],
+    status: 'CONFIRMED',
+    grantFile: '11_community_arts_media_archive.md',
+    amount: 140000,
+    alarms: []
+  },
+  {
+    uid: 'arts-compliance-releases@sample.org',
+    title: '[COMPLIANCE] Participant Media Releases & Creative Commons Terms',
+    description: 'Attach institutional media consent releases and Creative Commons Attribution (CC-BY) archival agreements.',
+    startDate: '2027-07-08',
+    endDate: '2027-07-08',
+    location: 'Luminary Online Portal',
+    categories: ['COMPLIANCE', 'REGIONAL'],
+    status: 'CONFIRMED',
+    grantFile: '11_community_arts_media_archive.md',
+    amount: 140000,
+    alarms: []
+  },
+  {
+    uid: 'arts-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Civic Storytelling Archive',
+    description: 'Submit completed package to Luminary Cultural Arts Trust portal.',
+    startDate: '2027-07-14',
+    endDate: '2027-07-14',
+    location: 'Luminary Online Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '11_community_arts_media_archive.md',
+    amount: 140000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Civic Storytelling Proposal Today' }]
+  },
   {
     uid: 'community-arts-deadline@sample.org',
     title: '[DEADLINE] Luminary Cultural Trust: Civic Storytelling Archive',
@@ -680,6 +1380,60 @@ export const SAMPLE_FICTITIOUS_EVENTS: CalendarEvent[] = [
     alarms: [],
     grantFile: '11_community_arts_media_archive.md',
     amount: 140000
+  },
+
+  // --- GRANT 12: COMMUNITY EMERGENCY MUTUAL AID ($400,000) ---
+  {
+    uid: 'mutualaid-draft-review@sample.org',
+    title: '[DRAFT] Mesh Network Architecture & Emergency Logistics Plan',
+    description: 'Review off-grid LoRa radio repeater map, emergency solar battery cache specifications, and mutual aid dispatch SOPs.',
+    startDate: '2027-07-30',
+    endDate: '2027-07-30',
+    location: 'Internal Grant Office',
+    categories: ['DRAFT', 'MUTUAL_AID'],
+    status: 'CONFIRMED',
+    grantFile: '12_disaster_mutual_aid_network.md',
+    amount: 400000,
+    alarms: []
+  },
+  {
+    uid: 'mutualaid-budget-review@sample.org',
+    title: '[BUDGET] Radio Equipment & Solar Emergency Supply Caches',
+    description: 'Finalize quotes for 500 emergency solar radios, water purification units, and neighborhood hub supply containers.',
+    startDate: '2027-08-15',
+    endDate: '2027-08-15',
+    location: 'Internal Grant Office',
+    categories: ['BUDGET', 'DISASTER'],
+    status: 'CONFIRMED',
+    grantFile: '12_disaster_mutual_aid_network.md',
+    amount: 400000,
+    alarms: []
+  },
+  {
+    uid: 'mutualaid-compliance-fcc@sample.org',
+    title: '[COMPLIANCE] FCC Frequency Compliance & First Responder Coordination',
+    description: 'Upload ISM 915MHz unlicensed frequency engineering report and local emergency management coordination letters.',
+    startDate: '2027-08-23',
+    endDate: '2027-08-23',
+    location: 'Resilient Communities Grants Portal',
+    categories: ['COMPLIANCE', 'FOUNDATION'],
+    status: 'CONFIRMED',
+    grantFile: '12_disaster_mutual_aid_network.md',
+    amount: 400000,
+    alarms: []
+  },
+  {
+    uid: 'mutualaid-early-submit@sample.org',
+    title: '[SUBMIT] Early Submission Buffer (T-24h): Emergency Mutual Aid',
+    description: 'Execute final electronic submission on Resilient Communities Fund portal.',
+    startDate: '2027-08-29',
+    endDate: '2027-08-29',
+    location: 'Resilient Communities Grants Portal',
+    categories: ['SUBMISSION', 'BUFFER'],
+    status: 'CONFIRMED',
+    grantFile: '12_disaster_mutual_aid_network.md',
+    amount: 400000,
+    alarms: [{ trigger: '-PT4H', description: 'Submit Emergency Mutual Aid Proposal Today' }]
   },
   {
     uid: 'disaster-mutual-aid-deadline@sample.org',
