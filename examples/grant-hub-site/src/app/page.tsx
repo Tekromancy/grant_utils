@@ -12,7 +12,7 @@ import { CommandPalette } from '../components/CommandPalette';
 import { UserGuidesView } from '../components/UserGuidesView';
 import { DocsView } from '../components/DocsView';
 import { 
-  ACBF_PROJECT_CONFIG, 
+  EXAMPLE_PROJECT_CONFIG, 
   AVAILABLE_PROJECTS 
 } from '../components/ProjectSwitcher';
 import { 
@@ -39,7 +39,7 @@ export default function Home() {
   const [editorInitialFile, setEditorInitialFile] = useState<string | undefined>(undefined);
   const [prPreselectedDoc, setPrPreselectedDoc] = useState<MarkdownDoc | undefined>(undefined);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
-  const [currentProject, setCurrentProject] = useState<ProjectConfig>(ACBF_PROJECT_CONFIG);
+  const [currentProject, setCurrentProject] = useState<ProjectConfig>(EXAMPLE_PROJECT_CONFIG);
 
   // Load auth, preset & edited files from browser localStorage
   useEffect(() => {
@@ -74,9 +74,11 @@ export default function Home() {
       }
     }
 
+    window.addEventListener('grant:navigate-tab', handleTabEvent);
     window.addEventListener('acbf:navigate-tab', handleTabEvent);
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => {
+      window.removeEventListener('grant:navigate-tab', handleTabEvent);
       window.removeEventListener('acbf:navigate-tab', handleTabEvent);
       window.removeEventListener('keydown', handleGlobalKeyDown);
     };

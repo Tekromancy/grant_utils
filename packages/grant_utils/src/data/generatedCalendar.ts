@@ -5,7 +5,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "texas-mutual-fall-2026@acba.coop",
     "title": "[DEADLINE] Texas Mutual Insurance: Fall Workforce Development Grant",
-    "description": "Submission deadline for Texas Mutual Workforce Development & Safety Grant ($50,000).\nFunder: Texas Mutual Insurance Company.\nFocus: Worker-owner safety credentials (OSHA 10/ServSafe), safety committees, and workforce resilience.\nPackage: data/acbf/grants/texas_mutual_workforce.md",
+    "description": "Submission deadline for Texas Mutual Workforce Development & Safety Grant ($50,000).\nFunder: Texas Mutual Insurance Company.\nFocus: Worker-owner safety credentials (OSHA 10/ServSafe), safety committees, and workforce resilience.\nPackage: data/example/grants/texas_mutual_workforce.md",
     "startDate": "2026-09-01",
     "endDate": "2026-09-02",
     "location": "Texas Mutual Online Grants Portal",
@@ -31,7 +31,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "sam-grants-gov-audit-2026@acba.coop",
     "title": "[COMPLIANCE] SAM.gov, Grants.gov & City Vendor Portal Annual Audit",
-    "description": "Annual audit of ACBF federal and municipal registrations:\n1. Confirm SAM.gov Active Status and Unique Entity ID (UEI).\n2. Verify Grants.gov Authorized Organization Representative (AOR) credentials.\n3. Confirm City of Austin Vendor Connection profile (VC number) and CMBL listing.\nRequired for all federal submissions (USDA, HHS, SBA, EPA, DOL, Treasury).",
+    "description": "Annual audit of Example.org federal and municipal registrations:\n1. Confirm SAM.gov Active Status and Unique Entity ID (UEI).\n2. Verify Grants.gov Authorized Organization Representative (AOR) credentials.\n3. Confirm City of Austin Vendor Connection profile (VC number) and CMBL listing.\nRequired for all federal submissions (USDA, HHS, SBA, EPA, DOL, Treasury).",
     "startDate": "2026-09-15",
     "endDate": "2026-09-16",
     "location": "SAM.gov / Grants.gov / City of Austin Financial Services",
@@ -46,7 +46,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "dell-foundation-loi-2026@acba.coop",
     "title": "[SUBMISSION] Michael & Susan Dell Foundation: Family Economic Stability LOI",
-    "description": "Submit online grant application for $150,000 over 18 months.\nProgram: Central Texas Family Economic Stability & Career Pathways.\nProject: Pathways to Ownership: Accelerating Family Economic Stability through Cooperative Career Pathways.\nPackage: data/acbf/grants/dell_foundation_economic_stability.md",
+    "description": "Submit online grant application for $150,000 over 18 months.\nProgram: Central Texas Family Economic Stability & Career Pathways.\nProject: Pathways to Ownership: Accelerating Family Economic Stability through Cooperative Career Pathways.\nPackage: data/example/grants/dell_foundation_economic_stability.md",
     "startDate": "2026-09-20",
     "endDate": "2026-09-21",
     "location": "Dell Foundation Online Portal",
@@ -63,7 +63,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "kellogg-foundation-loi-2026@acba.coop",
     "title": "[SUBMISSION] W.K. Kellogg Foundation: Community Wealth Generation LOI",
-    "description": "Submit rolling Letter of Inquiry (LOI) requesting $250,000 over 24 months ($125k/yr).\nProgram: Employment Equity & Community Wealth Generation.\nProject: Generations of Equity: Closing the Racial Wealth Divide in Central Texas.\nPortal: Fluxx (30-45 day review window).\nPackage: data/acbf/grants/kellogg_foundation_loi.md",
+    "description": "Submit rolling Letter of Inquiry (LOI) requesting $250,000 over 24 months ($125k/yr).\nProgram: Employment Equity & Community Wealth Generation.\nProject: Generations of Equity: Closing the Racial Wealth Divide in Central Texas.\nPortal: Fluxx (30-45 day review window).\nPackage: data/example/grants/kellogg_foundation_loi.md",
     "startDate": "2026-09-25",
     "endDate": "2026-09-26",
     "location": "WKKF Fluxx Grants Portal",
@@ -80,7 +80,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "cchd-diocesan-consultation-2026@acba.coop",
     "title": "[MILESTONE] CCHD: Roman Catholic Diocese of Austin Consultation",
-    "description": "Mandatory consultation and outreach with the Diocese of Austin CCHD Director ahead of the Nov 1 Pre-Application deadline.\nProgram: Catholic Campaign for Human Development Economic Development Program ($50,000/yr).\nReview Catholic Social Teaching alignment (Labor over Capital, Subsidiarity).\nPackage: data/acbf/grants/cchd_economic_development.md",
+    "description": "Mandatory consultation and outreach with the Diocese of Austin CCHD Director ahead of the Nov 1 Pre-Application deadline.\nProgram: Catholic Campaign for Human Development Economic Development Program ($50,000/yr).\nReview Catholic Social Teaching alignment (Labor over Capital, Subsidiarity).\nPackage: data/example/grants/cchd_economic_development.md",
     "startDate": "2026-09-30",
     "endDate": "2026-10-01",
     "location": "Roman Catholic Diocese of Austin Chancery",
@@ -97,7 +97,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "city-austin-fy2027-start@acba.coop",
     "title": "[MUNICIPAL] City of Austin FY 2027 Launch & EDD ACCT Contract Window",
-    "description": "City of Austin Fiscal Year 2027 commences.\nInitiate contract advocacy and sole-source / competitive proposal submission to the Economic Development Department (EDD) Small Business Division for the Austin Cooperative Clinic & Training (ACCT) Program ($85,000).\nPackage: data/acbf/grants/austin_edd_coop_coaching.md",
+    "description": "City of Austin Fiscal Year 2027 commences.\nInitiate contract advocacy and sole-source / competitive proposal submission to the Economic Development Department (EDD) Small Business Division for the Austin Cooperative Clinic & Training (ACCT) Program ($85,000).\nPackage: data/example/grants/austin_edd_coop_coaching.md",
     "startDate": "2026-10-01",
     "endDate": "2026-10-02",
     "location": "City of Austin Economic Development Department",
@@ -114,7 +114,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "cdf-coop-dev-fund-concept-2026@acba.coop",
     "title": "[SUBMISSION] Cooperative Development Foundation (CDF): Concept Note",
-    "description": "Submit Concept Note for $30,000 under the Cooperative Development Fund.\nFocus: Feasibility studies, bylaws legal templates, and governance training for emerging food and childcare cooperatives in Central Texas.\nPackage: data/acbf/grants/cdf_cooperative_development.md",
+    "description": "Submit Concept Note for $30,000 under the Cooperative Development Fund.\nFocus: Feasibility studies, bylaws legal templates, and governance training for emerging food and childcare cooperatives in Central Texas.\nPackage: data/example/grants/cdf_cooperative_development.md",
     "startDate": "2026-10-15",
     "endDate": "2026-10-16",
     "location": "Cooperative Development Foundation Portal",
@@ -130,7 +130,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "rgk-foundation-loi-2026@acba.coop",
     "title": "[SUBMISSION] RGK Foundation: Community Improvement LOI",
-    "description": "Submit electronic Letter of Inquiry (LOI) requesting $35,000 in non-profit capacity and small business infrastructure.\nFocus: 350 hours of business coaching, publishing standardized Texas co-op legal toolkits, and client longitudinal tracking.\nPackage: data/acbf/grants/rgk_foundation.md",
+    "description": "Submit electronic Letter of Inquiry (LOI) requesting $35,000 in non-profit capacity and small business infrastructure.\nFocus: 350 hours of business coaching, publishing standardized Texas co-op legal toolkits, and client longitudinal tracking.\nPackage: data/example/grants/rgk_foundation.md",
     "startDate": "2026-10-20",
     "endDate": "2026-10-21",
     "location": "RGK Foundation Online Portal",
@@ -147,7 +147,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "acf-strategy-briefing-2026@acba.coop",
     "title": "[MEETING] Austin Community Foundation (ACF) Program Officer Briefing",
-    "description": "Strategic alignment briefing with ACF Program Officers regarding ACBF's 2026–2027 revenue diversification plan ahead of Forever Austin (Spring) and Hispanic Impact Fund (Summer) cycles.",
+    "description": "Strategic alignment briefing with ACF Program Officers regarding Example.org's 2026–2027 revenue diversification plan ahead of Forever Austin (Spring) and Hispanic Impact Fund (Summer) cycles.",
     "startDate": "2026-10-30",
     "endDate": "2026-10-31",
     "location": "Austin Community Foundation Offices / Zoom",
@@ -162,7 +162,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "cchd-pre-app-deadline-2026@acba.coop",
     "title": "[CRITICAL DEADLINE] CCHD National Economic Development Pre-Application Due",
-    "description": "CRITICAL PRE-APPLICATION DEADLINE for the Catholic Campaign for Human Development (CCHD) National Economic Development Grant ($50,000/year\\; $150,000 over 3 years).\nMandatory step to unlock Full Application due Jan 15.\nRequires low-income leadership documentation (>33% of committee) and Diocesan notification.\nPackage: data/acbf/grants/cchd_economic_development.md",
+    "description": "CRITICAL PRE-APPLICATION DEADLINE for the Catholic Campaign for Human Development (CCHD) National Economic Development Grant ($50,000/year\\; $150,000 over 3 years).\nMandatory step to unlock Full Application due Jan 15.\nRequires low-income leadership documentation (>33% of committee) and Diocesan notification.\nPackage: data/example/grants/cchd_economic_development.md",
     "startDate": "2026-11-01",
     "endDate": "2026-11-02",
     "location": "USCCB Grants Management Portal",
@@ -189,7 +189,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "eox-capacity-grant-2026@acba.coop",
     "title": "[SUBMISSION] Employee Ownership Expansion Network (EOX): Capacity Grant",
-    "description": "Submit $75,000 capacity-building grant application to EOX to fund a full-time Director of Employee Ownership Conversions for Central Texas.\nFocus: Outreach to retiring business owners ('Silver Tsunami'), CPA/attorney training, and worker co-op/EOT conversions.\nPackage: data/acbf/grants/eox_state_center_capacity.md",
+    "description": "Submit $75,000 capacity-building grant application to EOX to fund a full-time Director of Employee Ownership Conversions for Central Texas.\nFocus: Outreach to retiring business owners ('Silver Tsunami'), CPA/attorney training, and worker co-op/EOT conversions.\nPackage: data/example/grants/eox_state_center_capacity.md",
     "startDate": "2026-11-15",
     "endDate": "2026-11-16",
     "location": "EOX Network Online RFP Portal",
@@ -206,7 +206,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "st-davids-loi-2026@acba.coop",
     "title": "[SUBMISSION] St. David's Foundation: Economic Security LOI",
-    "description": "Submit Letter of Intent for $100,000/year for 2 years ($200,000 total operating support).\nPriority Pillar: Economic Security / Upstream Social Determinants of Health (SDOH).\nProject: Healthy Jobs, Healthy Communities: Living Wages & Democratic Governance as Health Interventions.\nPackage: data/acbf/grants/st_davids_economic_security.md",
+    "description": "Submit Letter of Intent for $100,000/year for 2 years ($200,000 total operating support).\nPriority Pillar: Economic Security / Upstream Social Determinants of Health (SDOH).\nProject: Healthy Jobs, Healthy Communities: Living Wages & Democratic Governance as Health Interventions.\nPackage: data/example/grants/st_davids_economic_security.md",
     "startDate": "2026-11-20",
     "endDate": "2026-11-21",
     "location": "St. David's Foundation Fluxx Portal",
@@ -223,7 +223,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "love-titos-request-2026@acba.coop",
     "title": "[SUBMISSION] Love, Tito's (Fifth Generation Inc.): Community Giving Application",
-    "description": "Submit $25,000 Community Giving request to Love, Tito's (Fifth Generation Inc.).\nProject: Roots to Table: Cultivating Community-Owned Food, Urban Agriculture, and Culinary Worker Cooperatives in East Austin.\nFocus: ServSafe credentials, commercial commissary kitchen stipends, and grassroots culinary co-ops.\nPackage: data/acbf/grants/love_titos_community_giving.md",
+    "description": "Submit $25,000 Community Giving request to Love, Tito's (Fifth Generation Inc.).\nProject: Roots to Table: Cultivating Community-Owned Food, Urban Agriculture, and Culinary Worker Cooperatives in East Austin.\nFocus: ServSafe credentials, commercial commissary kitchen stipends, and grassroots culinary co-ops.\nPackage: data/example/grants/love_titos_community_giving.md",
     "startDate": "2026-11-30",
     "endDate": "2026-12-01",
     "location": "Love, Tito's Community Portal",
@@ -240,7 +240,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "credit-union-grants-2026@acba.coop",
     "title": "[SUBMISSION] Central Texas Credit Union Foundations: Financial Capability Grant",
-    "description": "Submit $15,000 collaborative grant request to University Federal Credit Union (UFCU), A+ Federal Credit Union, and Amplify Credit Union.\nFocus: Principle 6 (Cooperation Among Cooperatives), adult financial literacy, credit-builder accounts, and co-op member onboarding.\nPackage: data/acbf/grants/credit_union_community_grants.md",
+    "description": "Submit $15,000 collaborative grant request to University Federal Credit Union (UFCU), A+ Federal Credit Union, and Amplify Credit Union.\nFocus: Principle 6 (Cooperation Among Cooperatives), adult financial literacy, credit-builder accounts, and co-op member onboarding.\nPackage: data/example/grants/credit_union_community_grants.md",
     "startDate": "2026-12-01",
     "endDate": "2026-12-02",
     "location": "Credit Union Foundation Portals",
@@ -257,7 +257,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "bank-cra-partnerships-2026@acba.coop",
     "title": "[SUBMISSION] Commercial Bank CRA Partnerships (Frost, Texas Capital, Broadway)",
-    "description": "Submit CRA investment requests ($35,000 total: $20k technical assistance + $15k Loan Loss Reserve) to regional commercial banks.\nQualifies under CRA Community Development Service and Lending/Investment Tests.\nPackage: data/acbf/grants/bank_cra_cooperative_roots.md",
+    "description": "Submit CRA investment requests ($35,000 total: $20k technical assistance + $15k Loan Loss Reserve) to regional commercial banks.\nQualifies under CRA Community Development Service and Lending/Investment Tests.\nPackage: data/example/grants/bank_cra_cooperative_roots.md",
     "startDate": "2026-12-15",
     "endDate": "2026-12-16",
     "location": "Frost Bank / Texas Capital CRA Offices",
@@ -274,7 +274,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "impact-austin-prep-2026@acba.coop",
     "title": "[PREPARATION] Impact Austin GMS Portal Intake & Financial Audit Assembly",
-    "description": "Log into Impact Austin Grants Management System (GMS), verify applicant eligibility, and assemble audited financials, 990s, board list, and program narratives ahead of January application opening.\nPackage: data/acbf/grants/impact_austin_community.md",
+    "description": "Log into Impact Austin Grants Management System (GMS), verify applicant eligibility, and assemble audited financials, 990s, board list, and program narratives ahead of January application opening.\nPackage: data/example/grants/impact_austin_community.md",
     "startDate": "2026-12-20",
     "endDate": "2026-12-21",
     "location": "Impact Austin Submittable / GMS Portal",
@@ -305,7 +305,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "texas-bar-foundation-winter-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] Texas Bar Foundation: Legal Services Grant (Round 1)",
-    "description": "DEADLINE: Submit $25,000 grant application to the Texas Bar Foundation.\nProject: Justice in Ownership: The Central Texas Cooperative Legal & Governance Clinic.\nProvides 300+ pro bono legal hours for low-income founders drafting Texas Chapter 251 bylaws and Subchapter T tax elections.\nPackage: data/acbf/grants/texas_bar_foundation_legal_clinic.md",
+    "description": "DEADLINE: Submit $25,000 grant application to the Texas Bar Foundation.\nProject: Justice in Ownership: The Central Texas Cooperative Legal & Governance Clinic.\nProvides 300+ pro bono legal hours for low-income founders drafting Texas Chapter 251 bylaws and Subchapter T tax elections.\nPackage: data/example/grants/texas_bar_foundation_legal_clinic.md",
     "startDate": "2027-01-15",
     "endDate": "2027-01-16",
     "location": "Texas Bar Foundation Online Application System",
@@ -332,7 +332,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "cchd-full-app-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] CCHD National Economic Development Full Application Due",
-    "description": "DEADLINE: Full Application due for Catholic Campaign for Human Development (CCHD) National Economic Development Grant ($50,000/year\\; $150,000 3-year total).\nRequires full business plans, pro formas, low-income board documentation, and Diocesan endorsement letter.\nPackage: data/acbf/grants/cchd_economic_development.md",
+    "description": "DEADLINE: Full Application due for Catholic Campaign for Human Development (CCHD) National Economic Development Grant ($50,000/year\\; $150,000 3-year total).\nRequires full business plans, pro formas, low-income board documentation, and Diocesan endorsement letter.\nPackage: data/example/grants/cchd_economic_development.md",
     "startDate": "2027-01-15",
     "endDate": "2027-01-16",
     "location": "USCCB Grants Management Portal",
@@ -359,7 +359,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "workers-lab-cohort-open-2027@acba.coop",
     "title": "[PORTAL OPENS] The Workers Lab Innovation Fund Cohort Opens",
-    "description": "The Workers Lab Innovation Fund application opens for 2027 cohort ($150,000 unrestricted innovation capital).\nProject: Power & Equity in the South: Mobile-First Bilingual Cooperative Incubation & Non-Extractive Peer Lending Platform.\nPackage: data/acbf/grants/workers_lab_innovation_fund.md",
+    "description": "The Workers Lab Innovation Fund application opens for 2027 cohort ($150,000 unrestricted innovation capital).\nProject: Power & Equity in the South: Mobile-First Bilingual Cooperative Incubation & Non-Extractive Peer Lending Platform.\nPackage: data/example/grants/workers_lab_innovation_fund.md",
     "startDate": "2027-01-20",
     "endDate": "2027-01-21",
     "location": "The Workers Lab Submittable Portal",
@@ -377,7 +377,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "impact-austin-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] Impact Austin Community Partner Application Closes",
-    "description": "DEADLINE: Submit $80,000 Unrestricted Operating Support application under the Community focus area to Impact Austin.\nRequest restores full-time Cooperative Developer capacity and funds bilingual business academies.\nPackage: data/acbf/grants/impact_austin_community.md",
+    "description": "DEADLINE: Submit $80,000 Unrestricted Operating Support application under the Community focus area to Impact Austin.\nRequest restores full-time Cooperative Developer capacity and funds bilingual business academies.\nPackage: data/example/grants/impact_austin_community.md",
     "startDate": "2027-02-05",
     "endDate": "2027-02-06",
     "location": "Impact Austin Submittable Portal",
@@ -404,7 +404,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "cdfi-fund-ta-nofa-release-2027@acba.coop",
     "title": "[FEDERAL NOFA] Treasury CDFI Fund Technical Assistance (TA) Notice Released",
-    "description": "Anticipated release date for U.S. Treasury CDFI Fund FY 2027 Notice of Funds Availability (NOFA).\nReview application guidance for Emerging CDFIs ($150,000 max award\\; 0% match required).\nPackage: data/acbf/grants/cdfi_fund_ta_emerging.md",
+    "description": "Anticipated release date for U.S. Treasury CDFI Fund FY 2027 Notice of Funds Availability (NOFA).\nReview application guidance for Emerging CDFIs ($150,000 max award\\; 0% match required).\nPackage: data/example/grants/cdfi_fund_ta_emerging.md",
     "startDate": "2027-02-15",
     "endDate": "2027-02-16",
     "location": "Grants.gov / CDFI Fund AMIS Portal",
@@ -436,7 +436,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "workers-lab-deadline-2027@acba.coop",
     "title": "[DEADLINE] The Workers Lab Innovation Fund Application Closes",
-    "description": "DEADLINE: Submit final application for $150,000 Unrestricted Innovation Grant to The Workers Lab.\nFocus: Mobile-first bilingual incubation, automated Texas Chapter 251 legal engine, and Seed Commons peer lending.\nPackage: data/acbf/grants/workers_lab_innovation_fund.md",
+    "description": "DEADLINE: Submit final application for $150,000 Unrestricted Innovation Grant to The Workers Lab.\nFocus: Mobile-first bilingual incubation, automated Texas Chapter 251 legal engine, and Seed Commons peer lending.\nPackage: data/example/grants/workers_lab_innovation_fund.md",
     "startDate": "2027-03-01",
     "endDate": "2027-03-02",
     "location": "The Workers Lab Submittable Portal",
@@ -488,7 +488,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "cdfi-fund-ta-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] U.S. Treasury CDFI Fund Technical Assistance (TA) Due",
-    "description": "MAJOR FEDERAL DEADLINE: Submit $150,000 Technical Assistance (TA) grant on Grants.gov (SF-424) and CDFI Fund AMIS portal.\nALN: 21.020 | Statutory Match: 0% (Zero Match Required).\nFunds 0.75 FTE Loan Fund Manager and DownHome Solutions loan software to achieve Treasury CDFI Certification.\nPackage: data/acbf/grants/cdfi_fund_ta_emerging.md",
+    "description": "MAJOR FEDERAL DEADLINE: Submit $150,000 Technical Assistance (TA) grant on Grants.gov (SF-424) and CDFI Fund AMIS portal.\nALN: 21.020 | Statutory Match: 0% (Zero Match Required).\nFunds 0.75 FTE Loan Fund Manager and DownHome Solutions loan software to achieve Treasury CDFI Certification.\nPackage: data/example/grants/cdfi_fund_ta_emerging.md",
     "startDate": "2027-03-31",
     "endDate": "2027-04-01",
     "location": "Grants.gov & CDFI Fund AMIS",
@@ -529,12 +529,12 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
     "alarms": []
   },
   {
-    "uid": "acbf-board-sdgg-certification-2027@acba.coop",
-    "title": "[COMPLIANCE] ACBF Board Socially Disadvantaged Composition Certification",
-    "description": "Formal board resolution and documentation certifying that >50% of ACBF's governing board members belong to socially disadvantaged groups (women, Hispanic, Black directors), satisfying 7 CFR Part 4284 statutory requirements for USDA SDGG.",
+    "uid": "example-board-sdgg-certification-2027@example.org",
+    "title": "[COMPLIANCE] Example.org Board Socially Disadvantaged Composition Certification",
+    "description": "Formal board resolution and documentation certifying that >50% of Example.org's governing board members belong to socially disadvantaged groups (women, Hispanic, Black directors), satisfying 7 CFR Part 4284 statutory requirements for USDA SDGG.",
     "startDate": "2027-04-15",
     "endDate": "2027-04-16",
-    "location": "ACBF Board of Directors Meeting",
+    "location": "Example.org Board of Directors Meeting",
     "categories": [
       "COMPLIANCE",
       "BOARD",
@@ -549,7 +549,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
     "description": "Host Impact Austin Community Review Committee for virtual/in-person site visit, presentation of worker-owner testimonials, and executive leadership Q&A.",
     "startDate": "2027-04-20",
     "endDate": "2027-04-21",
-    "location": "ACBF Offices / Client Co-op Facility",
+    "location": "Example.org Offices / Client Co-op Facility",
     "categories": [
       "MILESTONE",
       "REGIONAL",
@@ -561,7 +561,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "acf-forever-austin-opens-2027@acba.coop",
     "title": "[PORTAL OPENS] Austin Community Foundation Forever Austin Fund Opens",
-    "description": "Online application portal opens for Austin Community Foundation Forever Austin Fund ($35,000 Flexible General Operating & Capacity Support).\nPackage: data/acbf/grants/acf_forever_austin.md",
+    "description": "Online application portal opens for Austin Community Foundation Forever Austin Fund ($35,000 Flexible General Operating & Capacity Support).\nPackage: data/example/grants/acf_forever_austin.md",
     "startDate": "2027-04-30",
     "endDate": "2027-05-01",
     "location": "Foundant GLM Portal – Austin Community Foundation",
@@ -578,7 +578,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "acf-forever-austin-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] ACF Forever Austin Fund Application Closes",
-    "description": "DEADLINE: Submit $35,000 application to the Austin Community Foundation Forever Austin Fund.\nFocus: 300 hours of specialized business consulting, launching 2 community training cohorts, and guiding 5 emerging worker co-ops.\nPackage: data/acbf/grants/acf_forever_austin.md",
+    "description": "DEADLINE: Submit $35,000 application to the Austin Community Foundation Forever Austin Fund.\nFocus: 300 hours of specialized business consulting, launching 2 community training cohorts, and guiding 5 emerging worker co-ops.\nPackage: data/example/grants/acf_forever_austin.md",
     "startDate": "2027-05-15",
     "endDate": "2027-05-16",
     "location": "Foundant GLM Portal – Austin Community Foundation",
@@ -605,7 +605,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "usda-lfpp-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] USDA Local Food Promotion Program (LFPP) Due",
-    "description": "MAJOR FEDERAL DEADLINE: Submit $250,000 Implementation Grant application under the USDA LFPP (ALN 10.172).\nMatch: 25% non-federal ($83,333 match documented).\nProject: Central Texas Cooperative Food Commons: Intermediary cold-chain distribution, GAP audits, and institutional buyer contracts.\nPackage: data/acbf/grants/usda_lfpp_supply_chain.md",
+    "description": "MAJOR FEDERAL DEADLINE: Submit $250,000 Implementation Grant application under the USDA LFPP (ALN 10.172).\nMatch: 25% non-federal ($83,333 match documented).\nProject: Central Texas Cooperative Food Commons: Intermediary cold-chain distribution, GAP audits, and institutional buyer contracts.\nPackage: data/example/grants/usda_lfpp_supply_chain.md",
     "startDate": "2027-05-20",
     "endDate": "2027-05-21",
     "location": "Grants.gov (SF-424 & AMS Narrative)",
@@ -633,7 +633,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "city-austin-project-connect-cis-2027@acba.coop",
     "title": "[DEADLINE] City of Austin Housing Dept: Project Connect CIS Due",
-    "description": "Submit $250,000 multi-year proposal to the City of Austin Housing Department under Project Connect Community-Initiated Solutions (CIS) Anti-Displacement Fund.\nFocus: Commercial business retention, worker co-op conversions, and limited-equity housing co-op education along the Blue & Orange rail lines.\nPackage: data/acbf/grants/austin_project_connect_cis.md",
+    "description": "Submit $250,000 multi-year proposal to the City of Austin Housing Department under Project Connect Community-Initiated Solutions (CIS) Anti-Displacement Fund.\nFocus: Commercial business retention, worker co-op conversions, and limited-equity housing co-op education along the Blue & Orange rail lines.\nPackage: data/example/grants/austin_project_connect_cis.md",
     "startDate": "2027-05-31",
     "endDate": "2027-06-01",
     "location": "City of Austin Vendor Connection / Financial Services",
@@ -676,7 +676,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "usda-sdgg-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] USDA Socially Disadvantaged Groups Grant (SDGG) Due",
-    "description": "MAJOR FEDERAL DEADLINE: Submit $175,000 application on Grants.gov for USDA SDGG (ALN 10.871).\nStatutory Match: 0% (Zero Match Required!).\nProject: Raíces y Tierras: Targeted Technical Assistance & Feasibility for Socially Disadvantaged Cooperatives in Rural Central Texas.\nPackage: data/acbf/grants/usda_sdgg_ta.md",
+    "description": "MAJOR FEDERAL DEADLINE: Submit $175,000 application on Grants.gov for USDA SDGG (ALN 10.871).\nStatutory Match: 0% (Zero Match Required!).\nProject: Raíces y Tierras: Targeted Technical Assistance & Feasibility for Socially Disadvantaged Cooperatives in Rural Central Texas.\nPackage: data/example/grants/usda_sdgg_ta.md",
     "startDate": "2027-06-15",
     "endDate": "2027-06-16",
     "location": "Grants.gov (SF-424 / SF-424A)",
@@ -704,7 +704,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "hhs-ced-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] HHS Community Economic Development (CED) Due",
-    "description": "MAJOR FEDERAL DEADLINE: Submit $800,000 3-year application under HHS CED (ALN 93.570).\nStatutory Match: 0% (Zero Match Required).\nProject: Austin Cooperative Economic Development Initiative (ACEDI): Creating 42 permanent living-wage jobs (>75% for low-income workers).\nPackage: data/acbf/grants/hhs_ced_job_creation.md",
+    "description": "MAJOR FEDERAL DEADLINE: Submit $800,000 3-year application under HHS CED (ALN 93.570).\nStatutory Match: 0% (Zero Match Required).\nProject: Austin Cooperative Economic Development Initiative (ACEDI): Creating 42 permanent living-wage jobs (>75% for low-income workers).\nPackage: data/example/grants/hhs_ced_job_creation.md",
     "startDate": "2027-06-25",
     "endDate": "2027-06-26",
     "location": "Grants.gov (SF-424 Mandatory Package)",
@@ -732,7 +732,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "acf-hispanic-impact-opens-2027@acba.coop",
     "title": "[PORTAL OPENS] ACF Hispanic Impact Fund Application Opens",
-    "description": "Application portal opens for Austin Community Foundation Hispanic Impact Fund ($50,000 Unrestricted General Operating Support).\nPackage: data/acbf/grants/acf_hispanic_impact.md",
+    "description": "Application portal opens for Austin Community Foundation Hispanic Impact Fund ($50,000 Unrestricted General Operating Support).\nPackage: data/example/grants/acf_hispanic_impact.md",
     "startDate": "2027-06-30",
     "endDate": "2027-07-01",
     "location": "Foundant GLM – Austin Community Foundation",
@@ -749,7 +749,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "texas-bar-foundation-summer-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] Texas Bar Foundation: Legal Services Grant (Round 2)",
-    "description": "DEADLINE: Summer cycle application deadline for the Texas Bar Foundation ($25,000 request for Cooperative Legal & Governance Clinic).\nPackage: data/acbf/grants/texas_bar_foundation_legal_clinic.md",
+    "description": "DEADLINE: Summer cycle application deadline for the Texas Bar Foundation ($25,000 request for Cooperative Legal & Governance Clinic).\nPackage: data/example/grants/texas_bar_foundation_legal_clinic.md",
     "startDate": "2027-07-15",
     "endDate": "2027-07-16",
     "location": "Texas Bar Foundation Online Application System",
@@ -776,7 +776,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "usda-rcdg-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] USDA Rural Cooperative Development Grant (RCDG) Due",
-    "description": "MAJOR FEDERAL DEADLINE: Submit $200,000 application on Grants.gov for USDA RCDG (ALN 10.771).\nMatch: 25% non-federal ($66,667 committed match).\nProject: Central Texas Cooperative Development Center: Expanding Rural Cooperative Capacity & Worker-Ownership.\nPackage: data/acbf/grants/usda_rcdg_center.md",
+    "description": "MAJOR FEDERAL DEADLINE: Submit $200,000 application on Grants.gov for USDA RCDG (ALN 10.771).\nMatch: 25% non-federal ($66,667 committed match).\nProject: Central Texas Cooperative Development Center: Expanding Rural Cooperative Capacity & Worker-Ownership.\nPackage: data/example/grants/usda_rcdg_center.md",
     "startDate": "2027-07-15",
     "endDate": "2027-07-16",
     "location": "Grants.gov (SF-424 & RCDG Narrative)",
@@ -804,7 +804,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "acf-hispanic-impact-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] ACF Hispanic Impact Fund Application Closes",
-    "description": "DEADLINE: Submit $50,000 Unrestricted General Operating Support application to the Austin Community Foundation Hispanic Impact Fund.\nProject: La Raíz Cooperativa: Expanding Bilingual Worker Cooperative Incubation & Asset Building in Eastern Travis County.\nPackage: data/acbf/grants/acf_hispanic_impact.md",
+    "description": "DEADLINE: Submit $50,000 Unrestricted General Operating Support application to the Austin Community Foundation Hispanic Impact Fund.\nProject: La Raíz Cooperativa: Expanding Bilingual Worker Cooperative Incubation & Asset Building in Eastern Travis County.\nPackage: data/example/grants/acf_hispanic_impact.md",
     "startDate": "2027-07-31",
     "endDate": "2027-08-01",
     "location": "Foundant GLM – Austin Community Foundation",
@@ -831,7 +831,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "sba-prime-deadline-2027@acba.coop",
     "title": "[CRITICAL DEADLINE] SBA PRIME Microenterprise Intermediary Grant Due",
-    "description": "MAJOR FEDERAL DEADLINE: Submit $150,000 application on Grants.gov for SBA PRIME (ALN 59.050).\nMatch: 50% non-federal ($75,000 cash/in-kind match).\nProject: Capital & Cooperatives: Scaling Technical Assistance & Business Training for Disadvantaged Microentrepreneurs in Central Texas.\nPackage: data/acbf/grants/sba_prime_microenterprise.md",
+    "description": "MAJOR FEDERAL DEADLINE: Submit $150,000 application on Grants.gov for SBA PRIME (ALN 59.050).\nMatch: 50% non-federal ($75,000 cash/in-kind match).\nProject: Capital & Cooperatives: Scaling Technical Assistance & Business Training for Disadvantaged Microentrepreneurs in Central Texas.\nPackage: data/example/grants/sba_prime_microenterprise.md",
     "startDate": "2027-08-10",
     "endDate": "2027-08-11",
     "location": "Grants.gov (SF-424 Package)",
@@ -859,7 +859,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "sba-microloan-intermediary-ta-2027@acba.coop",
     "title": "[SUBMISSION] SBA Microloan Intermediary Non-Repayable TA Grant",
-    "description": "Submit annual Intermediary Lending and Non-Repayable Technical Assistance Grant request ($75,000 TA grant / $300k microloan line) to SBA Office of Capital Access.\nPackage: data/acbf/grants/sba_microloan_intermediary_ta.md",
+    "description": "Submit annual Intermediary Lending and Non-Repayable Technical Assistance Grant request ($75,000 TA grant / $300k microloan line) to SBA Office of Capital Access.\nPackage: data/example/grants/sba_microloan_intermediary_ta.md",
     "startDate": "2027-08-15",
     "endDate": "2027-08-16",
     "location": "SBA CAFS Portal",
@@ -891,7 +891,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "texas-mutual-fall-2027@acba.coop",
     "title": "[DEADLINE] Texas Mutual Insurance: Fall 2027 Workforce Grant Due",
-    "description": "Annual deadline for Texas Mutual Workforce Development & Safety Grants ($50,000).\nPackage: data/acbf/grants/texas_mutual_workforce.md",
+    "description": "Annual deadline for Texas Mutual Workforce Development & Safety Grants ($50,000).\nPackage: data/example/grants/texas_mutual_workforce.md",
     "startDate": "2027-09-01",
     "endDate": "2027-09-02",
     "location": "Texas Mutual Online Grants Portal",
@@ -917,7 +917,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "dol-work-act-deadline-2027@acba.coop",
     "title": "[FEDERAL DEADLINE] US Department of Labor: WORK Act Grant Due",
-    "description": "Submit $200,000 proposal under the U.S. Department of Labor WORK Act Employee Ownership Initiative (ALN 17.289).\nStatutory Match: 0% required.\nProject: Texas Worker Ownership Initiative (TWOI): Catalyzing Small-to-Mid-Sized Business Succession and Democratic Workplace Governance.\nPackage: data/acbf/grants/dol_work_act_employee_ownership.md",
+    "description": "Submit $200,000 proposal under the U.S. Department of Labor WORK Act Employee Ownership Initiative (ALN 17.289).\nStatutory Match: 0% required.\nProject: Texas Worker Ownership Initiative (TWOI): Catalyzing Small-to-Mid-Sized Business Succession and Democratic Workplace Governance.\nPackage: data/example/grants/dol_work_act_employee_ownership.md",
     "startDate": "2027-09-15",
     "endDate": "2027-09-16",
     "location": "Grants.gov (FOA-ETA-26-04)",
@@ -944,7 +944,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   {
     "uid": "epa-ejcps-deadline-2027@acba.coop",
     "title": "[FEDERAL DEADLINE] EPA Environmental Justice (EJCPS) Due",
-    "description": "MAJOR FEDERAL DEADLINE: Submit $500,000 3-year cooperative agreement proposal under the EPA EJCPS Program (ALN 66.306).\nStatutory Match: 0% required.\nProject: Austin Cooperative Climate Solutions: Building Community-Owned Green Enterprises, Food Resiliency Hubs, and Zero-Waste Infrastructure.\nPackage: data/acbf/grants/epa_ejcps_coop_climate.md",
+    "description": "MAJOR FEDERAL DEADLINE: Submit $500,000 3-year cooperative agreement proposal under the EPA EJCPS Program (ALN 66.306).\nStatutory Match: 0% required.\nProject: Austin Cooperative Climate Solutions: Building Community-Owned Green Enterprises, Food Resiliency Hubs, and Zero-Waste Infrastructure.\nPackage: data/example/grants/epa_ejcps_coop_climate.md",
     "startDate": "2027-09-30",
     "endDate": "2027-10-01",
     "location": "Grants.gov (EPA-R-OEJECR-OCS-2026-01)",

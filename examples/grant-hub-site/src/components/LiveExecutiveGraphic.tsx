@@ -100,7 +100,7 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            ACBF Institutional Advancement & Master Capitalization Board
+            Example.org Institutional Advancement & Master Capitalization Board
           </h2>
           <p className="text-sm text-slate-400 mt-1 max-w-3xl">
             Live programmatic dashboard replacing static graphic mocks with continuous multi-year financial modeling, 
@@ -393,7 +393,7 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
             <span>Expiring 2026 Contracts Replaced</span>
           </div>
           <p className="text-xs text-slate-400 mb-4">
-            Protecting ACBF against municipal & federal cliff expirations with secured institutional successors:
+            Protecting Example.org against municipal & federal cliff expirations with secured institutional successors:
           </p>
 
           <div className="space-y-3">

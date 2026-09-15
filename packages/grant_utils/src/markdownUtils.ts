@@ -8,12 +8,14 @@ export function getAllMarkdownDocs(): MarkdownDoc[] {
 
 export function getMarkdownDocById(idOrPath: string): MarkdownDoc | undefined {
   const normalized = idOrPath.replace(/^\.?\/?(data\/)?/, '');
+  const strippedPath = normalized.replace(/^(?:acbf|example)\//, '');
   return MARKDOWN_DOCS.find(d => 
     d.id === idOrPath || 
     d.fileName === idOrPath || 
     d.relativePath === idOrPath ||
     d.relativePath.endsWith(idOrPath) ||
-    d.relativePath.replace(/^data\//, '') === normalized
+    d.relativePath.replace(/^data\//, '') === normalized ||
+    d.relativePath.replace(/^data\/(?:acbf|example)\//, '') === strippedPath
   );
 }
 

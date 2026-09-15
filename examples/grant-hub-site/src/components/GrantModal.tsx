@@ -75,7 +75,7 @@ export const GrantModal: React.FC<Props> = ({
 
     // Lifecycle
     try {
-      const savedLife = localStorage.getItem(`acbf_lifecycle_${grant.id}`);
+      const savedLife = localStorage.getItem(`grant_lifecycle_${grant.id}`) || localStorage.getItem(`acbf_lifecycle_${grant.id}`);
       if (savedLife) {
         const parsed = JSON.parse(savedLife);
         setCurrentStage(parsed.stage || 'Drafting');
@@ -94,7 +94,7 @@ export const GrantModal: React.FC<Props> = ({
 
     // Checklist
     try {
-      const savedChecklist = localStorage.getItem(`acbf_checklist_${grant.id}`);
+      const savedChecklist = localStorage.getItem(`grant_checklist_${grant.id}`) || localStorage.getItem(`acbf_checklist_${grant.id}`);
       if (savedChecklist) {
         setCheckedItems(JSON.parse(savedChecklist));
       } else {
@@ -108,7 +108,7 @@ export const GrantModal: React.FC<Props> = ({
   function handleSaveLifecycle(stage: LifecycleStage, conf = confirmationNumber, subDate = submissionDate, notes = trackingNotes) {
     setCurrentStage(stage);
     try {
-      localStorage.setItem(`acbf_lifecycle_${grant?.id}`, JSON.stringify({
+      localStorage.setItem(`grant_lifecycle_${grant?.id}`, JSON.stringify({
         stage,
         confirmationNumber: conf,
         submissionDate: subDate,
@@ -124,7 +124,7 @@ export const GrantModal: React.FC<Props> = ({
     const updated = { ...checkedItems, [id]: !checkedItems[id] };
     setCheckedItems(updated);
     try {
-      localStorage.setItem(`acbf_checklist_${grant?.id}`, JSON.stringify(updated));
+      localStorage.setItem(`grant_checklist_${grant?.id}`, JSON.stringify(updated));
     } catch {
       // ignore
     }
@@ -135,7 +135,7 @@ export const GrantModal: React.FC<Props> = ({
     items.forEach(it => { updated[it.id] = true; });
     setCheckedItems(updated);
     try {
-      localStorage.setItem(`acbf_checklist_${grant?.id}`, JSON.stringify(updated));
+      localStorage.setItem(`grant_checklist_${grant?.id}`, JSON.stringify(updated));
     } catch {
       // ignore
     }
@@ -144,6 +144,7 @@ export const GrantModal: React.FC<Props> = ({
   function handleResetChecklist() {
     setCheckedItems({});
     try {
+      localStorage.removeItem(`grant_checklist_${grant?.id}`);
       localStorage.removeItem(`acbf_checklist_${grant?.id}`);
     } catch {
       // ignore
@@ -465,7 +466,7 @@ export const GrantModal: React.FC<Props> = ({
                   <span>Cost-Share & Matching Funds Modeling</span>
                 </h4>
                 <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                  Calculates required non-federal cash or in-kind match for competitive federal and philanthropic grants, and identifies eligible ACBF funding pairings.
+                  Calculates required non-federal cash or in-kind match for competitive federal and philanthropic grants, and identifies eligible Example.org funding pairings.
                 </p>
               </div>
 
@@ -528,10 +529,10 @@ export const GrantModal: React.FC<Props> = ({
                 </div>
               </div>
 
-              {/* Recommended ACBF Match Pairing Sources */}
+              {/* Recommended Example.org Match Pairing Sources */}
               <div className="space-y-3">
                 <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Eligible ACBF Non-Federal Match Pairing Sources
+                  Eligible Example.org Non-Federal Match Pairing Sources
                 </h5>
                 <div className="space-y-2">
                   {matchCalc.recommendedSources.map((src, idx) => (

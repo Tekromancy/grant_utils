@@ -214,7 +214,7 @@ export const DashboardView: React.FC<Props> = ({
         <div className="px-6 py-5 border-b border-slate-800 flex items-center justify-between">
           <div>
             <h3 className="text-lg font-bold text-white tracking-tight">Upcoming Deadlines & Milestones</h3>
-            <p className="text-xs text-slate-400 mt-0.5">Chronological countdown as laid out in acbf/CallToAction.md and calendar.ics</p>
+            <p className="text-xs text-slate-400 mt-0.5">Chronological countdown as laid out in CallToAction.md and calendar.ics</p>
           </div>
           <button
             onClick={onNavigateToCalendar}

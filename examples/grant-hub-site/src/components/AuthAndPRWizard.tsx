@@ -60,15 +60,15 @@ export const AuthAndPRWizard: React.FC<Props> = ({
   const [validationError, setValidationError] = useState('');
 
   // PR Form
-  const [repoOwner, setRepoOwner] = useState('AustinCooperativeBusinessFoundation');
+  const [repoOwner, setRepoOwner] = useState('ExampleOrg');
   const [repoName, setRepoName] = useState('grantwriting');
   const [branchName, setBranchName] = useState(`update-grants-${Date.now().toString().slice(-6)}`);
   const [selectedDocPath, setSelectedDocPath] = useState(
-    preselectedDoc?.relativePath || Object.keys(editedFiles)[0] || 'data/acbf/CallToAction.md'
+    preselectedDoc?.relativePath || Object.keys(editedFiles)[0] || 'data/example/CallToAction.md'
   );
   const [prTitle, setPrTitle] = useState(`docs(grants): update ${selectedDocPath.split('/').pop()} proposal`);
   const [prBody, setPrBody] = useState(
-    `## Grant Proposal Update\n\nSubmitted via the **ACBF Grantwriting Interactive Web Dashboard**.\n\n- File: \`${selectedDocPath}\`\n- Aligned with ACBF 2026–2028 Funding Strategy & Call to Action.`
+    `## Grant Proposal Update\n\nSubmitted via the **Example.org Grantwriting Interactive Web Dashboard**.\n\n- File: \`${selectedDocPath}\`\n- Aligned with Example.org Strategic Funding Strategy & Call to Action.`
   );
   const [isSubmittingPR, setIsSubmittingPR] = useState(false);
   const [prResultUrl, setPrResultUrl] = useState('');
@@ -511,9 +511,9 @@ export const AuthAndPRWizard: React.FC<Props> = ({
                   </div>
                   <ol className="list-decimal list-inside space-y-1.5 text-slate-300 leading-relaxed">
                     <li>Click <strong>"Generate new token"</strong> in the link above.</li>
-                    <li>Token name: <code className="text-yellow-300">ACBF Grantwriting Dashboard</code></li>
+                    <li>Token name: <code className="text-yellow-300">Example.org Grantwriting Dashboard</code></li>
                     <li>Expiration: Select <strong>30 days</strong> or <strong>60 days</strong>.</li>
-                    <li>Repository access: Choose <strong>"Only select repositories"</strong> ➔ select <code>AustinCooperativeBusinessFoundation/grantwriting</code> (or your fork).</li>
+                    <li>Repository access: Choose <strong>"Only select repositories"</strong> ➔ select <code>ExampleOrg/grantwriting</code> (or your organization repo / fork).</li>
                     <li>Under <strong>"Repository permissions"</strong>, grant:
                       <span className="text-emerald-400 font-semibold"> Contents: Read & write</span> and
                       <span className="text-emerald-400 font-semibold"> Pull requests: Read & write</span>.
@@ -536,7 +536,7 @@ export const AuthAndPRWizard: React.FC<Props> = ({
                     </a>
                   </div>
                   <ol className="list-decimal list-inside space-y-1.5 text-slate-300 leading-relaxed">
-                    <li>Token name: <code className="text-yellow-300">ACBF Grant Assistant</code></li>
+                    <li>Token name: <code className="text-yellow-300">Example.org Grant Assistant</code></li>
                     <li>Expiration date: Pick a date 30–60 days ahead.</li>
                     <li>Select scopes: Check <strong className="text-emerald-400">api</strong> or <strong className="text-emerald-400">write_repository</strong>.</li>
                     <li>Click <strong>"Create personal access token"</strong> and copy the token string:</li>
@@ -557,7 +557,7 @@ export const AuthAndPRWizard: React.FC<Props> = ({
                     </a>
                   </div>
                   <ol className="list-decimal list-inside space-y-1.5 text-slate-300 leading-relaxed">
-                    <li>Token name: <code className="text-yellow-300">ACBF Grant Assistant</code></li>
+                    <li>Token name: <code className="text-yellow-300">Example.org Grant Assistant</code></li>
                     <li>Permissions: Under <strong>repository</strong>, check <strong className="text-emerald-400">read:repository</strong> and <strong className="text-emerald-400">write:repository</strong> (or check <strong>repo</strong>). Under <strong>issue</strong>, check <strong className="text-emerald-400">read:issue</strong> and <strong className="text-emerald-400">write:issue</strong>.</li>
                     <li>Click <strong>"Generate Token"</strong> and copy the token string.</li>
                   </ol>

@@ -62,7 +62,7 @@ const GUIDES: ActivityGuide[] = [
       },
       {
         title: 'Inspect Detailed Budgets & Strategic Fit',
-        description: 'Click any grant row to view the full modal. Review funder eligibility requirements, program officer contact info, line-item budget distributions, and alignment with ACBF cooperative goals.'
+        description: 'Click any grant row to view the full modal. Review funder eligibility requirements, program officer contact info, line-item budget distributions, and alignment with Example.org strategic goals.'
       },
       {
         title: 'Rapid Keyboard Navigation with Command Palette',
@@ -153,7 +153,7 @@ const GUIDES: ActivityGuide[] = [
       },
       {
         title: 'Stage Modified Documents & Branch',
-        description: 'Pick a modified proposal. The wizard automatically generates a semantic branch name (e.g. acbf/update-01_usda_rbdg_2026-1715890000).'
+        description: 'Pick a modified proposal. The wizard automatically generates a semantic branch name (e.g. example/update-01_usda_rbdg_2026-1715890000).'
       },
       {
         title: 'Submit 1-Click Pull Request',
@@ -169,7 +169,7 @@ const GUIDES: ActivityGuide[] = [
     icon: PlusCircle,
     steps: [
       {
-        title: 'Create New Markdown File in acbf/grants/',
+        title: 'Create New Markdown File in grants/',
         description: 'Follow the standard naming convention: XX_<funder>_<program>_<year>.md (e.g. 28_eda_build_to_scale_2027.md).'
       },
       {

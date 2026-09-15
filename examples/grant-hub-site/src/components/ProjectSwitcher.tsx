@@ -3,12 +3,13 @@
 import React from 'react';
 import { Building2, ChevronDown, Check, Sparkles } from 'lucide-react';
 import { 
+  EXAMPLE_PROJECT_CONFIG,
   ACBF_PROJECT_CONFIG, 
   VAMOS_PROJECT_CONFIG, 
   type ProjectConfig 
 } from '@tekromancy/grant_utils';
 
-export { ACBF_PROJECT_CONFIG, VAMOS_PROJECT_CONFIG };
+export { EXAMPLE_PROJECT_CONFIG, ACBF_PROJECT_CONFIG, VAMOS_PROJECT_CONFIG };
 
 export const STARTER_PROJECT_CONFIG: ProjectConfig = {
   id: 'starter',
@@ -28,9 +29,9 @@ export const STARTER_PROJECT_CONFIG: ProjectConfig = {
 };
 
 export const AVAILABLE_PROJECTS: ProjectConfig[] = [
-  ACBF_PROJECT_CONFIG,
-  VAMOS_PROJECT_CONFIG,
-  STARTER_PROJECT_CONFIG
+  EXAMPLE_PROJECT_CONFIG,
+  STARTER_PROJECT_CONFIG,
+  VAMOS_PROJECT_CONFIG
 ];
 
 interface Props {

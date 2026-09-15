@@ -143,6 +143,7 @@ export const CommandPalette: React.FC<Props> = ({
         badge: theme.badge,
         action: () => {
           saveTheme(theme.id);
+          window.dispatchEvent(new CustomEvent('grant:theme-changed', { detail: theme.id }));
           window.dispatchEvent(new CustomEvent('acbf:theme-changed', { detail: theme.id }));
           onClose();
         }

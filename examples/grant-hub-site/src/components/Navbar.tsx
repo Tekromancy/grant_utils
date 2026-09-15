@@ -86,9 +86,9 @@ export const Navbar: React.FC<Props> = ({
           <div className="flex items-center space-x-3">
             <div 
               onClick={() => setActiveTab('dashboard')}
-              className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-600 to-indigo-700 flex items-center justify-center text-white font-bold text-base shadow-md shadow-emerald-950/50 cursor-pointer"
+              className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-600 to-indigo-700 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-emerald-950/50 cursor-pointer uppercase tracking-tight"
             >
-              TG
+              {currentProject.id === 'example' ? 'EX' : (currentProject.shortName || currentProject.name).slice(0, 2)}
             </div>
             <div>
               <div className="flex items-center space-x-2">

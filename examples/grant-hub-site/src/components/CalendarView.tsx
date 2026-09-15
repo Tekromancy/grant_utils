@@ -114,7 +114,7 @@ export const CalendarView: React.FC<Props> = ({
 
           <a
             href="./calendar.ics"
-            download="acbf-grant-calendar.ics"
+            download="example-grant-calendar.ics"
             className="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm"
           >
             <Download className="w-3.5 h-3.5" />

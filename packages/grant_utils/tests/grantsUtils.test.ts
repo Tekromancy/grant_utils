@@ -93,7 +93,7 @@ describe('grantsUtils', () => {
       expect(g.amount).toBeGreaterThan(0);
       expect(g.amountFormatted).toContain('$');
       expect(g.deadline).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-      expect(g.filePath).toMatch(/^(?:data\/)?(?:acbf|vamos)\/grants\/.+\.md$/);
+      expect(g.filePath).toMatch(/^(?:data\/)?(?:acbf|vamos|example)\/grants\/.+\.md$/);
       expect(g.content).toContain('---');
     }
   });

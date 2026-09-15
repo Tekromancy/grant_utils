@@ -25,7 +25,7 @@ export const TOKEN_SECURITY_NOTICE = `
    ✓ NEVER COMMIT TO GIT: Never commit a token, paste it in markdown, or include
      it in screenshots. Keep it strictly in local ignored config files.
    ✓ LOCAL PROTECTION:
-     - In CLI: Stored in '~/.config/acbf-grants/auth.json' with 0600 permissions
+     - In CLI: Stored in '~/.config/grantwriting/auth.json' with 0600 permissions
        (readable ONLY by your Linux/Mac user account).
      - In Web Dashboard: Stored strictly in your browser's private localStorage.
        It is NEVER sent to any remote server, proxy, or analytics service; it
@@ -41,9 +41,9 @@ export const GITHUB_WALKTHROUGH_GUIDE = `
 **Option A: Fine-Grained Token (Recommended)**
 1. Open GitHub: [https://github.com/settings/tokens?type=beta](https://github.com/settings/tokens?type=beta)
 2. Click **"Generate new token"**.
-3. **Token name**: e.g., \`ACBF Grantwriting Dashboard - YourName\`
+3. **Token name**: e.g., \`Example.org Grantwriting Dashboard - YourName\`
 4. **Expiration**: Choose 30 days, 60 days, or 90 days.
-5. **Repository access**: Select **"Only select repositories"** -> Choose \`AustinCooperativeBusinessFoundation/grantwriting\` (or your fork).
+5. **Repository access**: Select **"Only select repositories"** -> Choose your organization repo (e.g., \`ExampleOrg/grantwriting\` or your fork).
 6. **Permissions**: Under "Repository permissions", set:
    - **Contents**: Access: \`Read and write\`
    - **Pull requests**: Access: \`Read and write\`
@@ -52,7 +52,7 @@ export const GITHUB_WALKTHROUGH_GUIDE = `
 
 **Option B: Classic Token**
 1. Open GitHub: [https://github.com/settings/tokens/new](https://github.com/settings/tokens/new)
-2. Note: \`ACBF Grantwriting CLI & Web\`
+2. Note: \`Example.org Grantwriting CLI & Web\`
 3. Select scope: **\`repo\`** (Full control of private repositories)
 4. Click **"Generate token"** and copy it.
 `;
@@ -61,7 +61,7 @@ export const GITLAB_WALKTHROUGH_GUIDE = `
 ### How to Generate a GitLab Personal Access Token
 
 1. Open GitLab Access Tokens: [https://gitlab.com/-/user_settings/personal_access_tokens](https://gitlab.com/-/user_settings/personal_access_tokens)
-2. **Token name**: e.g., \`ACBF Grantwriting Assistant\`
+2. **Token name**: e.g., \`Example.org Grant Assistant\`
 3. **Expiration date**: Pick a date 30–90 days ahead.
 4. **Select scopes**:
    - Check **\`api\`** (Grants complete read/write access to the API)
@@ -75,7 +75,7 @@ export const CODEBERG_WALKTHROUGH_GUIDE = `
 1. Open Codeberg Applications: [https://codeberg.org/user/settings/applications](https://codeberg.org/user/settings/applications)
    *(Or visit your self-hosted Forgejo instance: \`https://<your-forgejo-domain>/user/settings/applications\`)*
 2. In the **"Manage Access Tokens"** section:
-   - **Token Name**: e.g., \`ACBF Grantwriting Assistant\`
+   - **Token Name**: e.g., \`Example.org Grant Assistant\`
 3. **Select Permissions**:
    - Under **repository**: check **\`read:repository\`** and **\`write:repository\`** (or check **\`repo\`**)
    - Under **issue**: check **\`read:issue\`** and **\`write:issue\`** (for pull requests)
@@ -99,7 +99,7 @@ export async function validateGitHubToken(token: string): Promise<{
       headers: {
         'Authorization': `Bearer ${token.trim()}`,
         'Accept': 'application/vnd.github.v3+json',
-        'User-Agent': 'ACBF-Grantwriting-Dashboard'
+        'User-Agent': 'Example-Grantwriting-Dashboard'
       }
     });
 
@@ -142,7 +142,7 @@ export async function validateGitLabToken(token: string, baseUrl: string = 'http
     const res = await fetch(`${normalizedBase}/api/v4/user`, {
       headers: {
         'PRIVATE-TOKEN': token.trim(),
-        'User-Agent': 'ACBF-Grantwriting-Dashboard'
+        'User-Agent': 'Example-Grantwriting-Dashboard'
       }
     });
 
@@ -182,7 +182,7 @@ export async function validateForgejoToken(token: string, instanceUrl: string = 
       headers: {
         'Authorization': `token ${token.trim()}`,
         'Accept': 'application/json',
-        'User-Agent': 'ACBF-Grantwriting-Dashboard'
+        'User-Agent': 'Example-Grantwriting-Dashboard'
       }
     });
 
@@ -206,12 +206,13 @@ export async function validateForgejoToken(token: string, instanceUrl: string = 
 }
 
 // Browser localStorage adapter
-const BROWSER_TOKEN_KEY = 'acbf_grant_auth_token_v1';
+const BROWSER_TOKEN_KEY = 'grant_auth_token_v1';
+const LEGACY_BROWSER_TOKEN_KEY = 'acbf_grant_auth_token_v1';
 
 export function getBrowserAuthToken(): AuthTokenConfig | null {
   if (typeof window === 'undefined' || !window.localStorage) return null;
   try {
-    const raw = window.localStorage.getItem(BROWSER_TOKEN_KEY);
+    const raw = window.localStorage.getItem(BROWSER_TOKEN_KEY) || window.localStorage.getItem(LEGACY_BROWSER_TOKEN_KEY);
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
@@ -226,4 +227,5 @@ export function saveBrowserAuthToken(config: AuthTokenConfig): void {
 export function clearBrowserAuthToken(): void {
   if (typeof window === 'undefined' || !window.localStorage) return;
   window.localStorage.removeItem(BROWSER_TOKEN_KEY);
+  window.localStorage.removeItem(LEGACY_BROWSER_TOKEN_KEY);
 }

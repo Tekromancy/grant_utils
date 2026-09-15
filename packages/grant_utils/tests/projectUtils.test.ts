@@ -13,13 +13,20 @@ import {
 } from '../src/index.js';
 
 describe('projectUtils & multi-project architecture', () => {
-  it('retrieves default ACBF project configuration', () => {
+  it('retrieves default Example project configuration', () => {
     const defaultProject = getDefaultProject();
-    expect(defaultProject.id).toBe('acbf');
-    expect(defaultProject.shortName).toBe('ACBF');
-    expect(defaultProject.dataDir).toBe('data/acbf');
+    expect(defaultProject.id).toBe('example');
+    expect(defaultProject.shortName).toBe('Example.org');
     expect(defaultProject.financialTargets?.targetYear).toBe(2027);
     expect(defaultProject.financialTargets?.bareMinimum).toBe(300000);
+  });
+
+  it('retrieves ACBF project configuration for backward compatibility', () => {
+    const acbf = getProjectConfig('acbf');
+    expect(acbf).toBeDefined();
+    expect(acbf?.id).toBe('acbf');
+    expect(acbf?.shortName).toBe('ACBF');
+    expect(acbf?.dataDir).toBe('data/acbf');
   });
 
   it('retrieves Vamos project configuration', () => {
@@ -56,8 +63,8 @@ describe('projectUtils & multi-project architecture', () => {
     expect(getAllProjects().some(p => p.id === 'worker-tech-coop')).toBe(true);
   });
 
-  it('calculates KPIs dynamically for ACBF default', () => {
-    const kpis = getKPISummary('acbf');
+  it('calculates KPIs dynamically for Example default', () => {
+    const kpis = getKPISummary('example');
     expect(kpis.totalGrantsCount).toBe(27);
     expect(kpis.totalPipelineAmount).toBe(3990000);
     expect(kpis.targetYear).toBe(2027);
@@ -102,10 +109,12 @@ describe('projectUtils & multi-project architecture', () => {
 
   it('filters markdown documents by project id', () => {
     const allDocs = getAllMarkdownDocs();
+    const exampleDocs = filterDocsByProject(allDocs, 'example');
     const acbfDocs = filterDocsByProject(allDocs, 'acbf');
     const vamosDocs = filterDocsByProject(allDocs, 'vamos');
 
     expect(allDocs.length).toBe(60);
+    expect(exampleDocs.length).toBe(37);
     expect(acbfDocs.length).toBe(37);
     expect(vamosDocs.length).toBe(23);
   });

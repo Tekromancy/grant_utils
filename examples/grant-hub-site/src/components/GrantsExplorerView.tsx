@@ -67,7 +67,7 @@ export const GrantsExplorerView: React.FC<Props> = ({
               </span>
             </h2>
             <p className="text-xs text-slate-400 mt-1">
-              Every proposal is a fully developed, submission-ready package located in <code className="text-cyan-300">acbf/grants/</code>
+              Every proposal is a fully developed, submission-ready package located in <code className="text-cyan-300">grants/</code>
             </p>
           </div>
 

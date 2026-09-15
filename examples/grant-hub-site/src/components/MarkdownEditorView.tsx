@@ -119,7 +119,7 @@ export const MarkdownEditorView: React.FC<Props> = ({
           <div className="p-4 border-b border-slate-800">
             <div className="flex items-center space-x-2 text-white font-bold text-sm mb-3">
               <Folder className="w-4 h-4 text-emerald-400" />
-              <span>ACBF Document Vault</span>
+              <span>Example.org Document Vault</span>
               <span className="text-xs font-normal text-slate-400">({docs.length} files)</span>
             </div>
             <div className="relative">

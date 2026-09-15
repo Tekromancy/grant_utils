@@ -114,7 +114,7 @@ export async function createGitHubPullRequest(payload: PullRequestPayload): Prom
     'Authorization': `Bearer ${token.trim()}`,
     'Accept': 'application/vnd.github.v3+json',
     'Content-Type': 'application/json',
-    'User-Agent': 'ACBF-Grantwriting-Dashboard'
+    'User-Agent': 'Example-Grantwriting-Dashboard'
   };
 
   try {
@@ -171,7 +171,7 @@ export async function createGitHubPullRequest(payload: PullRequestPayload): Prom
       }
 
       const updatePayload: any = {
-        message: `docs(grant): update ${file.path} via ACBF Grant Assistant`,
+        message: `docs(grant): update ${file.path} via Grant Assistant`,
         content: toBase64(file.content),
         branch: branchName
       };
@@ -259,7 +259,7 @@ export async function createGitLabMergeRequest(payload: PullRequestPayload): Pro
   const headers = {
     'PRIVATE-TOKEN': token.trim(),
     'Content-Type': 'application/json',
-    'User-Agent': 'ACBF-Grantwriting-Dashboard'
+    'User-Agent': 'Example-Grantwriting-Dashboard'
   };
 
   try {
@@ -363,7 +363,7 @@ export async function createForgejoPullRequest(payload: PullRequestPayload): Pro
     'Authorization': `token ${token.trim()}`,
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'User-Agent': 'ACBF-Grantwriting-Dashboard'
+    'User-Agent': 'Example-Grantwriting-Dashboard'
   };
 
   try {
@@ -401,7 +401,7 @@ export async function createForgejoPullRequest(payload: PullRequestPayload): Pro
       const filePayload: any = {
         branch: branchName,
         content: toBase64(file.content),
-        message: `docs(grant): update ${file.path} via ACBF Grant Assistant`
+        message: `docs(grant): update ${file.path} via Grant Assistant`
       };
       if (existingSha) {
         filePayload.sha = existingSha;

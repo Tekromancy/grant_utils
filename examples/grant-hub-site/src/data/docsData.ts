@@ -184,7 +184,7 @@ Every major submission deadline includes automated alarms:
         label: 'Sample VEVENT Block',
         language: 'ics',
         code: `BEGIN:VEVENT
-UID:usda-sdgg-2027@acbf.coop
+UID:usda-sdgg-2027@example.org
 DTSTAMP:20260914T120000Z
 DTSTART;VALUE=DATE:20270615
 DTEND;VALUE=DATE:20270615
