@@ -82,7 +82,7 @@ describe('gitPrUtils', () => {
         if (url.endsWith('/pulls')) {
           return { 
             ok: true, 
-            json: async () => ({ html_url: 'https://codeberg.org/ACBF/grantwriting/pulls/1', number: 1 }) 
+            json: async () => ({ html_url: 'https://codeberg.org/ExampleOrg/grant-hub/pulls/1', number: 1 }) 
           } as Response;
         }
         return { ok: false, statusText: 'Not Found' } as Response;
@@ -92,16 +92,16 @@ describe('gitPrUtils', () => {
         provider: 'codeberg',
         instanceUrl: 'https://codeberg.org',
         token: 'codeberg_valid_token',
-        owner: 'AustinCooperativeBusinessFoundation',
-        repo: 'grantwriting',
+        owner: 'ExampleOrg',
+        repo: 'grant-hub',
         branchName: 'test-branch',
         title: 'Test Codeberg PR',
         body: 'Body text',
-        files: [{ path: 'acbf/CallToAction.md', content: '# Updated Action Plan' }]
+        files: [{ path: 'docs/CallToAction.md', content: '# Updated Action Plan' }]
       });
 
       expect(res.success).toBe(true);
-      expect(res.url).toBe('https://codeberg.org/ACBF/grantwriting/pulls/1');
+      expect(res.url).toBe('https://codeberg.org/ExampleOrg/grant-hub/pulls/1');
     });
   });
 

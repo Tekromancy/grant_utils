@@ -14,13 +14,14 @@ import {
   Download,
   Search,
   ExternalLink,
-  Sparkles
+  Sparkles,
+  Compass
 } from 'lucide-react';
 import type { AuthTokenConfig, ProjectConfig } from '@tekromancy/grant_utils';
 import { ThemeChooser } from './ThemeChooser';
 import { ProjectSwitcher } from './ProjectSwitcher';
 
-export type ActiveTab = 'dashboard' | 'grants' | 'editor' | 'calendar' | 'git' | 'docs' | 'guides';
+export type ActiveTab = 'dashboard' | 'research' | 'grants' | 'editor' | 'calendar' | 'git' | 'docs' | 'guides';
 
 interface Props {
   activeTab: ActiveTab;
@@ -98,17 +99,17 @@ export const Navbar: React.FC<Props> = ({
                 >
                   {currentProject.shortName || currentProject.name}
                 </span>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-900/60 text-emerald-300 border border-emerald-700/50">
-                  Example Hub
+                <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20 font-mono">
+                  {currentProject.taxStatus || '501(c)(3)'}
                 </span>
               </div>
-              <p className="text-xs text-slate-400 truncate max-w-[280px] sm:max-w-md">
-                {currentProject.tagline || 'Institutional Grantwriting & Pipeline Management Hub'}
+              <p className="text-[11px] text-slate-400 truncate max-w-[200px] sm:max-w-xs">
+                {currentProject.tagline || 'Institutional Grantwriting Hub'}
               </p>
             </div>
           </div>
 
-          {/* Navigation Tabs */}
+          {/* Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-1">
             <button
               onClick={() => setActiveTab('dashboard')}
@@ -120,6 +121,18 @@ export const Navbar: React.FC<Props> = ({
             >
               <LayoutDashboard className="w-3.5 h-3.5" />
               <span>Dashboard</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('research')}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                activeTab === 'research'
+                  ? 'bg-indigo-600 text-white shadow-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              <Compass className="w-3.5 h-3.5 text-indigo-400" />
+              <span>Research</span>
             </button>
 
             <button
@@ -254,6 +267,14 @@ export const Navbar: React.FC<Props> = ({
             }`}
           >
             Dashboard
+          </button>
+          <button
+            onClick={() => setActiveTab('research')}
+            className={`px-2.5 py-1 rounded-md shrink-0 ${
+              activeTab === 'research' ? 'bg-indigo-600 text-white' : 'text-slate-300'
+            }`}
+          >
+            Research
           </button>
           <button
             onClick={() => setActiveTab('grants')}

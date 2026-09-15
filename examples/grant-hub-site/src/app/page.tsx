@@ -11,6 +11,7 @@ import { GrantModal } from '../components/GrantModal';
 import { CommandPalette } from '../components/CommandPalette';
 import { UserGuidesView } from '../components/UserGuidesView';
 import { DocsView } from '../components/DocsView';
+import { GrantResearchView } from '../components/GrantResearchView';
 import { 
   EXAMPLE_PROJECT_CONFIG, 
   AVAILABLE_PROJECTS 
@@ -199,6 +200,10 @@ export default function Home() {
               setActiveTab('editor');
             }}
           />
+        )}
+
+        {activeTab === 'research' && (
+          <GrantResearchView />
         )}
 
         {activeTab === 'grants' && (

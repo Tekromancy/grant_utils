@@ -126,7 +126,7 @@ const GUIDES: ActivityGuide[] = [
       {
         title: 'Subscribe to Live RFC 5545 iCalendar Feed',
         description: 'Click the ".ICS Feed" button in the navbar or calendar header. Import calendar.ics into Apple Calendar, Google Calendar, or Microsoft Outlook for automatic calendar sync.',
-        code: 'https://raw.githubusercontent.com/AustinCooperativeBusinessFoundation/grantwriting/main/calendar.ics'
+        code: 'https://raw.githubusercontent.com/Tekromancy/grant_utils/main/calendar.ics'
       },
       {
         title: 'Desktop System Tray Notifications',
@@ -291,7 +291,7 @@ export const UserGuidesView: React.FC<Props> = ({ onNavigateTab }) => {
 
           <div className="flex flex-wrap items-center gap-3">
             <a
-              href="https://github.com/AustinCooperativeBusinessFoundation/grantwriting/tree/main/docs"
+              href="https://github.com/Tekromancy/grant_utils/tree/main/docs"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition"

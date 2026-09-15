@@ -246,14 +246,14 @@ console.log(patch);
 
 const prResult = await createGitHubPullRequest({
   token: 'ghp_yourPersonalAccessToken',
-  owner: 'AustinCooperativeBusinessFoundation',
-  repo: 'grantwriting',
-  title: 'Update USDA SDGG proposal budget and narratives',
+  owner: 'YourOrg',
+  repo: 'grant-hub',
+  title: 'Update Clean Energy proposal budget and narratives',
   body: 'Automated PR submitted from Grantwriting Web Hub',
-  branch: 'grant-edit/usda-sdgg-budget-2027',
-  filePath: 'data/grants/01_usda.md',
+  branch: 'grant-edit/apex-clean-energy-budget-2027',
+  filePath: 'data/grants/01_apex_clean_energy.md',
   newContent: updatedContent,
-  commitMessage: 'docs(grants): finalize USDA SDGG budget'
+  commitMessage: 'docs(grants): finalize Apex Clean Energy budget'
 });
 
 console.log(\`Created PR #\${prResult.prNumber}: \${prResult.prUrl}\`);`

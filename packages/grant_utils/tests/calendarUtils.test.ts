@@ -26,7 +26,7 @@ const MOCK_EVENTS: CalendarEvent[] = [
   },
   {
     uid: 'event-2@grant-utils',
-    title: '[DEADLINE] Kellogg Foundation LOI',
+    title: '[DEADLINE] Apex Climate Challenge LOI',
     description: 'Submit LOI proposal',
     startDate: '2026-10-15',
     endDate: '2026-10-15',
@@ -38,7 +38,7 @@ const MOCK_EVENTS: CalendarEvent[] = [
   },
   {
     uid: 'event-3@grant-utils',
-    title: '[DEADLINE] USDA LFPP Grant',
+    title: '[DEADLINE] Federal Resilient Infrastructure Grant',
     description: 'Federal grant submission',
     startDate: '2026-10-25',
     endDate: '2026-10-25',
@@ -98,7 +98,7 @@ describe('calendarUtils', () => {
 
     const oct15 = flatDays.find(d => d.dateStr === '2026-10-15');
     expect(oct15?.events.length).toBe(1);
-    expect(oct15?.events[0].title).toContain('Kellogg');
+    expect(oct15?.events[0].title).toContain('Apex Climate');
   });
 
   it('should parse raw RFC 5545 iCalendar content correctly', () => {

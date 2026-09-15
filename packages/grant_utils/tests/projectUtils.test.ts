@@ -38,24 +38,24 @@ const MOCK_GRANTS: GrantRecord[] = [
     wordCount: 100
   },
   {
-    id: 'grant_vamos_1',
-    title: 'Community Grocery Expansion',
-    funder: 'USDA CFP',
-    program: 'Community Food Projects',
+    id: 'grant_resilience_1',
+    title: 'Clean Microgrid Solar Hub',
+    funder: 'Apex Climate Foundation',
+    program: 'Community Resiliency Challenge',
     amount: 250000,
     amountFormatted: '$250,000',
     deadline: '2026-11-30',
     deadlineFormatted: 'Nov 30, 2026',
-    tier: 'Priority 1 (USDA Food Access)',
-    category: 'Federal/USDA',
+    tier: 'Tier 1 (Fall Immediate)',
+    category: 'Federal',
     matchPercentage: 0,
     grantType: 'Competitive Federal',
     portalUrl: 'https://grants.gov',
-    strategicPriority: 'High',
+    strategicPriority: 'Clean Energy',
     status: 'Planned',
-    fileName: '01_usda_cfp.md',
-    filePath: 'data/vamos/grants/01_usda_cfp.md',
-    summary: 'Community food retail grant.',
+    fileName: '01_resilience_microgrid.md',
+    filePath: 'data/resilience/grants/01_resilience_microgrid.md',
+    summary: 'Decentralized clean microgrid grant.',
     content: '# Narrative',
     wordCount: 500
   }
@@ -74,13 +74,13 @@ const MOCK_DOCS: MarkdownDoc[] = [
     wordCount: 50
   },
   {
-    id: 'doc_vamos_1',
-    fileName: 'doc_vamos_1.md',
-    relativePath: 'data/vamos/doc_vamos_1.md',
-    title: 'Vamos Plan',
+    id: 'doc_resilience_1',
+    fileName: 'doc_resilience_1.md',
+    relativePath: 'data/resilience/doc_resilience_1.md',
+    title: 'Resilience Plan',
     category: 'strategy',
-    excerpt: 'Vamos excerpt',
-    content: '# Vamos Plan',
+    excerpt: 'Resilience excerpt',
+    content: '# Resilience Plan',
     lineCount: 12,
     wordCount: 60
   }
@@ -97,24 +97,28 @@ describe('projectUtils & multi-project architecture', () => {
     expect(defaultProject.shortName).toBe('Example.org');
     expect(defaultProject.financialTargets?.targetYear).toBe(2027);
     expect(defaultProject.financialTargets?.bareMinimum).toBe(300000);
+    expect(defaultProject.financialTargets?.steadyState).toBe(550000);
+    expect(defaultProject.financialTargets?.stretch).toBe(850000);
   });
 
-  it('retrieves ACBF project configuration for backward compatibility', () => {
-    const acbf = getProjectConfig('acbf');
-    expect(acbf).toBeDefined();
-    expect(acbf?.id).toBe('acbf');
-    expect(acbf?.shortName).toBe('ACBF');
-    expect(acbf?.dataDir).toBe('data/acbf');
+  it('retrieves Resilience project configuration', () => {
+    const resilience = getProjectConfig('resilience');
+    expect(resilience).toBeDefined();
+    expect(resilience?.id).toBe('resilience');
+    expect(resilience?.shortName).toBe('Resilience Hub');
+    expect(resilience?.dataDir).toBe('data/resilience');
+    expect(resilience?.financialTargets?.targetYear).toBe(2027);
+    expect(resilience?.financialTargets?.bareMinimum).toBe(350000);
   });
 
-  it('retrieves Vamos project configuration', () => {
-    const vamos = getProjectConfig('vamos');
-    expect(vamos).toBeDefined();
-    expect(vamos?.id).toBe('vamos');
-    expect(vamos?.shortName).toBe('Vamos');
-    expect(vamos?.dataDir).toBe('data/vamos');
-    expect(vamos?.financialTargets?.targetYear).toBe(2026);
-    expect(vamos?.financialTargets?.bareMinimum).toBe(250000);
+  it('retrieves Health Equity project configuration', () => {
+    const health = getProjectConfig('health-equity');
+    expect(health).toBeDefined();
+    expect(health?.id).toBe('health-equity');
+    expect(health?.shortName).toBe('Health Equity');
+    expect(health?.dataDir).toBe('data/health-equity');
+    expect(health?.financialTargets?.targetYear).toBe(2026);
+    expect(health?.financialTargets?.bareMinimum).toBe(250000);
   });
 
   it('allows registration of third-party organization project configs', () => {
@@ -148,37 +152,37 @@ describe('projectUtils & multi-project architecture', () => {
     expect(kpis.totalPipelineAmount).toBe(300000);
     expect(kpis.targetYear).toBe(2027);
     expect(kpis.bareMinimumTarget).toBe(300000);
-    expect(kpis.steadyStateTarget).toBe(500000);
-    expect(kpis.stretchTarget).toBe(700000);
+    expect(kpis.steadyStateTarget).toBe(550000);
+    expect(kpis.stretchTarget).toBe(850000);
   });
 
   it('calculates dynamic KPIs for custom project configuration passed directly', () => {
     const mockGrants = [MOCK_GRANTS[1]];
-    const vamosKpi = getKPISummary('vamos', mockGrants);
-    expect(vamosKpi.totalGrantsCount).toBe(1);
-    expect(vamosKpi.totalPipelineAmount).toBe(250000);
-    expect(vamosKpi.targetYear).toBe(2026);
-    expect(vamosKpi.bareMinimumTarget).toBe(250000);
-    expect(vamosKpi.categoryTotals['Federal/USDA']).toBe(250000);
+    const resilienceKpi = getKPISummary('resilience', mockGrants);
+    expect(resilienceKpi.totalGrantsCount).toBe(1);
+    expect(resilienceKpi.totalPipelineAmount).toBe(250000);
+    expect(resilienceKpi.targetYear).toBe(2027);
+    expect(resilienceKpi.bareMinimumTarget).toBe(350000);
+    expect(resilienceKpi.categoryTotals['Federal']).toBe(250000);
   });
 
   it('filters markdown documents by project id', () => {
     const exampleDocs = filterDocsByProject(MOCK_DOCS, 'example');
-    const vamosDocs = filterDocsByProject(MOCK_DOCS, 'vamos');
+    const resilienceDocs = filterDocsByProject(MOCK_DOCS, 'resilience');
 
     expect(exampleDocs.length).toBe(1);
     expect(exampleDocs[0].id).toBe('doc_example_1');
-    expect(vamosDocs.length).toBe(1);
-    expect(vamosDocs[0].id).toBe('doc_vamos_1');
+    expect(resilienceDocs.length).toBe(1);
+    expect(resilienceDocs[0].id).toBe('doc_resilience_1');
   });
 
   it('filters grants by project id', () => {
     const exampleGrants = filterGrantsByProject(MOCK_GRANTS, 'example');
-    const vamosGrants = filterGrantsByProject(MOCK_GRANTS, 'vamos');
+    const resilienceGrants = filterGrantsByProject(MOCK_GRANTS, 'resilience');
 
     expect(exampleGrants.length).toBe(1);
     expect(exampleGrants[0].id).toBe('grant_example_1');
-    expect(vamosGrants.length).toBe(1);
-    expect(vamosGrants[0].id).toBe('grant_vamos_1');
+    expect(resilienceGrants.length).toBe(1);
+    expect(resilienceGrants[0].id).toBe('grant_resilience_1');
   });
 });

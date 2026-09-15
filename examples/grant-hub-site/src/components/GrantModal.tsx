@@ -354,8 +354,8 @@ export const GrantModal: React.FC<Props> = ({
           <div className="hidden print-only mb-6 border-b-2 border-black pb-4 font-sans">
             <div className="flex justify-between items-start">
               <div>
-                <h1 className="text-xl font-black text-black tracking-tight">AUSTIN COOPERATIVE BUSINESS FOUNDATION</h1>
-                <p className="text-xs text-gray-700">501(c)(3) Public Charity • EIN: 81-2782668 • Austin, Texas • acba.coop</p>
+                <h1 className="text-xl font-black text-black tracking-tight uppercase">GRANT PORTAL SPECIFICATION</h1>
+                <p className="text-xs text-gray-700">501(c)(3) Nonprofit Organization • Research & Proposal Dossier</p>
               </div>
               <div className="text-right">
                 <p className="text-base font-bold text-black">{grant.amountFormatted}</p>

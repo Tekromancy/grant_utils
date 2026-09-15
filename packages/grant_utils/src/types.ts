@@ -84,7 +84,7 @@ export interface AuthTokenConfig {
 }
 
 export interface PRFileChange {
-  path: string; // relative to repo root, e.g. "acbf/CallToAction.md"
+  path: string; // relative to repo root, e.g. "docs/Strategy.md"
   content: string;
 }
 
@@ -92,9 +92,9 @@ export interface PullRequestPayload {
   provider: 'github' | 'gitlab' | 'codeberg' | 'forgejo';
   token: string;
   instanceUrl?: string; // for Codeberg/Forgejo or self-hosted Git
-  owner: string;      // e.g. "AustinCooperativeBusinessFoundation"
-  repo: string;       // e.g. "grantwriting"
-  branchName: string; // e.g. "update-impact-austin-grant"
+  owner: string;      // e.g. "YourOrg"
+  repo: string;       // e.g. "grant-hub"
+  branchName: string; // e.g. "update-clean-energy-grant"
   baseBranch?: string;// default "main"
   title: string;
   body: string;

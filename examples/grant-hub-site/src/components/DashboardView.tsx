@@ -129,10 +129,10 @@ export const DashboardView: React.FC<Props> = ({
             <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Expiring Replaced</span>
             <AlertCircle className="w-5 h-5 text-amber-400" />
           </div>
-          <p className="text-xl font-bold text-white mt-2">ARNL & HFFI Covered</p>
+          <p className="text-xl font-bold text-white mt-2">Core Transition Secured</p>
           <div className="mt-2 text-xs text-slate-400 space-y-0.5">
-            <p>• ARNL ➔ Project Connect ($250k)</p>
-            <p>• HFFI ➔ USDA LFPP ($250k)</p>
+            <p>• Legacy Pilot ➔ Metropolis Digital ($250k)</p>
+            <p>• Agro Seed ➔ Evergreen Trust ($180k)</p>
           </div>
         </div>
       </div>
@@ -149,62 +149,62 @@ export const DashboardView: React.FC<Props> = ({
             <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
               <div className="bg-cyan-500 h-full rounded-full" style={{ width: '66.5%' }}></div>
             </div>
-            <p className="text-slate-400 mt-1">HHS CED, EPA EJCPS, USDA SDGG/RCDG/LFPP, SBA, DOL</p>
+            <p className="text-slate-400 mt-1">Energy Innovation, Resilient Infrastructure, Workforce Labs</p>
           </div>
 
           <div className="bg-slate-800/40 p-3.5 rounded-xl border border-slate-800">
             <div className="flex justify-between font-semibold mb-1">
               <span className="text-purple-300">National Foundations</span>
-              <span className="text-white">$450,000 (12.5%)</span>
+              <span className="text-white">$850,000 (23.5%)</span>
             </div>
             <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-              <div className="bg-purple-500 h-full rounded-full" style={{ width: '12.5%' }}></div>
+              <div className="bg-purple-500 h-full rounded-full" style={{ width: '23.5%' }}></div>
             </div>
-            <p className="text-slate-400 mt-1">W.K. Kellogg Foundation, Workers Lab, CCHD</p>
+            <p className="text-slate-400 mt-1">Apex Climate, Pioneer Global Research, Summit Economic Fund</p>
           </div>
 
           <div className="bg-slate-800/40 p-3.5 rounded-xl border border-slate-800">
             <div className="flex justify-between font-semibold mb-1">
               <span className="text-emerald-300">Regional Foundations</span>
-              <span className="text-white">$390,000 (10.8%)</span>
+              <span className="text-white">$380,000 (10.5%)</span>
             </div>
             <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-              <div className="bg-emerald-500 h-full rounded-full" style={{ width: '10.8%' }}></div>
+              <div className="bg-emerald-500 h-full rounded-full" style={{ width: '10.5%' }}></div>
             </div>
-            <p className="text-slate-400 mt-1">Austin Community Fdn, Impact Austin, St. David’s, RGK</p>
+            <p className="text-slate-400 mt-1">Evergreen Ecological Trust, Beacon Health Philanthropy</p>
           </div>
 
           <div className="bg-slate-800/40 p-3.5 rounded-xl border border-slate-800">
             <div className="flex justify-between font-semibold mb-1">
-              <span className="text-blue-300">Municipal & Transit</span>
-              <span className="text-white">$335,000 (9.3%)</span>
+              <span className="text-blue-300">Municipal Innovation</span>
+              <span className="text-white">$120,000 (3.3%)</span>
             </div>
             <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-              <div className="bg-blue-500 h-full rounded-full" style={{ width: '9.3%' }}></div>
+              <div className="bg-blue-500 h-full rounded-full" style={{ width: '3.3%' }}></div>
             </div>
-            <p className="text-slate-400 mt-1">Austin Project Connect CIS, Austin EDD ACCT Re-Procurement</p>
+            <p className="text-slate-400 mt-1">Metropolis Municipal Innovation Office, Digital Equity</p>
           </div>
 
           <div className="bg-slate-800/40 p-3.5 rounded-xl border border-slate-800">
             <div className="flex justify-between font-semibold mb-1">
-              <span className="text-amber-300">Corporate & Bank CRA</span>
-              <span className="text-white">$125,000 (3.5%)</span>
+              <span className="text-amber-300">Corporate Innovation</span>
+              <span className="text-white">$250,000 (6.9%)</span>
             </div>
             <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-              <div className="bg-amber-500 h-full rounded-full" style={{ width: '3.5%' }}></div>
+              <div className="bg-amber-500 h-full rounded-full" style={{ width: '6.9%' }}></div>
             </div>
-            <p className="text-slate-400 mt-1">Texas Mutual, Frost Bank, Broadway Bank, Tito’s, Credit Unions</p>
+            <p className="text-slate-400 mt-1">Horizon Technology & Innovation Fund, Open Robotics</p>
           </div>
 
           <div className="bg-slate-800/40 p-3.5 rounded-xl border border-slate-800">
             <div className="flex justify-between font-semibold mb-1">
-              <span className="text-pink-300">Movement & CDF</span>
-              <span className="text-white">$105,000 (2.9%)</span>
+              <span className="text-pink-300">Community Enterprise</span>
+              <span className="text-white">$300,000 (8.3%)</span>
             </div>
             <div className="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-              <div className="bg-pink-500 h-full rounded-full" style={{ width: '2.9%' }}></div>
+              <div className="bg-pink-500 h-full rounded-full" style={{ width: '8.3%' }}></div>
             </div>
-            <p className="text-slate-400 mt-1">CDF Cooperative Dev Fund, EOX State Center</p>
+            <p className="text-slate-400 mt-1">Summit Small Enterprise Capital Fund, Cooperative Revolving Pool</p>
           </div>
         </div>
       </div>

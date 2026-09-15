@@ -78,9 +78,9 @@ describe('grantResearchUtils', () => {
     });
 
     it('should build a valid ProPublica search URL', () => {
-      const url = buildProPublicaSearchUrl('Dell Foundation', 'TX');
+      const url = buildProPublicaSearchUrl('Horizon Foundation', 'TX');
       expect(url).toContain('https://projects.propublica.org/nonprofits/api/v2/search.json');
-      expect(url).toContain('q=Dell+Foundation');
+      expect(url).toContain('q=Horizon+Foundation');
       expect(url).toContain('state%5Bid%5D=TX');
     });
 
@@ -97,8 +97,8 @@ describe('grantResearchUtils', () => {
   describe('Funder & Opportunity Parsers', () => {
     it('should parse raw ProPublica 990 organization responses', () => {
       const raw = {
-        name: 'Michael and Susan Dell Foundation',
-        ein: 742918800,
+        name: 'Horizon Technology and Innovation Foundation',
+        ein: 999999999,
         subsection_code: 3,
         city: 'Austin',
         state: 'TX',
@@ -108,13 +108,13 @@ describe('grantResearchUtils', () => {
       };
 
       const parsed = parseProPublicaOrgResponse(raw);
-      expect(parsed.name).toBe('Michael and Susan Dell Foundation');
-      expect(parsed.ein).toBe('742918800');
+      expect(parsed.name).toBe('Horizon Technology and Innovation Foundation');
+      expect(parsed.ein).toBe('999999999');
       expect(parsed.type).toBe('Public Charity');
       expect(parsed.city).toBe('Austin');
       expect(parsed.state).toBe('TX');
       expect(parsed.totalAssets).toBe(1800000000);
-      expect(parsed.sourceUrl).toContain('742918800');
+      expect(parsed.sourceUrl).toContain('999999999');
     });
 
     it('should parse raw Grants.gov synopsis responses', () => {

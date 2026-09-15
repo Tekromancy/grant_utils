@@ -21,9 +21,9 @@ import type { GrantRecord } from '../src/types.js';
 
 const SAMPLE_TEST_GRANTS: GrantRecord[] = [
   {
-    id: 'usda_sdgg_ta',
-    funder: 'USDA Rural Development',
-    program: 'Socially Disadvantaged Groups Grant (SDGG)',
+    id: 'federal_clean_energy_tech',
+    funder: 'Department of Energy Innovation',
+    program: 'Clean Energy Communities Grant',
     amount: 175000,
     amountFormatted: '$175,000',
     deadline: '2027-06-15',
@@ -35,17 +35,17 @@ const SAMPLE_TEST_GRANTS: GrantRecord[] = [
     portalUrl: 'https://grants.gov',
     strategicPriority: 'Technical Assistance',
     status: 'Planned',
-    fileName: 'usda_sdgg_ta.md',
-    filePath: 'data/grants/usda_sdgg_ta.md',
-    title: 'USDA SDGG Technical Assistance',
-    summary: 'Technical assistance for socially disadvantaged group development.',
-    content: '---\nid: usda_sdgg_ta\namount: 175000\n---\n# USDA SDGG Narrative',
+    fileName: 'federal_clean_energy_tech.md',
+    filePath: 'data/grants/federal_clean_energy_tech.md',
+    title: 'Clean Energy Communities Grant',
+    summary: 'Technical assistance for community solar deployments.',
+    content: '---\nid: federal_clean_energy_tech\namount: 175000\n---\n# Clean Energy Narrative',
     wordCount: 300
   },
   {
-    id: 'kellogg_foundation_loi',
-    funder: 'W.K. Kellogg Foundation',
-    program: 'Racial Equity & Community Wealth Building',
+    id: 'horizon_foundation_loi',
+    funder: 'Horizon Technology & Innovation Fund',
+    program: 'Workforce & Open Source Robotics',
     amount: 250000,
     amountFormatted: '$250,000',
     deadline: '2026-10-31',
@@ -54,20 +54,20 @@ const SAMPLE_TEST_GRANTS: GrantRecord[] = [
     category: 'National Foundation',
     matchPercentage: 0,
     grantType: 'Letter of Inquiry (LOI)',
-    portalUrl: 'https://fluxx.org',
-    strategicPriority: 'Racial Equity',
+    portalUrl: 'https://horizonfund.org',
+    strategicPriority: 'Robotics Workforce',
     status: 'Drafting',
-    fileName: 'kellogg_foundation_loi.md',
-    filePath: 'data/grants/kellogg_foundation_loi.md',
-    title: 'W.K. Kellogg Foundation LOI',
-    summary: 'Catalyzing community wealth and racial equity.',
-    content: '---\nid: kellogg_foundation_loi\namount: 250000\n---\n# Kellogg Narrative',
+    fileName: 'horizon_foundation_loi.md',
+    filePath: 'data/grants/horizon_foundation_loi.md',
+    title: 'Horizon Workforce LOI',
+    summary: 'Catalyzing technical education and workforce pathways.',
+    content: '---\nid: horizon_foundation_loi\namount: 250000\n---\n# Horizon Narrative',
     wordCount: 250
   },
   {
-    id: 'austin_edd_coop_coaching',
-    funder: 'City of Austin Economic Development',
-    program: 'Small Business & Co-op Coaching',
+    id: 'metropolis_digital_coaching',
+    funder: 'Metropolis Municipal Innovation Office',
+    program: 'Small Business & Tech Coaching',
     amount: 85000,
     amountFormatted: '$85,000',
     deadline: '2026-09-30',
@@ -76,20 +76,20 @@ const SAMPLE_TEST_GRANTS: GrantRecord[] = [
     category: 'Municipal',
     matchPercentage: 0,
     grantType: 'Municipal Contract',
-    portalUrl: 'https://austintexas.gov',
+    portalUrl: 'https://metropolis.gov',
     strategicPriority: 'Coaching',
     status: 'Awarded',
-    fileName: 'austin_edd_coop_coaching.md',
-    filePath: 'data/grants/austin_edd_coop_coaching.md',
-    title: 'City of Austin Co-op Coaching',
+    fileName: 'metropolis_digital_coaching.md',
+    filePath: 'data/grants/metropolis_digital_coaching.md',
+    title: 'Metropolis Tech Coaching',
     summary: 'Technical coaching contract.',
-    content: '---\nid: austin_edd_coop_coaching\namount: 85000\n---\n# Municipal Coaching',
+    content: '---\nid: metropolis_digital_coaching\namount: 85000\n---\n# Municipal Coaching',
     wordCount: 200
   },
   {
-    id: 'usda_lfpp_supply_chain',
-    funder: 'USDA Agricultural Marketing Service',
-    program: 'Local Food Promotion Program (LFPP)',
+    id: 'evergreen_agroecology_supply_chain',
+    funder: 'Federal Food & Agriculture Office',
+    program: 'Local Agroecology Promotion Program',
     amount: 250000,
     amountFormatted: '$250,000',
     deadline: '2027-05-20',
@@ -101,11 +101,11 @@ const SAMPLE_TEST_GRANTS: GrantRecord[] = [
     portalUrl: 'https://grants.gov',
     strategicPriority: 'Local Food Systems',
     status: 'Planned',
-    fileName: 'usda_lfpp_supply_chain.md',
-    filePath: 'data/grants/usda_lfpp_supply_chain.md',
-    title: 'USDA LFPP Supply Chain Expansion',
+    fileName: 'evergreen_agroecology_supply_chain.md',
+    filePath: 'data/grants/evergreen_agroecology_supply_chain.md',
+    title: 'Agroecology Supply Chain Expansion',
     summary: 'Local food promotion and food supply chain resilience.',
-    content: '---\nid: usda_lfpp_supply_chain\namount: 250000\n---\n# LFPP Narrative',
+    content: '---\nid: evergreen_agroecology_supply_chain\namount: 250000\n---\n# Agroecology Narrative',
     wordCount: 400
   }
 ];
@@ -128,14 +128,14 @@ describe('grantsUtils', () => {
 
   it('should find a grant by ID or file name', () => {
     registerGrants(SAMPLE_TEST_GRANTS);
-    const byId = getGrantById('usda_sdgg_ta');
+    const byId = getGrantById('federal_clean_energy_tech');
     expect(byId).toBeDefined();
-    expect(byId?.program).toContain('Socially Disadvantaged Groups');
+    expect(byId?.program).toContain('Clean Energy Communities');
     expect(byId?.amount).toBe(175000);
 
-    const byFileName = getGrantById('usda_sdgg_ta.md');
+    const byFileName = getGrantById('federal_clean_energy_tech.md');
     expect(byFileName).toBeDefined();
-    expect(byFileName?.id).toBe('usda_sdgg_ta');
+    expect(byFileName?.id).toBe('federal_clean_energy_tech');
   });
 
   it('should filter grants by category accurately', () => {
@@ -146,25 +146,25 @@ describe('grantsUtils', () => {
 
     const municipal = getGrantsByCategory('Municipal');
     expect(municipal.length).toBe(1);
-    expect(municipal[0].id).toBe('austin_edd_coop_coaching');
+    expect(municipal[0].id).toBe('metropolis_digital_coaching');
   });
 
   it('should filter grants by tier', () => {
     registerGrants(SAMPLE_TEST_GRANTS);
     const fallImmediate = getGrantsByTier('Fall');
     expect(fallImmediate.length).toBe(2);
-    expect(fallImmediate.some(g => g.id === 'austin_edd_coop_coaching')).toBe(true);
+    expect(fallImmediate.some(g => g.id === 'metropolis_digital_coaching')).toBe(true);
   });
 
   it('should search grants by keyword across title, funder, program, and category', () => {
     registerGrants(SAMPLE_TEST_GRANTS);
-    const searchResult = searchGrants('kellogg');
+    const searchResult = searchGrants('horizon');
     expect(searchResult.length).toBe(1);
-    expect(searchResult[0].funder).toContain('Kellogg');
+    expect(searchResult[0].funder).toContain('Horizon');
 
     const foodSearch = searchGrants('food');
     expect(foodSearch.length).toBe(1);
-    expect(foodSearch[0].id).toBe('usda_lfpp_supply_chain');
+    expect(foodSearch[0].id).toBe('evergreen_agroecology_supply_chain');
   });
 
   it('should compute KPI summary with correct pipeline math and target metrics', () => {
@@ -197,13 +197,13 @@ describe('grantsUtils', () => {
 
   it('should generate compliance checklists tailored to grant category and match rules', () => {
     registerGrants(SAMPLE_TEST_GRANTS);
-    const federalGrant = getGrantById('usda_sdgg_ta')!;
+    const federalGrant = getGrantById('federal_clean_energy_tech')!;
     const fedList = getGrantComplianceChecklist(federalGrant);
     expect(fedList.some(item => item.id === 'sam_gov')).toBe(true);
     expect(fedList.some(item => item.id === 'sf_424')).toBe(true);
     expect(fedList.some(item => item.id === 'tax_exempt_status')).toBe(true);
 
-    const matchGrant = getGrantById('usda_lfpp_supply_chain')!;
+    const matchGrant = getGrantById('evergreen_agroecology_supply_chain')!;
     const matchList = getGrantComplianceChecklist(matchGrant);
     expect(matchList.some(item => item.id === 'match_letters')).toBe(true);
   });
