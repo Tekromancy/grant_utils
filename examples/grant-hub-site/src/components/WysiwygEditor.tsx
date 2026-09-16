@@ -26,7 +26,7 @@ import {
   ShieldCheck,
   CheckSquare
 } from 'lucide-react';
-import { splitFrontmatter } from '@tekromancy/grant_utils';
+import { splitFrontmatter, sanitizeHtml } from '@tekromancy/grant_utils';
 
 interface Props {
   content: string;
@@ -62,7 +62,7 @@ export const WysiwygEditor: React.FC<Props> = ({ content, onChange, fileName }) 
   // Convert markdown body to HTML and sync with editor DOM only when content differs
   useEffect(() => {
     if (!editorRef.current) return;
-    const initialHtml = marked.parse(body) as string;
+    const initialHtml = sanitizeHtml(marked.parse(body) as string);
 
     // Avoid overwriting innerHTML while the user is actively typing to prevent cursor reset
     if (editorRef.current.innerHTML !== initialHtml && lastHtmlRef.current !== initialHtml) {

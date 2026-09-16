@@ -15,7 +15,7 @@ import {
   GitCompare,
   PenTool
 } from 'lucide-react';
-import { getAllMarkdownDocs, splitFrontmatter, type MarkdownDoc } from '@tekromancy/grant_utils';
+import { getAllMarkdownDocs, splitFrontmatter, sanitizeHtml, type MarkdownDoc } from '@tekromancy/grant_utils';
 import { marked } from 'marked';
 import { VisualDiffViewer } from './VisualDiffViewer';
 import { WysiwygEditor } from './WysiwygEditor';
@@ -302,7 +302,7 @@ export const MarkdownEditorView: React.FC<Props> = ({
                 )}
                 <div 
                   className="markdown-preview"
-                  dangerouslySetInnerHTML={{ __html: previewHtml }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(previewHtml) }}
                 />
               </div>
             ) : (

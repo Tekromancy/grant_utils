@@ -1,6 +1,6 @@
 {
   "name": "@tekromancy/grant_utils",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Enterprise-grade utilities, models, parsers, and Git/PR collaboration workflows for institutional grantwriting, non-profits, and cooperatives",
   "type": "module",
   "main": "./dist/index.js",
@@ -10,6 +10,16 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./store": {
+      "types": "./dist/store.d.ts",
+      "import": "./dist/store.js",
+      "default": "./dist/store.js"
+    },
+    "./research": {
+      "types": "./dist/research/index.d.ts",
+      "import": "./dist/research/index.js",
+      "default": "./dist/research/index.js"
     },
     "./node": {
       "types": "./dist/nodeFs.d.ts",

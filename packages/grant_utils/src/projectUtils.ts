@@ -143,6 +143,9 @@ export function getDefaultProject(): ProjectConfig {
 export function filterGrantsByProject(grants: GrantRecord[], projectId: string): GrantRecord[] {
   const normalized = projectId.toLowerCase();
   return grants.filter(g => {
+    if (g.projectId) {
+      return g.projectId.toLowerCase() === normalized;
+    }
     const p = g.filePath.toLowerCase();
     if (normalized === 'example') {
       return p.includes('/example/') || p.startsWith('example/') || !p.includes('/');

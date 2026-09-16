@@ -1,8 +1,24 @@
-import type { GrantRecord, GrantCategory, KPISummary, ProjectConfig } from './types.js';
+import type { 
+  GrantRecord, 
+  GrantCategory, 
+  GrantStatus, 
+  KPISummary, 
+  ProjectConfig,
+  SearchGrantsOptions,
+  PaginatedResult,
+  BudgetTemplate,
+  BudgetItem,
+  BudgetObjectCategory,
+  GrantValidationResult
+} from './types.js';
 import { GRANTS_DATA, TOTAL_PIPELINE_AMOUNT, TOTAL_GRANTS_COUNT } from './data/generatedGrants.js';
 import { getProjectConfig, getDefaultProject, filterGrantsByProject } from './projectUtils.js';
 
 let customGrantsData: GrantRecord[] | null = null;
+
+export function getTodayDateStr(): string {
+  return new Date().toISOString().slice(0, 10);
+}
 
 /**
  * Registers or sets a custom in-memory grant dataset.
@@ -41,18 +57,69 @@ export function getGrantsByTier(tier: string, dataset?: GrantRecord[]): GrantRec
   return source.filter(g => g.tier.toLowerCase().includes(tier.toLowerCase()));
 }
 
-export function searchGrants(query: string, dataset?: GrantRecord[]): GrantRecord[] {
+export function paginate<T>(items: T[], page: number = 1, pageSize: number = 10): PaginatedResult<T> {
+  const safePage = Math.max(1, page);
+  const safePageSize = Math.max(1, pageSize);
+  const total = items.length;
+  const totalPages = Math.ceil(total / safePageSize) || 1;
+  const start = (safePage - 1) * safePageSize;
+  const pagedItems = items.slice(start, start + safePageSize);
+
+  return {
+    items: pagedItems,
+    total,
+    page: safePage,
+    pageSize: safePageSize,
+    totalPages
+  };
+}
+
+export function searchGrants(
+  query: string, 
+  dataset?: GrantRecord[],
+  options?: SearchGrantsOptions
+): GrantRecord[] {
   const source = dataset || customGrantsData || GRANTS_DATA;
-  if (!query || !query.trim()) return [...source];
-  const q = query.toLowerCase();
-  return source.filter(g => 
-    g.title.toLowerCase().includes(q) ||
-    g.funder.toLowerCase().includes(q) ||
-    g.program.toLowerCase().includes(q) ||
-    g.category.toLowerCase().includes(q) ||
-    g.strategicPriority.toLowerCase().includes(q) ||
-    g.summary.toLowerCase().includes(q)
-  );
+  let results: GrantRecord[];
+  if (!query || !query.trim()) {
+    results = [...source];
+  } else {
+    const q = query.toLowerCase();
+    results = source.filter(g => 
+      g.title.toLowerCase().includes(q) ||
+      g.funder.toLowerCase().includes(q) ||
+      g.program.toLowerCase().includes(q) ||
+      g.category.toLowerCase().includes(q) ||
+      g.strategicPriority.toLowerCase().includes(q) ||
+      g.summary.toLowerCase().includes(q) ||
+      (g.tags && g.tags.some(t => t.toLowerCase().includes(q)))
+    );
+  }
+
+  if (options?.sortBy) {
+    const dir = options.sortDir === 'desc' ? -1 : 1;
+    results.sort((a, b) => {
+      if (options.sortBy === 'amount') {
+        return ((a.amount || 0) - (b.amount || 0)) * dir;
+      }
+      if (options.sortBy === 'matchPercentage') {
+        return ((a.matchPercentage || 0) - (b.matchPercentage || 0)) * dir;
+      }
+      if (options.sortBy === 'deadline') {
+        return (a.deadline || '').localeCompare(b.deadline || '') * dir;
+      }
+      if (options.sortBy === 'title') {
+        return (a.title || '').localeCompare(b.title || '') * dir;
+      }
+      return 0;
+    });
+  }
+
+  if (options?.page !== undefined && options?.pageSize !== undefined) {
+    return paginate(results, options.page, options.pageSize).items;
+  }
+
+  return results;
 }
 
 export function getKPISummary(project?: string | ProjectConfig, customGrants?: GrantRecord[]): KPISummary {
@@ -106,7 +173,7 @@ export function getKPISummary(project?: string | ProjectConfig, customGrants?: G
   };
 }
 
-export function calculateDaysRemaining(deadlineDateStr: string, referenceDateStr: string = '2026-09-10'): number {
+export function calculateDaysRemaining(deadlineDateStr: string, referenceDateStr: string = getTodayDateStr()): number {
   const deadline = new Date(deadlineDateStr).getTime();
   const ref = new Date(referenceDateStr).getTime();
   const diffTime = deadline - ref;
@@ -168,7 +235,7 @@ export function calculatePipelinePacing(pipelineTotal: number, targetAmount: num
   };
 }
 
-export function getDeadlineStatus(deadlineDateStr: string, referenceDateStr: string = '2026-09-10'): {
+export function getDeadlineStatus(deadlineDateStr: string, referenceDateStr: string = getTodayDateStr()): {
   daysRemaining: number;
   isOverdue: boolean;
   isUpcoming: boolean;
@@ -337,3 +404,138 @@ export function getGrantComplianceChecklist(grant: GrantRecord): ComplianceCheck
 
   return checklist;
 }
+
+/**
+ * Updates grant status and records status transition in audit history.
+ */
+export function updateGrantStatus(
+  grant: GrantRecord,
+  newStatus: GrantStatus,
+  note?: string,
+  dateStr: string = getTodayDateStr()
+): GrantRecord {
+  const history = [...(grant.statusHistory || [])];
+  history.push({
+    status: newStatus,
+    date: dateStr,
+    note
+  });
+  return {
+    ...grant,
+    status: newStatus,
+    statusHistory: history
+  };
+}
+
+/**
+ * Generates an SF-424A compatible object-class budget template for a grant.
+ */
+export function generateBudgetTemplate(
+  grant: GrantRecord,
+  matchCalc?: MatchCalculation
+): BudgetTemplate {
+  const match = matchCalc || calculateMatchFunding(grant.amount, grant.matchPercentage);
+  const totalCost = match.totalProjectBudget;
+  const fedTotal = match.requestAmount;
+  const matchTotal = match.matchRequired;
+  const matchRatio = totalCost > 0 ? matchTotal / totalCost : 0;
+  const fedRatio = 1 - matchRatio;
+
+  const allocations: Array<{ cat: BudgetObjectCategory; pct: number; desc: string }> = [
+    { cat: 'Personnel', pct: 0.45, desc: 'Project Director, Technical Specialists, and Core Coordinators' },
+    { cat: 'Fringe Benefits', pct: 0.12, desc: 'FICA, health, retirement and statutory payroll taxes' },
+    { cat: 'Travel', pct: 0.05, desc: 'Site visits, regional coalition gatherings, and training convenings' },
+    { cat: 'Equipment', pct: 0.08, desc: 'Capital deployment assets and specialized hardware' },
+    { cat: 'Supplies', pct: 0.05, desc: 'Operational tooling, office collateral, and participant toolkits' },
+    { cat: 'Contractual', pct: 0.15, desc: 'Third-party evaluator, accounting audit, and legal counsel' },
+    { cat: 'Other', pct: 0.03, desc: 'Participant stipends, communications, and workshop catering' },
+    { cat: 'Indirect Charges', pct: 0.07, desc: 'De minimis 10% modified total direct cost overhead allocation' }
+  ];
+
+  const lineItems: BudgetItem[] = [];
+  const categoryTotals: Record<string, { federal: number; nonFederal: number; total: number }> = {};
+  let directCostTotal = 0;
+  let indirectCostTotal = 0;
+
+  allocations.forEach((a, idx) => {
+    const itemTotal = Math.round(totalCost * a.pct);
+    const itemFed = Math.round(itemTotal * fedRatio);
+    const itemMatch = itemTotal - itemFed;
+
+    if (a.cat === 'Indirect Charges') {
+      indirectCostTotal += itemTotal;
+    } else {
+      directCostTotal += itemTotal;
+    }
+
+    categoryTotals[a.cat] = {
+      federal: itemFed,
+      nonFederal: itemMatch,
+      total: itemTotal
+    };
+
+    lineItems.push({
+      id: `budget-${idx + 1}-${a.cat.toLowerCase().replace(/\s+/g, '-')}`,
+      category: a.cat,
+      description: a.desc,
+      totalCost: itemTotal,
+      federalShare: itemFed,
+      nonFederalShare: itemMatch,
+      matchSource: itemMatch > 0 ? 'Cash Match / Local Contribution' : undefined
+    });
+  });
+
+  return {
+    grantId: grant.id,
+    grantTitle: grant.title,
+    funder: grant.funder,
+    totalProjectCost: totalCost,
+    directCostTotal,
+    indirectCostTotal,
+    federalShareTotal: fedTotal,
+    nonFederalMatchTotal: matchTotal,
+    matchPercentage: grant.matchPercentage,
+    lineItems,
+    categoryTotals
+  };
+}
+
+/**
+ * Validates grant records during data ingestion or deserialization.
+ */
+export function validateGrantRecord(record: any): GrantValidationResult {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+
+  if (!record || typeof record !== 'object') {
+    return { valid: false, errors: ['Grant record must be a non-null object'], warnings: [] };
+  }
+
+  if (!record.id || typeof record.id !== 'string') {
+    errors.push('Missing or invalid required field: "id" (string)');
+  }
+  if (!record.title || typeof record.title !== 'string') {
+    errors.push('Missing or invalid required field: "title" (string)');
+  }
+  if (record.amount === undefined || typeof record.amount !== 'number' || isNaN(record.amount) || record.amount < 0) {
+    errors.push('Missing or invalid required field: "amount" (non-negative number)');
+  }
+  if (!record.deadline || typeof record.deadline !== 'string') {
+    warnings.push('Missing "deadline" field; defaulting to "Rolling"');
+  } else if (record.deadline !== 'Rolling' && !/^\d{4}-\d{2}-\d{2}/.test(record.deadline)) {
+    warnings.push(`Deadline "${record.deadline}" is not in standard YYYY-MM-DD or Rolling format`);
+  }
+  if (!record.funder || typeof record.funder !== 'string') {
+    warnings.push('Missing "funder" field');
+  }
+  if (!record.category || typeof record.category !== 'string') {
+    warnings.push('Missing "category" field; defaulting to "Other"');
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors,
+    warnings
+  };
+}
+

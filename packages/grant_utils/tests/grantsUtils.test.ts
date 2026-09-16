@@ -15,7 +15,11 @@ import {
   calculatePipelinePacing,
   getDeadlineStatus,
   registerGrants,
-  clearGrants
+  clearGrants,
+  updateGrantStatus,
+  generateBudgetTemplate,
+  validateGrantRecord,
+  paginate
 } from '../src/grantsUtils.js';
 import type { GrantRecord } from '../src/types.js';
 
@@ -244,4 +248,78 @@ describe('grantsUtils', () => {
     expect(statusToday.daysRemaining).toBe(0);
     expect(statusToday.statusLabel).toBe('Due today');
   });
+
+  it('should track grant status transitions in statusHistory', () => {
+    const grant = { ...SAMPLE_TEST_GRANTS[0] };
+    const updated = updateGrantStatus(grant, 'Submitted', 'Application submitted via Grants.gov', '2026-10-01');
+
+    expect(updated.status).toBe('Submitted');
+    expect(updated.statusHistory?.length).toBe(1);
+    expect(updated.statusHistory![0].status).toBe('Submitted');
+    expect(updated.statusHistory![0].note).toContain('Grants.gov');
+    expect(updated.statusHistory![0].date).toBe('2026-10-01');
+
+    const awarded = updateGrantStatus(updated, 'Awarded', 'Grant awarded full amount', '2026-12-15');
+    expect(awarded.status).toBe('Awarded');
+    expect(awarded.statusHistory?.length).toBe(2);
+    expect(awarded.statusHistory![1].status).toBe('Awarded');
+  });
+
+  it('should generate an SF-424A object-class budget template', () => {
+    const grant = SAMPLE_TEST_GRANTS[3]; // $250,000 grant with 25% match requirement
+    const budget = generateBudgetTemplate(grant);
+
+    expect(budget.grantId).toBe(grant.id);
+    expect(budget.federalShareTotal).toBe(250000);
+    expect(budget.nonFederalMatchTotal).toBe(62500);
+    expect(budget.totalProjectCost).toBe(312500);
+    expect(budget.lineItems.length).toBe(8);
+
+    // Verify categories match SF-424A
+    const categories = budget.lineItems.map(l => l.category);
+    expect(categories).toContain('Personnel');
+    expect(categories).toContain('Fringe Benefits');
+    expect(categories).toContain('Contractual');
+    expect(categories).toContain('Indirect Charges');
+    expect(budget.categoryTotals['Personnel']).toBeDefined();
+  });
+
+  it('should validate grant records with typed errors and warnings', () => {
+    const valid = validateGrantRecord(SAMPLE_TEST_GRANTS[0]);
+    expect(valid.valid).toBe(true);
+    expect(valid.errors.length).toBe(0);
+
+    const invalid = validateGrantRecord({ funder: 'Some Funder' });
+    expect(invalid.valid).toBe(false);
+    expect(invalid.errors.some(e => e.includes('id'))).toBe(true);
+    expect(invalid.errors.some(e => e.includes('title'))).toBe(true);
+    expect(invalid.errors.some(e => e.includes('amount'))).toBe(true);
+
+    const nonObject = validateGrantRecord(null);
+    expect(nonObject.valid).toBe(false);
+  });
+
+  it('should support sorting and pagination in searchGrants', () => {
+    registerGrants(SAMPLE_TEST_GRANTS);
+
+    // Sort by amount desc
+    const sortedByAmt = searchGrants('', undefined, { sortBy: 'amount', sortDir: 'desc' });
+    expect(sortedByAmt[0].amount).toBeGreaterThanOrEqual(sortedByAmt[1].amount);
+    expect(sortedByAmt[0].amount).toBe(250000);
+
+    // Sort by amount asc
+    const sortedByAmtAsc = searchGrants('', undefined, { sortBy: 'amount', sortDir: 'asc' });
+    expect(sortedByAmtAsc[0].amount).toBe(85000);
+
+    // Pagination test
+    const page1 = searchGrants('', undefined, { page: 1, pageSize: 2 });
+    expect(page1.length).toBe(2);
+
+    const paged = paginate(SAMPLE_TEST_GRANTS, 1, 2);
+    expect(paged.page).toBe(1);
+    expect(paged.pageSize).toBe(2);
+    expect(paged.total).toBe(SAMPLE_TEST_GRANTS.length);
+    expect(paged.totalPages).toBe(Math.ceil(SAMPLE_TEST_GRANTS.length / 2));
+  });
 });
+

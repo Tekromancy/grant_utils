@@ -43,7 +43,8 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
 }) => {
   const allGrants = grants && grants.length > 0 ? grants : getAllGrants();
   const kpis = getKPISummary(undefined, allGrants);
-  const upcomingEvents = getUpcomingEvents('2026-09-10', 8, events);
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const upcomingEvents = getUpcomingEvents(todayStr, 8, events);
 
   const [selectedQuarter, setSelectedQuarter] = useState<'all' | 'Q1' | 'Q2' | 'Q3' | 'Q4'>('all');
   const [winRateSlider, setWinRateSlider] = useState<number>(14);
@@ -497,7 +498,7 @@ export const LiveExecutiveGraphic: React.FC<Props> = ({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {upcomingEvents.slice(0, 4).map((evt) => {
-            const daysRemaining = calculateDaysRemaining(evt.startDate, '2026-09-10');
+            const daysRemaining = calculateDaysRemaining(evt.startDate, todayStr);
             const grant = evt.grantFile ? allGrants.find(g => g.fileName === evt.grantFile) : undefined;
             
             let badgeStyle = 'bg-emerald-950 text-emerald-300 border-emerald-800';

@@ -8,6 +8,8 @@ export * from './gitPrUtils.js';
 export * from './themeUtils.js';
 export * from './diffUtils.js';
 export * from './projectUtils.js';
+export * from './store.js';
 export * from './data/generatedGrants.js';
 export * from './data/generatedCalendar.js';
 export * from './data/generatedDocs.js';
+

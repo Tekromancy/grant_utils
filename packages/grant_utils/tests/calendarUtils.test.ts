@@ -7,6 +7,7 @@ import {
   parseRawIcs, 
   generateIcsString,
   setCalendarEvents,
+  addCalendarEvents,
   clearCalendarEvents
 } from '../src/calendarUtils.js';
 import type { CalendarEvent } from '../src/types.js';
@@ -138,4 +139,70 @@ END:VCALENDAR`;
     expect(icsString).toContain('END:VCALENDAR');
     expect(icsString).toContain('Fall Workforce Grant');
   });
+
+  it('should generate deterministic UIDs when uid is missing', () => {
+    const eventWithoutUid: CalendarEvent = {
+      uid: '',
+      title: 'Deterministic Grant Deadline',
+      description: 'Testing deterministic UID generation',
+      startDate: '2026-11-01',
+      endDate: '2026-11-01',
+      location: 'Online',
+      categories: ['DEADLINE'],
+      status: 'CONFIRMED',
+      alarms: []
+    };
+
+    const ics1 = generateIcsString([eventWithoutUid]);
+    const ics2 = generateIcsString([eventWithoutUid]);
+
+    const uidMatch1 = ics1.match(/UID:(.+)/);
+    const uidMatch2 = ics2.match(/UID:(.+)/);
+
+    expect(uidMatch1).toBeDefined();
+    expect(uidMatch2).toBeDefined();
+    expect(uidMatch1![1].trim()).toBe(uidMatch2![1].trim());
+    expect(uidMatch1![1]).toContain('@grant-utils');
+  });
+
+  it('should round-trip X-GRANT-FILE, X-GRANT-AMOUNT, and X-TAGS custom properties', () => {
+    const richEvent: CalendarEvent = {
+      uid: 'rich-event@grant-utils',
+      title: 'Climate Resilience Action Grant',
+      description: 'Full proposal submission',
+      startDate: '2026-12-01',
+      endDate: '2026-12-01',
+      location: 'Portal',
+      categories: ['DEADLINE', 'CLIMATE'],
+      status: 'CONFIRMED',
+      alarms: [],
+      grantFile: 'climate_resilience.md',
+      amount: 350000,
+      tags: ['green-energy', 'coop', 'workforce']
+    };
+
+    const ics = generateIcsString([richEvent]);
+    expect(ics).toContain('X-GRANT-FILE:climate_resilience.md');
+    expect(ics).toContain('X-GRANT-AMOUNT:350000');
+    expect(ics).toContain('X-TAGS:green-energy,coop,workforce');
+
+    const parsed = parseRawIcs(ics);
+    expect(parsed.length).toBe(1);
+    expect(parsed[0].grantFile).toBe('climate_resilience.md');
+    expect(parsed[0].amount).toBe(350000);
+    expect(parsed[0].tags).toEqual(['green-energy', 'coop', 'workforce']);
+  });
+
+  it('should maintain immutability when addCalendarEvents is called', () => {
+    setCalendarEvents([MOCK_EVENTS[0]]);
+    const initialEvents = getCalendarEvents();
+    expect(initialEvents.length).toBe(1);
+
+    addCalendarEvents([MOCK_EVENTS[1]]);
+
+    const updatedEvents = getCalendarEvents();
+    expect(updatedEvents.length).toBe(2);
+    expect(initialEvents.length).toBe(1);
+  });
 });
+

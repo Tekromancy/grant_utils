@@ -40,7 +40,8 @@ export const DashboardView: React.FC<Props> = ({
 }) => {
   const allGrants = grants && grants.length > 0 ? grants : undefined;
   const kpis = getKPISummary(undefined, allGrants);
-  const upcomingEvents = getUpcomingEvents('2026-09-10', 10, events);
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const upcomingEvents = getUpcomingEvents(todayStr, 10, events);
   const [showGraphic, setShowGraphic] = useState(true);
 
   return (
@@ -246,8 +247,8 @@ export const DashboardView: React.FC<Props> = ({
             </thead>
             <tbody className="divide-y divide-slate-800/60">
               {upcomingEvents.map((evt) => {
-                const daysRemaining = calculateDaysRemaining(evt.startDate, '2026-09-10');
-                const grant = evt.grantFile ? getGrantById(evt.grantFile) : undefined;
+                const daysRemaining = calculateDaysRemaining(evt.startDate, todayStr);
+                const grant = evt.grantFile ? getGrantById(evt.grantFile, allGrants) : undefined;
                 let badgeColor = 'bg-emerald-950 text-emerald-300 border-emerald-800';
                 if (daysRemaining <= 14) badgeColor = 'bg-red-950 text-red-300 border-red-800';
                 else if (daysRemaining <= 45) badgeColor = 'bg-amber-950 text-amber-300 border-amber-800';

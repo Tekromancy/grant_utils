@@ -7,6 +7,7 @@ import {
   splitFrontmatter,
   parseGrantMarkdown,
   serializeGrantMarkdown,
+  sanitizeHtml,
   setMarkdownDocs,
   clearMarkdownDocs
 } from '../src/markdownUtils.js';
@@ -167,5 +168,18 @@ Detailed project description.`;
       expect(roundtrip.metadata.amount).toBe(50000);
       expect(roundtrip.content).toBe('# Overview\nCity initiative funding.');
     });
+
+    it('should sanitize HTML by stripping dangerous script, iframe, and handler attributes', () => {
+      const malicious = `<div><h3>Safe Header</h3><script>alert("XSS")</script><p onclick="steal()">Click me</p><iframe src="evil.html"></iframe><a href="javascript:void(0)">Link</a></div>`;
+      const cleaned = sanitizeHtml(malicious);
+
+      expect(cleaned).toContain('<h3>Safe Header</h3>');
+      expect(cleaned).not.toContain('<script>');
+      expect(cleaned).not.toContain('alert("XSS")');
+      expect(cleaned).not.toContain('onclick=');
+      expect(cleaned).not.toContain('<iframe');
+      expect(cleaned).not.toContain('javascript:');
+    });
   });
 });
+

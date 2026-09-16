@@ -5,7 +5,9 @@ const repoName = process.env.GITHUB_REPOSITORY ? `/${process.env.GITHUB_REPOSITO
 // In production or CI, basePath MUST be '/grant_utils' for GitHub Pages to resolve assets.
 // In local dev ('next dev'), keep basePath empty so http://localhost:3000 works directly.
 let basePath = '';
-if (process.env.NEXT_PUBLIC_BASE_PATH) {
+if (process.env.NEXT_BASE_PATH) {
+  basePath = process.env.NEXT_BASE_PATH.replace(/\/$/, '');
+} else if (process.env.NEXT_PUBLIC_BASE_PATH) {
   basePath = process.env.NEXT_PUBLIC_BASE_PATH.replace(/\/$/, '');
 } else if (process.env.CI || process.env.GITHUB_ACTIONS || isProd) {
   basePath = repoName;

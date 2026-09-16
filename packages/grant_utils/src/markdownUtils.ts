@@ -92,3 +92,18 @@ export function serializeGrantMarkdown(metadata: Record<string, any>, content: s
   const cleanBody = content.trim();
   return `---\n${yamlText}\n---\n\n${cleanBody}\n`;
 }
+
+/**
+ * Sanitizes an HTML string by stripping script tags, event handlers, and dangerous iframe/object tags.
+ */
+export function sanitizeHtml(rawHtml: string): string {
+  if (!rawHtml) return '';
+  return rawHtml
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+    .replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, '')
+    .replace(/<embed\b[^<]*(?:(?!<\/embed>)<[^<]*)*<\/embed>/gi, '')
+    .replace(/\son[a-z]+\s*=\s*(?:'[^']*'|"[^"]*"|[^\s>]+)/gi, '')
+    .replace(/javascript:/gi, 'blocked:');
+}
+

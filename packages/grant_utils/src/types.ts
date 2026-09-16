@@ -16,8 +16,26 @@ export type GrantCategory =
   | 'Movement/CDF'
   | (string & {});
 
+export type GrantStatus = 
+  | 'Drafting'
+  | 'Internal Review'
+  | 'Board Approval'
+  | 'Submitted'
+  | 'Under Review'
+  | 'Awarded'
+  | 'Declined'
+  | 'Forecasted'
+  | (string & {});
+
+export interface GrantStatusEntry {
+  status: GrantStatus;
+  date: string; // YYYY-MM-DD or ISO
+  note?: string;
+}
+
 export interface GrantRecord {
   id: string;
+  projectId?: string;
   funder: string;
   program: string;
   amount: number;
@@ -30,7 +48,9 @@ export interface GrantRecord {
   grantType: string;
   portalUrl: string;
   strategicPriority: string;
-  status: string;
+  status: GrantStatus;
+  statusHistory?: GrantStatusEntry[];
+  tags?: string[];
   fileName: string;
   filePath: string;
   title: string;
@@ -56,6 +76,7 @@ export interface CalendarEvent {
   alarms: CalendarAlarm[];
   grantFile?: string;
   amount?: number;
+  tags?: string[];
 }
 
 export interface MarkdownDoc {
@@ -152,10 +173,13 @@ export interface KPISummary {
   bareMinimumTarget?: number;
   steadyStateTarget?: number;
   stretchTarget?: number;
-  // Backwards compatibility aliases for ACBF 2027
+  /** @deprecated Legacy alias for confirmedRevenue */
   confirmedRevenue2027: number;
+  /** @deprecated Legacy alias for bareMinimumTarget */
   bareMinimumTarget2027: number;
+  /** @deprecated Legacy alias for steadyStateTarget */
   steadyStateTarget2027: number;
+  /** @deprecated Legacy alias for stretchTarget */
   stretchTarget2027: number;
   categoryTotals: Record<string, number>;
   tierTotals: Record<string, number>;
@@ -409,5 +433,76 @@ export interface GrantResearchDossierOptions {
   assignedLead?: string;
   applicantName?: string;
   notes?: string;
+}
+
+// ============================================================================
+// BUDGET & FINANCIAL PLANNING TYPES (SF-424A COMPATIBLE)
+// ============================================================================
+
+export type BudgetObjectCategory =
+  | 'Personnel'
+  | 'Fringe Benefits'
+  | 'Travel'
+  | 'Equipment'
+  | 'Supplies'
+  | 'Contractual'
+  | 'Construction'
+  | 'Other'
+  | 'Indirect Charges'
+  | (string & {});
+
+export interface BudgetItem {
+  id: string;
+  category: BudgetObjectCategory;
+  description: string;
+  quantity?: number;
+  unitCost?: number;
+  totalCost: number;
+  federalShare: number;
+  nonFederalShare: number;
+  matchSource?: string;
+}
+
+export interface BudgetTemplate {
+  grantId: string;
+  grantTitle: string;
+  funder: string;
+  totalProjectCost: number;
+  directCostTotal: number;
+  indirectCostTotal: number;
+  federalShareTotal: number;
+  nonFederalMatchTotal: number;
+  matchPercentage: number;
+  lineItems: BudgetItem[];
+  categoryTotals: Record<string, { federal: number; nonFederal: number; total: number }>;
+}
+
+// ============================================================================
+// SEARCH, SORTING & PAGINATION TYPES
+// ============================================================================
+
+export interface SearchGrantsOptions {
+  sortBy?: 'deadline' | 'amount' | 'matchPercentage' | 'title';
+  sortDir?: 'asc' | 'desc';
+  page?: number;
+  pageSize?: number;
+}
+
+export interface PaginatedResult<T> {
+  items: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
+// ============================================================================
+// DATA INGESTION & VALIDATION TYPES
+// ============================================================================
+
+export interface GrantValidationResult {
+  valid: boolean;
+  errors: string[];
+  warnings: string[];
 }
 

@@ -38,10 +38,11 @@ export const CalendarView: React.FC<Props> = ({
   const [year, setYear] = useState(2026);
   const [month, setMonth] = useState(9); // September 2026
   const [selectedDayEvents, setSelectedDayEvents] = useState<CalendarEvent[] | null>(null);
-  const [selectedDateStr, setSelectedDateStr] = useState<string>('2026-09-10');
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const [selectedDateStr, setSelectedDateStr] = useState<string>(todayStr);
 
   const allEvents = events && events.length > 0 ? events : [];
-  const monthMatrix = getMonthMatrix(year, month, '2026-09-10', allEvents);
+  const monthMatrix = getMonthMatrix(year, month, todayStr, allEvents);
   const monthEvents = getEventsForMonth(year, month, allEvents);
 
   function prevMonth() {

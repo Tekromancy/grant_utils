@@ -25,7 +25,9 @@ import {
   type LifecycleStage, 
   calculateMatchFunding, 
   getGrantComplianceChecklist, 
-  type ComplianceChecklistItem 
+  generateBudgetTemplate,
+  type ComplianceChecklistItem,
+  type BudgetTemplate 
 } from '@tekromancy/grant_utils';
 
 interface Props {
@@ -52,7 +54,7 @@ export const GrantModal: React.FC<Props> = ({
 }) => {
   if (!grant) return null;
 
-  const [activeTab, setActiveTab] = useState<'proposal' | 'checklist' | 'calculator'>('proposal');
+  const [activeTab, setActiveTab] = useState<'proposal' | 'checklist' | 'calculator' | 'budget'>('proposal');
   
   // Lifecycle tracking state
   const [currentStage, setCurrentStage] = useState<LifecycleStage>('Drafting');
@@ -346,6 +348,18 @@ export const GrantModal: React.FC<Props> = ({
               </span>
             )}
           </button>
+
+          <button
+            onClick={() => setActiveTab('budget')}
+            className={`flex items-center space-x-1.5 px-3 py-2 border-b-2 font-semibold transition ${
+              activeTab === 'budget'
+                ? 'border-emerald-500 text-white'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Coins className="w-3.5 h-3.5 text-emerald-400" />
+            <span>SF-424A Budget</span>
+          </button>
         </div>
 
         {/* Modal Body: Active Tab Content */}
@@ -553,6 +567,95 @@ export const GrantModal: React.FC<Props> = ({
               </div>
             </div>
           )}
+
+          {/* Tab 4: SF-424A Budget Template */}
+          {activeTab === 'budget' && (() => {
+            const budgetTemplate = generateBudgetTemplate(grant, matchCalc);
+            return (
+              <div className="space-y-6 font-sans">
+                <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <div>
+                      <h4 className="text-sm font-bold text-white tracking-tight flex items-center gap-2">
+                        <Coins className="w-4 h-4 text-emerald-400" />
+                        <span>SF-424A Object-Class Budget Schedule</span>
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-0.5">
+                        Standard federal and institutional object class categories with direct & indirect allocation
+                      </p>
+                    </div>
+                    <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+                      Total: ${budgetTemplate.totalProjectCost.toLocaleString('en-US')}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Macro totals */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                  <div className="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                    <p className="text-[11px] text-slate-400">Direct Charges</p>
+                    <p className="text-base font-bold text-white font-mono mt-0.5">
+                      ${budgetTemplate.directCostTotal.toLocaleString('en-US')}
+                    </p>
+                  </div>
+                  <div className="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                    <p className="text-[11px] text-slate-400">Indirect (10% MTDC)</p>
+                    <p className="text-base font-bold text-purple-400 font-mono mt-0.5">
+                      ${budgetTemplate.indirectCostTotal.toLocaleString('en-US')}
+                    </p>
+                  </div>
+                  <div className="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                    <p className="text-[11px] text-slate-400">Funder Request</p>
+                    <p className="text-base font-bold text-emerald-400 font-mono mt-0.5">
+                      ${budgetTemplate.federalShareTotal.toLocaleString('en-US')}
+                    </p>
+                  </div>
+                  <div className="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                    <p className="text-[11px] text-slate-400">Non-Federal Cost Share</p>
+                    <p className="text-base font-bold text-amber-400 font-mono mt-0.5">
+                      ${budgetTemplate.nonFederalMatchTotal.toLocaleString('en-US')}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Object-Class Breakdown Table */}
+                <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950">
+                  <table className="min-w-full divide-y divide-slate-800 text-left text-xs">
+                    <thead className="bg-slate-900/60 font-semibold text-slate-400 uppercase tracking-wider text-[10px]">
+                      <tr>
+                        <th className="px-4 py-3">Object Class Category</th>
+                        <th className="px-4 py-3">Description & Narrative Justification</th>
+                        <th className="px-4 py-3 text-right">Funder Share</th>
+                        <th className="px-4 py-3 text-right">Match Share</th>
+                        <th className="px-4 py-3 text-right">Total Line Item</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-800/60 font-mono">
+                      {budgetTemplate.lineItems.map((item) => (
+                        <tr key={item.id} className="hover:bg-slate-900/40">
+                          <td className="px-4 py-3 font-sans font-bold text-white whitespace-nowrap">
+                            {item.category}
+                          </td>
+                          <td className="px-4 py-3 font-sans text-slate-300 text-xs">
+                            {item.description}
+                          </td>
+                          <td className="px-4 py-3 text-right text-emerald-400 whitespace-nowrap">
+                            ${item.federalShare.toLocaleString('en-US')}
+                          </td>
+                          <td className="px-4 py-3 text-right text-amber-400 whitespace-nowrap">
+                            ${item.nonFederalShare.toLocaleString('en-US')}
+                          </td>
+                          <td className="px-4 py-3 text-right font-bold text-white whitespace-nowrap">
+                            ${item.totalCost.toLocaleString('en-US')}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            );
+          })()}
         </div>
 
         {/* Modal Footer Actions */}

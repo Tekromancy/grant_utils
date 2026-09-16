@@ -9,10 +9,19 @@ import {
   analyzeRfpText,
   evaluateGrantFit,
   generateGrantResearchDossier,
+  searchGrantsGov,
+  getKPISummary,
+  getUpcomingEvents,
   type GrantOpportunity,
   type ApplicantProfile,
-  type ResearchQuery
+  type ResearchQuery,
+  type GrantRecord,
+  type CalendarEvent
 } from './index.js';
+import {
+  loadGrantsFromDirectory,
+  loadCalendarFromFile
+} from './nodeFs.js';
 
 function printHelp() {
   console.log(`
@@ -24,6 +33,17 @@ Usage:
   grant-research <command> [arguments] [flags]
 
 Commands:
+  search <keywords> [--limit <n>] [--format json|table|csv]
+      Search open and forecasted federal grant opportunities on Grants.gov.
+
+  load <directory> [--format json|table|csv]
+      Load and parse all markdown grant proposals in a directory and print
+      executive KPI pipeline summaries.
+
+  calendar <fileOrDir> [--limit <n>] [--format json|table|csv]
+      Parse an RFC 5545 .ics file and list upcoming submission deadlines
+      and review milestones.
+
   dorks <topic> [--org-type <type>] [--location <loc>]
       Generate laser-targeted search queries to uncover RFPs, NOFOs,
       and 990-PF grant files on the web.
@@ -41,10 +61,40 @@ Commands:
       complete YAML frontmatter.
 
 Examples:
-  grant-research dorks "clean energy workforce" --location "Texas"
+  grant-research search "clean energy workforce" --limit 5
+  grant-research load ./data/grants --format table
+  grant-research calendar ./calendar.ics --limit 10
+  grant-research dorks "workforce development" --location "Texas"
   grant-research analyze-rfp ./solicitation.txt
   grant-research assess ./opportunity.json ./profile.json
 `);
+}
+
+function getFlag(args: string[], flag: string): string | undefined {
+  const idx = args.indexOf(flag);
+  return idx !== -1 && idx + 1 < args.length ? args[idx + 1] : undefined;
+}
+
+function outputFormatted<T>(data: T[], format: string = 'table', headers: Array<keyof T & string>) {
+  if (format === 'json') {
+    console.log(JSON.stringify(data, null, 2));
+    return;
+  }
+
+  if (format === 'csv') {
+    console.log(headers.join(','));
+    for (const item of data) {
+      const row = headers.map(h => {
+        const val = String((item as any)[h] ?? '');
+        return `"${val.replace(/"/g, '""')}"`;
+      });
+      console.log(row.join(','));
+    }
+    return;
+  }
+
+  // Default table
+  console.table(data, headers as string[]);
 }
 
 async function main() {
@@ -56,16 +106,111 @@ async function main() {
     process.exit(0);
   }
 
+  const format = getFlag(args, '--format') || 'table';
+
+  if (command === 'search') {
+    const keywords = args[1];
+    if (!keywords) {
+      console.error('Error: Please specify search keywords. Example: grant-research search "climate resilience"');
+      process.exit(1);
+    }
+    const limitStr = getFlag(args, '--limit');
+    const limit = limitStr ? parseInt(limitStr, 10) : 10;
+
+    console.log(`\n🔍 Searching Grants.gov for: "${keywords}" (limit: ${limit})...\n`);
+    const opps = await searchGrantsGov(keywords, { limit });
+
+    if (opps.length === 0) {
+      console.log('No matching opportunities found (or network unavailable).');
+      return;
+    }
+
+    const rows = opps.map(o => ({
+      id: o.id,
+      title: o.title.slice(0, 40),
+      funder: o.funder.slice(0, 30),
+      deadline: o.deadline,
+      amount: o.fundingAmountMax ? `$${o.fundingAmountMax.toLocaleString()}` : 'Varies',
+      status: o.status
+    }));
+
+    outputFormatted(rows, format, ['id', 'title', 'funder', 'deadline', 'amount', 'status']);
+    return;
+  }
+
+  if (command === 'load') {
+    const dir = args[1];
+    if (!dir) {
+      console.error('Error: Please specify directory to load. Example: grant-research load ./data/grants');
+      process.exit(1);
+    }
+    const fullDir = path.resolve(process.cwd(), dir);
+    if (!fs.existsSync(fullDir)) {
+      console.error(`Error: Directory not found: ${fullDir}`);
+      process.exit(1);
+    }
+
+    const grants = loadGrantsFromDirectory(fullDir);
+    const kpis = getKPISummary(undefined, grants);
+
+    console.log(`\n📊 Loaded ${grants.length} grants from ${dir}`);
+    console.log(`   Total Active Pipeline: $${kpis.totalPipelineAmount.toLocaleString()}`);
+    console.log(`   Proposals Count:       ${kpis.totalGrantsCount}`);
+
+    const rows = grants.map(g => ({
+      id: g.id,
+      title: g.title.slice(0, 35),
+      funder: g.funder.slice(0, 25),
+      amount: `$${g.amount.toLocaleString()}`,
+      deadline: g.deadline,
+      tier: g.tier,
+      category: g.category,
+      status: g.status
+    }));
+
+    console.log('\nGrants Overview:');
+    outputFormatted(rows, format, ['id', 'title', 'funder', 'amount', 'deadline', 'category', 'status']);
+    return;
+  }
+
+  if (command === 'calendar') {
+    const target = args[1];
+    if (!target) {
+      console.error('Error: Please specify calendar file (.ics). Example: grant-research calendar ./calendar.ics');
+      process.exit(1);
+    }
+    const fullPath = path.resolve(process.cwd(), target);
+    if (!fs.existsSync(fullPath)) {
+      console.error(`Error: File not found: ${fullPath}`);
+      process.exit(1);
+    }
+
+    const events = loadCalendarFromFile(fullPath);
+    const limitStr = getFlag(args, '--limit');
+    const limit = limitStr ? parseInt(limitStr, 10) : 15;
+    const upcoming = getUpcomingEvents(undefined, limit, events);
+
+    console.log(`\n📅 Upcoming Deadlines & Milestones (${upcoming.length} events):`);
+    const rows = upcoming.map(e => ({
+      date: e.startDate,
+      title: e.title.slice(0, 45),
+      category: e.categories.join(', '),
+      amount: e.amount ? `$${e.amount.toLocaleString()}` : '-',
+      grantFile: e.grantFile || '-'
+    }));
+
+    outputFormatted(rows, format, ['date', 'title', 'category', 'amount', 'grantFile']);
+    return;
+  }
+
   if (command === 'dorks') {
     const topic = args[1];
     if (!topic) {
       console.error('Error: Please specify a research topic. Example: grant-research dorks "youth STEM"');
       process.exit(1);
     }
-    const orgTypeIdx = args.indexOf('--org-type');
-    const orgType = orgTypeIdx !== -1 ? args[orgTypeIdx + 1] : 'nonprofit';
-    const locIdx = args.indexOf('--location');
-    const location = locIdx !== -1 ? args[locIdx + 1] : undefined;
+    const orgType = getFlag(args, '--org-type') || 'nonprofit';
+    const location = getFlag(args, '--location');
 
     console.log(`\n🔍 Generating targeted web research queries for: "${topic}"\n`);
     const queries = buildWebResearchQueries(topic, orgType, location);
@@ -126,9 +271,8 @@ async function main() {
     const opp: GrantOpportunity = JSON.parse(fs.readFileSync(oppPath, 'utf8'));
     const dossier = generateGrantResearchDossier(opp);
 
-    const outIdx = args.indexOf('--out');
-    if (outIdx !== -1 && args[outIdx + 1]) {
-      const outPath = args[outIdx + 1];
+    const outPath = getFlag(args, '--out');
+    if (outPath) {
       fs.writeFileSync(outPath, dossier, 'utf8');
       console.log(`✅ Saved grant dossier to ${outPath}`);
     } else {
